@@ -1,2 +1,2 @@
 # MusicPlayer
-Music Player writen on C#? using MVVMCross, CSCore, Xamarin.Forms, WPF
+Music Player writen on C#. Using MVVMCross, CSCore, Xamarin.Forms, WPF
