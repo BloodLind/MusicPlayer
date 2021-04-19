@@ -12,7 +12,7 @@ using MvvmCross.Forms.Platforms.Android.Core;
 namespace MusicPlayer.Xamarin.Droid
 {
     [Activity(Label = "MusicPlayer", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
-    public class MainActivity : MvxFormsAppCompatActivity<MvxFormsAndroidSetup<Core.App, App>, Core.App, App>
+    public class MainActivity : MvxFormsAppCompatActivity<MvxFormsAndroidSetup<Core.CoreApp, App>, Core.CoreApp, App>
     {
         protected override void OnCreate(Bundle bundle)
         {
