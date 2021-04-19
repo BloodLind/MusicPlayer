@@ -11,9 +11,10 @@ namespace MusicPlayer.Core
 {
     public class CoreApp : MvxApplication
     {
+       
         public override void Initialize()
         {
-            RegisterAppStart<HomeViewModel>();
+            this.RegisterAppStart<HomeViewModel>();
         }
     }
 }
