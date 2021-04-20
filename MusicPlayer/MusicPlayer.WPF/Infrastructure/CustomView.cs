@@ -1,5 +1,4 @@
 ﻿using MvvmCross.Platforms.Wpf.Views;
-using MvvmCross.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +9,7 @@ using System.Windows.Input;
 
 namespace MusicPlayer.WPF.Infrastructure
 {
-    public class CustomView: MvxWpfView
+    public class CustomView : MvxWpfView
     {
         protected void ClickMinimizeWindow(object sender, RoutedEventArgs e)
         {

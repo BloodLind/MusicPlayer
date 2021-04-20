@@ -1,4 +1,4 @@
-﻿using MusicPlayer.WPF.Infrostructure;
+﻿using MusicPlayer.WPF.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
