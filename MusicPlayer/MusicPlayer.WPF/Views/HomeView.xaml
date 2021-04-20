@@ -1,4 +1,4 @@
-﻿<infrostructure:CustomView  xmlns:infrostructure="clr-namespace:MusicPlayer.WPF.Infrostructure"
+﻿<infrastructure:CustomView  xmlns:infrastructure="clr-namespace:MusicPlayer.WPF.Infrastructure"
                             x:Class="MusicPlayer.WPF.Views.HomeView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -10,4 +10,4 @@
     <Grid>
         <Label VerticalAlignment="Center" HorizontalAlignment="Center">Hello world</Label>
     </Grid>
-</infrostructure:CustomView>
+</infrastructure:CustomView>

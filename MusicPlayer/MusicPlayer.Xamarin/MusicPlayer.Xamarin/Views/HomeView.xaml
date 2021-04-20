@@ -2,7 +2,8 @@
 <vm:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                 xmlns:vm ="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MusicPlayer.Xamarin.Views.HomeView">
+             x:Class="MusicPlayer.Xamarin.Views.HomeView"
+                   NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Welcome to Xamarin.Forms!"

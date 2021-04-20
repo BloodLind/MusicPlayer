@@ -18,6 +18,8 @@ namespace MusicPlayer.Xamarin.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+            Window.SetStatusBarColor(Android.Graphics.Color.Black);
+      
             base.OnCreate(bundle);
         }
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace MusicPlayer.WPF.Infrostructure
+namespace MusicPlayer.WPF.Infrastructure
 {
     public class CustomView: MvxWpfView
     {

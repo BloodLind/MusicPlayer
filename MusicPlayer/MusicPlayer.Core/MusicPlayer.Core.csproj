@@ -53,10 +53,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CoreApp.cs" />
-    <Compile Include="Infrostructure\Interfaces\ICatalogScaner.cs" />
-    <Compile Include="Infrostructure\Interfaces\IMusicPlayer.cs" />
-    <Compile Include="Infrostructure\Interfaces\ITrackInfoEditor.cs" />
-    <Compile Include="Infrostructure\Interfaces\ITrackInfoGrabber.cs" />
+    <Compile Include="Infrastructure\Interfaces\ICatalogScaner.cs" />
+    <Compile Include="Infrastructure\Interfaces\IMusicPlayer.cs" />
+    <Compile Include="Infrastructure\Interfaces\ITrackInfoEditor.cs" />
+    <Compile Include="Infrastructure\Interfaces\ITrackInfoGrabber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
   </ItemGroup>

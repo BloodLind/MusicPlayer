@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MusicPlayer.Core.Infrostructure.Interfaces
+namespace MusicPlayer.Core.Infrastructure.Interfaces
 {
     public interface ITrackInfoGrabber
     {
