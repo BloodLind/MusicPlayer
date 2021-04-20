@@ -1,3 +1,13 @@
 /MusicPlayer/.vs
 
 /MusicPlayer/MusicPlayer.Core/obj
+
+/MusicPlayer/MusicPlayer.Core/bin
+
+/MusicPlayer/MusicPlayer.WPF/bin
+
+/MusicPlayer/MusicPlayer.WPF/obj
+
+/MusicPlayer/MusicPlayer.Xamarin/MusicPlayer.Xamarin.Android/obj
+
+/MusicPlayer/MusicPlayer.Xamarin/MusicPlayer.Xamarin.Android/bin
