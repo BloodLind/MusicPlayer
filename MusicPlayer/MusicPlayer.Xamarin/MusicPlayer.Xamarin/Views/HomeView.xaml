@@ -5,10 +5,117 @@
              x:Class="MusicPlayer.Xamarin.Views.HomeView"
                    NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid BackgroundColor="{StaticResource PrimaryLightColor}">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="6*"></RowDefinition>
+            </Grid.RowDefinitions>
+            
+        <Grid BackgroundColor="{StaticResource PrimaryLightColor}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                </Grid.RowDefinitions>
+            
+                <Frame CornerRadius="15" Padding="7"
+                       Margin="5,10,5,10"
+                       BackgroundColor="{StaticResource PrimaryAccentColor}"
+                       >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="6*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                    <SearchBar 
+                               Placeholder="Search..."
+                               PlaceholderColor="{StaticResource FontMidColor}"
+                               TextColor="{StaticResource FontLightColor}"
+                       ></SearchBar>
+                        <ImageButton Grid.Column="1" Aspect="AspectFit" Margin="5" 
+                                     Source="more.png" BackgroundColor="Transparent">
+                        </ImageButton>
+                    </Grid>
+                </Frame>
+                <StackLayout x:Name="Categories"
+                             Grid.Row="1" 
+                             Orientation="Horizontal"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center">
+                    <Label Text="Queue"
+                           Margin="5"
+                           TextColor="{StaticResource FontLightColor}"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           x:Name="queueLabel">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+                    <Label Text="Playlists"
+                           Margin="5"
+                           TextColor="{StaticResource FontLightColor}"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           x:Name="playlistsLabel">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="Tracks"
+                           Margin="5"
+                           TextColor="{StaticResource FontLightColor}"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           x:Name="tracksLabel">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="Albums"
+                           Margin="5"
+                           TextColor="{StaticResource FontLightColor}"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           x:Name="albumsLabel">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="Artists"
+                           Margin="5"
+                           TextColor="{StaticResource FontLightColor}"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           x:Name="artistsLabel">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+        </Grid>
+            
+            <Frame Grid.Row="1" CornerRadius="30"
+                   BackgroundColor="{StaticResource PrimaryMidColor}">
+                <Frame.GestureRecognizers>
+                    <SwipeGestureRecognizer Direction="Left" Swiped="SwipeGestureRecognizer_Swiped"></SwipeGestureRecognizer>
+                    <SwipeGestureRecognizer Direction="Right" Swiped="SwipeGestureRecognizer_Swiped"></SwipeGestureRecognizer>
+                </Frame.GestureRecognizers>
+            </Frame>
+            
+            <Frame Grid.Row="1"
+                   VerticalOptions="End"
+                   HeightRequest="55" 
+                   BackgroundColor="{StaticResource PrimaryLightColor}"
+                   CornerRadius="20" Padding="10">
+                <StackLayout Background="#123">
+                    <Label Text="Welcome to Xamarin.Forms!"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                           TextColor="{StaticResource FontLightColor}"/>
+                </StackLayout>
+            </Frame>
+        </Grid>
+        
     </ContentPage.Content>
 </vm:MvxContentPage>

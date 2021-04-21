@@ -3,6 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MusicPlayer.Xamarin.App">
     <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryLightColor">#1C1C1C</Color>
+            <Color x:Key="FontLightColor">#FFFFFF</Color>
+            <Color x:Key="PrimaryMidColor">#111111</Color>
+            <Color x:Key="PrimaryDarkColor">#0C0B0B</Color>
+            <Color x:Key="PrimaryAccentColor">#363535</Color>
+            <Color x:Key="FontMidColor">#DCDCDC</Color>
+            <Color x:Key="AudioButtonBackground">#66DCFB</Color>
+            <Color x:Key="AboutButtonBackround">#C1F049</Color>
 
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
