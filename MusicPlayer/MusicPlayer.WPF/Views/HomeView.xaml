@@ -23,7 +23,7 @@
     <DockPanel LastChildFill="True"
                Height="auto">
         <Grid VerticalAlignment="Top" DockPanel.Dock="Top">
-            <materialDesign:Card DockPanel.Dock="Top" MouseDown="Card_MouseDown" MaxHeight="40"
+            <materialDesign:Card DockPanel.Dock="Top" MouseDown="Card_MouseDown" MaxHeight="40" Height="35"
                                  Background="{DynamicResource MaterialDesignDarkBackground}"
                                  materialDesign:ShadowAssist.ShadowDepth="Depth0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
@@ -80,13 +80,15 @@
                 Margin="4,0,4,10"
                 UniformCornerRadius="6"
                 Background="{DynamicResource MaterialDesignDarkBackground}"
+                    materialDesign:ShadowAssist.ShadowEdges="All"
                 MaxHeight="100"
                 Height="95">
 
 
                 <Grid>
 
-                    <Grid HorizontalAlignment="Left">
+                    <Grid HorizontalAlignment="Left"
+                          Margin="15,0,0,0">
 
                         <StackPanel Orientation="Horizontal">
 
@@ -119,6 +121,9 @@
   Style="{StaticResource MaterialDesignCharacterCounterTextBlock}"
   Text="Adhshba" />
 
+
+                                   
+
                                 </StackPanel>
 
                             </Grid>
@@ -128,8 +133,148 @@
                     </Grid>
 
                     <Grid HorizontalAlignment="Center">
+
+                        <DockPanel LastChildFill="False">
+                            <Grid DockPanel.Dock="Top"
+                                  Margin="0,10,0,5">
+
+                                <StackPanel Orientation="Horizontal"
+                                            HorizontalAlignment="Center">
+
+                                    <Button
+  Style="{DynamicResource MaterialDesignFlatAccentButton}"
+                                        Background="Transparent">
+
+                                        <materialDesign:PackIcon
+    Kind="ShuffleVariant"
+    Height="20"
+    Width="20" />
+                                    </Button>
+
+                                    <Button
+  Style="{DynamicResource MaterialDesignFlatAccentButton}"
+                                        Background="Transparent">
+
+                                        <materialDesign:PackIcon
+    Kind="SkipPrevious"
+    Height="20"
+    Width="20" />
+                                    </Button>
+
+                                    <Button
+  Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+  ToolTip="MaterialDesignFloatingActionMiniAccentButton">
+                                        <materialDesign:PackIcon
+    Kind="Play"
+    Height="25"
+    Width="25" />
+                                    </Button>
+
+
+                                    <Button
+  Style="{DynamicResource MaterialDesignFlatAccentButton}"
+                                        Background="Transparent">
+
+                                        <materialDesign:PackIcon
+    Kind="SkipNext"
+    Height="20"
+    Width="20" />
+                                    </Button>
+
+
+                                    <Button
+  Style="{DynamicResource MaterialDesignFlatAccentButton}"
+                                        Background="Transparent">
+
+                                        <materialDesign:PackIcon
+    Kind="Help"
+    Height="20"
+    Width="20" />
+                                    </Button>
+
+
+                                </StackPanel>
+                                
+                            </Grid>
+
+                            <Grid DockPanel.Dock="Bottom"
+                                  Margin="0,0,0,15"
+                                  HorizontalAlignment="Center">
+
+                                <Grid.ColumnDefinitions>
+                                    
+                                    <ColumnDefinition Width="0.1*"/>
+                                    <ColumnDefinition Width="0.8*"/>
+                                    <ColumnDefinition Width="0.1*"/>
+                                    
+                                </Grid.ColumnDefinitions>
+                                
+
+                                    <TextBlock Grid.Column="0"
+                                        
+                                               Margin="0,0,3,0"
+                                        Width="25"
+                                        FontSize="11"
+                                        VerticalAlignment="Center"
+                                               HorizontalAlignment="Left"
+                                        
+                                        >0:00</TextBlock>
+
+                                    <Slider Grid.Column="1"
+                                        
+                                        Foreground="{DynamicResource SecondaryHueMidBrush}"
+                                        
+                                        Width="380"
+  Minimum="0"
+  Maximum="180"
+  Value="100" />
+
+                                <TextBlock Grid.Column="2"
+                                        
+                                               Margin="3,0,0,0"
+                                        VerticalAlignment="Center"
+                                           HorizontalAlignment="Right"
+                                        Width="25"
+                                        FontSize="11"
+                                        >0:00</TextBlock>
+
+
+
+                                
+                                
+                            </Grid>
+                            
+                        </DockPanel>
                         
+                    </Grid>
+
+
+                    <Grid HorizontalAlignment="Right">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.2*"/>
+                            <ColumnDefinition Width="0.2*"/>
+                        </Grid.ColumnDefinitions>
+
+                            <Slider VerticalAlignment="Center"
+                                    Grid.Column="1"
+                                    Margin="5,0,15,0"
+                                Foreground="{DynamicResource SecondaryHueMidBrush}"
+                                
+                                Width="100"
+  
+  Minimum="0"
+  Maximum="100"
+  Value="25" />
+
                         
+
+
+                            <materialDesign:PackIcon Kind="VolumeHigh"
+                                                     Grid.Column="0"
+                                                     VerticalAlignment="Center"/>
+
+
                         
                     </Grid>
 
@@ -150,7 +295,82 @@
         </Grid>
 
         <Grid DockPanel.Dock="Top">
-            <Button></Button>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+
+            <materialDesign:Card Grid.Column="0"
+                                 Margin="5"
+                                 UniformCornerRadius="8"
+                                 materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                Background="{StaticResource BackgroundDarkerColor}">
+
+                <Grid>
+                    
+                    
+                    
+                </Grid>
+                
+            </materialDesign:Card>
+
+
+                
+
+            <materialDesign:Card Grid.Column="1"
+                                 Margin="5"
+                                 UniformCornerRadius="8"
+                                 materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                Background="{DynamicResource MaterialDesignDarkBackground}">
+
+
+                <Grid
+                 >
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="9*"/>
+                </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                        <materialDesign:PackIcon Kind="PlaylistMusic" Margin="5,0,5,0" />
+
+                        <TextBlock Grid.Row="0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           
+  Text="Playlists" Opacity="0.5" />
+
+
+                    </StackPanel>
+
+                
+
+
+                <ListBox Grid.Row="1">
+                    <TextBlock
+  Margin="5,0,0,0"
+  Style="{StaticResource MaterialDesignCaptionTextBlock}"
+  Text="Adhshba song" />
+                    <TextBlock
+  Margin="5,0,0,0"
+  Style="{StaticResource MaterialDesignCaptionTextBlock}"
+  Text="Adhshba song" />
+                    <TextBlock
+  Margin="5,0,0,0"
+  Style="{StaticResource MaterialDesignCaptionTextBlock}"
+  Text="Adhshba song" />
+                </ListBox>
+
+            </Grid>
+
+
+            </materialDesign:Card>
+
+            
+            
         </Grid>
 
     </DockPanel>
