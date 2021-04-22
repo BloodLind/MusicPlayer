@@ -10,7 +10,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MusicPlayer.WPF.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="1000"
+             d:DesignHeight="720" d:DesignWidth="1280"
     
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -297,7 +297,7 @@
         <Grid DockPanel.Dock="Top">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="3*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
@@ -309,8 +309,14 @@
                 Background="{StaticResource BackgroundDarkerColor}">
 
                 <Grid>
-                    
-                    
+
+                    <ListBox x:Name="ListBoxtest"
+                             >
+                        <TextBlock>1</TextBlock>
+                        <TextBlock>1</TextBlock>
+                        <TextBlock>1</TextBlock>
+                        <TextBlock>1</TextBlock>
+                    </ListBox>
                     
                 </Grid>
                 
@@ -328,41 +334,187 @@
 
                 <Grid
                  >
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition Height="9*"/>
-                </Grid.RowDefinitions>
 
-                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TabControl 
+                                
+                                TabStripPlacement="Top"
+                        BorderBrush="{StaticResource MaterialDesignDarkBackground}"
+                        Background="{StaticResource MaterialDesignDarkBackground}">
 
-                        <materialDesign:PackIcon Kind="PlaylistMusic" Margin="5,0,5,0" />
+                        <TabControl.Resources>
+                            <Style TargetType="TabItem">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TabItem">
 
-                        <TextBlock Grid.Row="0"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Center"
-                           
-  Text="Playlists" Opacity="0.5" />
+                                            <materialDesign:Card Name="Panel"
+                                                                     UniformCornerRadius="5"
+                                                                     materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                                                <ContentPresenter x:Name="ContentSite"
+                                                                      
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                            </materialDesign:Card>
 
 
-                    </StackPanel>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsSelected" Value="True">
+                                                    <Setter TargetName="Panel" Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                                    <Setter TargetName="Panel" Property="Foreground" Value="Black"/>
 
+                                                </Trigger>
+                                                <Trigger Property="IsSelected" Value="False">
+                                                    <Setter TargetName="Panel" Property="Background" Value="{DynamicResource MaterialDesignDarkBackground}" />
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TabControl.Resources>
+
+
+                        <TabItem
+                            Height="30"
+                            Width="70"
+                            Foreground="DimGray"
+                            Header="Tracks">
+                            
+                        </TabItem>
+                        
+                        <TabItem
+                            Foreground="DimGray"
+                            Height="30"
+                            Width="70"
+                            Header="Playlists">
+
+
+                            <TabItem.Content>
+
+                                <ListBox>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" Margin="5">
+
+                                                <Rectangle
+                                                    RadiusX="5" 
+                        RadiusY="5"
+                        Width="35"
+                        Height="35"
+                                                    
+                                                    >
+
+                                                    <Rectangle.Fill>
+                                                        <ImageBrush x:Name="myImage" ImageSource="https://www.meme-arsenal.com/memes/04792a873effe68d2688a16fb09163e2.jpg" />
+                                                    </Rectangle.Fill>
+
+                                                </Rectangle>
+
+                                                <TextBlock
+  
+  Style="{StaticResource MaterialDesignCaptionTextBlock}"
+  Text="Adhshba song" />
+
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+
+                            </TabItem.Content>
+                            
+                        </TabItem>
+                        <TabItem
+                            Foreground="DimGray"
+                            Height="30"
+                            Width="70"
+                            Header="Artists">
+
+
+                            <TabItem.Content>
+
+                                <ListBox>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" Margin="5">
+
+                                                <Rectangle
+                                                    RadiusX="5" 
+                        RadiusY="5"
+                        Width="35"
+                        Height="35"
+                                                    
+                                                    >
+
+                                                    <Rectangle.Fill>
+                                                        <ImageBrush x:Name="myImage" ImageSource="https://www.meme-arsenal.com/memes/04792a873effe68d2688a16fb09163e2.jpg" />
+                                                    </Rectangle.Fill>
+
+                                                </Rectangle>
+
+                                                <TextBlock
+  
+  Style="{StaticResource MaterialDesignCaptionTextBlock}"
+  Text="Adhshba song" />
+
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+
+                            </TabItem.Content>
+
+
+                        </TabItem>
+
+                        <TabItem
+                            Foreground="DimGray"
+                            Height="30"
+                            Width="70"
+                            Header="Albums">
+
+
+                            <TabItem.Content>
+
+                                <ListBox>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" Margin="5">
+
+                                                <Rectangle
+                                                    RadiusX="5" 
+                        RadiusY="5"
+                        Width="35"
+                        Height="35"
+                                                    
+                                                    >
+
+                                                    <Rectangle.Fill>
+                                                        <ImageBrush x:Name="myImage" ImageSource="https://www.meme-arsenal.com/memes/04792a873effe68d2688a16fb09163e2.jpg" />
+                                                    </Rectangle.Fill>
+
+                                                </Rectangle>
+
+                                                <TextBlock
+  
+  Style="{StaticResource MaterialDesignCaptionTextBlock}"
+  Text="Adhshba song" />
+
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+
+                            </TabItem.Content>
+
+
+                        </TabItem>
+
+                    </TabControl>
+                    
+                    
                 
-
-
-                <ListBox Grid.Row="1">
-                    <TextBlock
-  Margin="5,0,0,0"
-  Style="{StaticResource MaterialDesignCaptionTextBlock}"
-  Text="Adhshba song" />
-                    <TextBlock
-  Margin="5,0,0,0"
-  Style="{StaticResource MaterialDesignCaptionTextBlock}"
-  Text="Adhshba song" />
-                    <TextBlock
-  Margin="5,0,0,0"
-  Style="{StaticResource MaterialDesignCaptionTextBlock}"
-  Text="Adhshba song" />
-                </ListBox>
 
             </Grid>
 

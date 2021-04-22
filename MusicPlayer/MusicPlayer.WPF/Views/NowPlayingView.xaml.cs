@@ -17,13 +17,12 @@ using System.Windows.Shapes;
 namespace MusicPlayer.WPF.Views
 {
     /// <summary>
-    /// Логика взаимодействия для HomeView.xaml
+    /// Логика взаимодействия для NowPlayingView.xaml
     /// </summary>
-    public partial class HomeView : CustomView
+    public partial class NowPlayingView : CustomView
     {
-        public HomeView()
+        public NowPlayingView()
         {
-            
             InitializeComponent();
         }
     }
