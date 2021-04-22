@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<vm:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm ="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                   xmlns:ffi ="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                   xmlns:ffiTransformation="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             x:Class="MusicPlayer.Xamarin.Views.NowPlayingView">
+    <ContentPage.Content>
+        <Grid BackgroundColor="{StaticResource PrimaryMidColor}">
+            <ffi:CachedImage Source="https://images-na.ssl-images-amazon.com/images/I/91PkHD9Dg0L._AC_SL1500_.jpg">
+                <ffi:CachedImage.Transformations>
+                    <ffiTransformation:BlurredTransformation Radius="25"></ffiTransformation:BlurredTransformation>
+                </ffi:CachedImage.Transformations>
+            </ffi:CachedImage>
+        </Grid>
+    </ContentPage.Content>
+</vm:MvxContentPage>

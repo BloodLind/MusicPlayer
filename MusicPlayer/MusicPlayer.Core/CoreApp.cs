@@ -14,7 +14,7 @@ namespace MusicPlayer.Core
        
         public override void Initialize()
         {
-            this.RegisterAppStart<HomeViewModel>();
+            this.RegisterAppStart<NowPlayingViewModel>();
         }
     }
 }
