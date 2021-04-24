@@ -8,5 +8,6 @@ namespace MusicPlayer.Core.Infrastructure.Interfaces
 {
     public interface IMusicPlayer
     {
+
     }
 }

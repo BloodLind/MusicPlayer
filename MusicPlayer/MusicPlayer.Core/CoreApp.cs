@@ -1,4 +1,6 @@
 ﻿
+using MusicPlayer.Core.Infrastructure.Interfaces;
+using MusicPlayer.Core.Models;
 using MusicPlayer.Core.ViewModels;
 using MvvmCross.ViewModels;
 using System;
@@ -16,5 +18,12 @@ namespace MusicPlayer.Core
         {
             this.RegisterAppStart<NowPlayingViewModel>();
         }
+
+        public static List<Track> Tracks { get; set; } = new List<Track>();
+        public static List<Playlist> Playlists { get; set; } = new List<Playlist>();
+        public static List<Artist> Artists { get; set; } = new List<Artist>();
+        public static List<Album> Albums { get; set; } = new List<Album>();
+        public static IMusicPlayer Player { get; set; }
+
     }
 }
