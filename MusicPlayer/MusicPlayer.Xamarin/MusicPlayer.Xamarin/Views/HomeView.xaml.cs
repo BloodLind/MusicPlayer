@@ -35,7 +35,19 @@ namespace MusicPlayer.Xamarin.Views
         {
             InitializeComponent();
             selectedTab = tracksLabel;
+            selectedTab.FontSize = (int)LabelsSize.Selected;
             labelTabs = new List<Label> { queueLabel, playlistsLabel, tracksLabel, albumsLabel, artistsLabel };
+            this.SizeChanged += HomeView_SizeChanged;
+        }
+
+        private void HomeView_SizeChanged(object sender, EventArgs e)
+        {
+            labelTabs.Clear();
+            labelTabs.Add(queueLabel);
+            labelTabs.Add(playlistsLabel);
+            labelTabs.Add(tracksLabel);
+            labelTabs.Add(albumsLabel);
+            labelTabs.Add(artistsLabel);
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -48,7 +60,7 @@ namespace MusicPlayer.Xamarin.Views
 
         private void SwipeGestureRecognizer_Swiped(object sender, SwipedEventArgs e)
         {
-            int currentIndex = labelTabs.IndexOf(selectedTab);
+           int currentIndex = labelTabs.IndexOf(selectedTab);
            if(e.Direction == SwipeDirection.Right)
             {
                 selectedTab = currentIndex > 0 ? labelTabs[currentIndex - 1] : selectedTab;
@@ -59,9 +71,10 @@ namespace MusicPlayer.Xamarin.Views
            else if (e.Direction == SwipeDirection.Left)
             {
                 SetUnselectedLabel();
-                selectedTab.FontSize = (int)LabelsSize.Selected;
                 selectedTab = currentIndex < labelTabs.Count - 1 ? labelTabs[currentIndex + 1] : selectedTab;
+                selectedTab.FontSize = (int)LabelsSize.Selected;
             }
         }
+         
     }
 }
