@@ -29,5 +29,7 @@ namespace MusicPlayer.WPF.Infrastructure
             if (Mouse.LeftButton == MouseButtonState.Pressed)
                 Application.Current.MainWindow.DragMove();
         }
+
+        
     }
 }

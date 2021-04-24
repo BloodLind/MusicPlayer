@@ -1,4 +1,5 @@
 ﻿
+using CSCore.Tags.ID3;
 using MusicPlayer.Core.Infrastructure.Interfaces;
 using MusicPlayer.Core.Models;
 using MusicPlayer.Core.ViewModels;
@@ -14,9 +15,12 @@ namespace MusicPlayer.Core
     public class CoreApp : MvxApplication
     {
        
+
+
         public override void Initialize()
         {
             this.RegisterAppStart<NowPlayingViewModel>();
+            
         }
 
         public static List<Track> Tracks { get; set; } = new List<Track>();
