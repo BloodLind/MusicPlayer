@@ -14,5 +14,9 @@ namespace MusicPlayer.Core.Models
         public string Name { get; set; }
         public List<Track> Tracks { get; set; }
 
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
