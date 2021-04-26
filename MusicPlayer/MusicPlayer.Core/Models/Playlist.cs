@@ -13,5 +13,10 @@ namespace MusicPlayer.Core.Models
         public List<Track> Tracks {get; set;}
         public TimeSpan PlayTime { get; set; }
         public int TracksCount { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

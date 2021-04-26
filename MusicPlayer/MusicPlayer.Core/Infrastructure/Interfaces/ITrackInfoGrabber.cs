@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MusicPlayer.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace MusicPlayer.Core.Infrastructure.Interfaces
 {
     public interface ITrackInfoGrabber
     {
-        ITrackInfoEditor EditFile();
+        ITrackInfoEditor EditFile(Track track);
+        Track TrackByPath(string path);
     }
 }
