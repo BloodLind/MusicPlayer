@@ -50,7 +50,7 @@
                     Click="ClickMinimizeWindow"
                     Width="50"
                     Height="25"
-                    Style="{DynamicResource MaterialDesignFlatAccentButton}">
+                    Style="{DynamicResource MaterialDesignFlatButton}">
                             <materialDesign:PackIcon
     Kind="WindowMinimize"
     Height="18"
@@ -62,7 +62,7 @@
                     Click="ClickMaximizeWindow"
                     Width="50"
                     Height="25"
-                    Style="{DynamicResource MaterialDesignFlatAccentButton}">
+                    Style="{DynamicResource MaterialDesignFlatButton}">
                             <materialDesign:PackIcon
     Kind="WindowMaximize"
     Height="18"
@@ -75,7 +75,7 @@
                     Click="ClickClose"
                     Width="50"
                     Height="25"
-                    Style="{DynamicResource MaterialDesignFlatAccentButton}">
+                    Style="{DynamicResource MaterialDesignFlatButton}">
                             <materialDesign:PackIcon
     Kind="WindowClose"
     Height="18"
@@ -224,8 +224,9 @@
 
                     <Button
                         HorizontalAlignment="Left"
-  Style="{DynamicResource MaterialDesignFlatAccentButton}"
-                                        Background="Transparent">
+  Style="{DynamicResource MaterialDesignFlatButton}"
+                                        Background="Transparent"
+                        Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=customView:CustomView},Path=DataContext.ReturnCommand}">
 
                         <materialDesign:PackIcon
                             Foreground="White"
@@ -240,7 +241,7 @@
                                             HorizontalAlignment="Center">
 
                             <Button
-  Style="{DynamicResource MaterialDesignFlatAccentButton}"
+  Style="{DynamicResource MaterialDesignFlatButton}"
                                         Background="Transparent">
 
                                 <materialDesign:PackIcon
@@ -251,7 +252,7 @@
                             </Button>
 
                             <Button
-  Style="{DynamicResource MaterialDesignFlatAccentButton}"
+  Style="{DynamicResource MaterialDesignFlatButton}"
                                         Background="Transparent">
 
                                 <materialDesign:PackIcon
@@ -262,7 +263,7 @@
                             </Button>
 
                             <Button
-  Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+  Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                                 Background="White"
                                 BorderBrush="White"
   ToolTip="MaterialDesignFloatingActionMiniAccentButton">
@@ -275,7 +276,7 @@
 
 
                             <Button
-  Style="{DynamicResource MaterialDesignFlatAccentButton}"
+  Style="{DynamicResource MaterialDesignFlatButton}"
                                         Background="Transparent">
 
                                 <materialDesign:PackIcon
@@ -287,7 +288,7 @@
 
 
                             <Button
-  Style="{DynamicResource MaterialDesignFlatAccentButton}"
+  Style="{DynamicResource MaterialDesignFlatButton}"
                                         Background="Transparent">
 
                                 <materialDesign:PackIcon
