@@ -12,6 +12,9 @@
             <ffi:CachedImage Source="https://www.iphones.ru/wp-content/uploads/2021/02/metallica-master-of-puppets.jpg"
                              Aspect="AspectFill"
                              x:Name="backgroundImage">
+                <ffi:CachedImage.GestureRecognizers>
+                    <SwipeGestureRecognizer Direction="Down" Command="{Binding ReturnCommand}"></SwipeGestureRecognizer>
+                </ffi:CachedImage.GestureRecognizers>
                 <ffi:CachedImage.Transformations>
                     
                     
@@ -35,6 +38,7 @@
                     <Frame Padding="0" CornerRadius="10">  
                     <ffi:CachedImage Source="https://www.iphones.ru/wp-content/uploads/2021/02/metallica-master-of-puppets.jpg"
                              Aspect="AspectFill">
+                        
                     </ffi:CachedImage>
                     </Frame>
                     
@@ -210,6 +214,7 @@
                                 
                                 <Frame Margin="5" BackgroundColor="Transparent" Padding="8" HorizontalOptions="Center">
                                     <ImageButton 
+                                        Command="{Binding ReturnCommand}"
                                              Source="librarybutton.png"
                                              BackgroundColor="Transparent" 
                                              Aspect="AspectFit">

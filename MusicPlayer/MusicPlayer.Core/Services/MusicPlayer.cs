@@ -15,7 +15,7 @@ namespace MusicPlayer.Core.Services
     public class MusicPlayer : IMusicPlayer
     {
         private IWaveSource waveSource;
-
+        
         public ISoundOut SoundOut { get; set; }
         public Queue<Track> Queue { get; set; }
         public Track CurrentTrack { get; set; }

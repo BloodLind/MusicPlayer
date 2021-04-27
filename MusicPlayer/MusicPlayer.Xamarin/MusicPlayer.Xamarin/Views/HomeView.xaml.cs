@@ -51,6 +51,7 @@ namespace MusicPlayer.Xamarin.Views
             SetUnselectedLabel();
             selectedTab = tracksLabel;
             selectedTab.FontSize = (int)LabelsSize.Selected;
+           
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)

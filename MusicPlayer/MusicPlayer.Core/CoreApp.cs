@@ -1,5 +1,5 @@
 ﻿
-using CSCore.Tags.ID3;
+
 using MusicPlayer.Core.Infrastructure.Interfaces;
 using MusicPlayer.Core.Models;
 using MusicPlayer.Core.ViewModels;
