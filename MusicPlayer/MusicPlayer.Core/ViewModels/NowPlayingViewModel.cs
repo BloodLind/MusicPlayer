@@ -1,4 +1,5 @@
-﻿using MvvmCross.Navigation;
+﻿using MvvmCross.Commands;
+using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,17 @@ namespace MusicPlayer.Core.ViewModels
         public NowPlayingViewModel(IMvxNavigationService mvxNavigationService)
         {
             this.mvxNavigationService = mvxNavigationService;
+            InitCommands();
         }
+
+        public void InitCommands()
+        {
+            ReturnCommand = new MvxCommand(() =>
+            {
+                mvxNavigationService.Close(this);
+            });
+        }
+
+        public IMvxCommand ReturnCommand { get; set; }
     }
 }

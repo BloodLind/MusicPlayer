@@ -1,4 +1,5 @@
 ﻿using MusicPlayer.Core.Models;
+using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System;
@@ -16,6 +17,7 @@ namespace MusicPlayer.Core.ViewModels
         public HomeViewModel(IMvxNavigationService mvxNavigationService)
         {
             this.mvxNavigationService = mvxNavigationService;
+            InitCommands();
         }
 
         private MvxObservableCollection<Track> tracks = new MvxObservableCollection<Track>(CoreApp.Tracks);
@@ -92,5 +94,16 @@ namespace MusicPlayer.Core.ViewModels
                 RaisePropertyChanged(() => CurrentPosition);
             }
         }
+
+
+        public void InitCommands()
+        {
+            TrackInfoCommand = new MvxCommand(() =>
+            {
+                mvxNavigationService.Navigate(new NowPlayingViewModel(this.mvxNavigationService));
+            });
+        }
+
+        public IMvxCommand TrackInfoCommand { get; private set; }
     }
 }

@@ -11,6 +11,7 @@
              xmlns:local="clr-namespace:MusicPlayer.WPF.Views"
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="1280"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -34,7 +35,7 @@
                     Click="ClickMinimizeWindow"
                     Width="50"
                     Height="25"
-                    Style="{DynamicResource MaterialDesignFlatAccentButton}">
+                    Style="{DynamicResource MaterialDesignFlatButton}">
                         <materialDesign:PackIcon
     Kind="WindowMinimize"
     Height="18"
@@ -46,7 +47,7 @@
                     Click="ClickMaximizeWindow"
                     Width="50"
                     Height="25"
-                    Style="{DynamicResource MaterialDesignFlatAccentButton}">
+                    Style="{DynamicResource MaterialDesignFlatButton}">
                         <materialDesign:PackIcon
     Kind="WindowMaximize"
     Height="18"
@@ -59,7 +60,7 @@
                     Click="ClickClose"
                     Width="50"
                     Height="25"
-                    Style="{DynamicResource MaterialDesignFlatAccentButton}">
+                    Style="{DynamicResource MaterialDesignFlatButton}">
                         <materialDesign:PackIcon
     Kind="WindowClose"
     Height="18"
@@ -76,7 +77,7 @@
         <Grid DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
 
            
-                <materialDesign:Card
+                <!--<materialDesign:Card
                 Margin="4,0,4,10"
                 UniformCornerRadius="6"
                 Background="{DynamicResource MaterialDesignDarkBackground}"
@@ -287,11 +288,253 @@
                     
                     
                     
-                </materialDesign:Card>
-            
+                </materialDesign:Card>-->
 
-            
-            
+
+            <materialDesign:Card Grid.Row="1"
+                                 VerticalAlignment="Bottom"
+                Opacity="0.80"
+                UniformCornerRadius="8"
+                Background="{DynamicResource MaterialDesignDarkBackground}"
+                    materialDesign:ShadowAssist.ShadowEdges="All"
+                
+                Height="110">
+
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2.3*"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+
+                    <Grid Grid.Row="0" Width="340" HorizontalAlignment="Left"
+                          >
+
+                        <Grid.InputBindings>
+                            <MouseBinding Gesture="LeftClick" Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=customView:CustomView},Path=DataContext.TrackInfoCommand}"/>
+                        </Grid.InputBindings>
+
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <materialDesign:Card Margin="10,3,3,3"
+                                             Background="Transparent"
+                                             >
+                            
+
+                            <Rectangle
+                        
+                        
+                        
+                        HorizontalAlignment="Left"
+                        RadiusX="10" 
+                        RadiusY="10"
+                        Width="70"
+                        Height="70">
+
+                                
+
+                                <Rectangle.Fill>
+                                    <ImageBrush x:Name="myImage" ImageSource="https://www.meme-arsenal.com/memes/04792a873effe68d2688a16fb09163e2.jpg" />
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </materialDesign:Card>
+                        
+
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Orientation="Vertical">
+
+                            <TextBlock
+  Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
+  Text="Medium 14sp" />
+
+                            <TextBlock
+                                
+  Style="{StaticResource MaterialDesignCaptionTextBlock}"
+  Text="Regular 12sp" />
+
+
+
+                        </StackPanel>
+                        
+                    </Grid>
+                    
+
+
+
+
+                    <Grid Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="450">
+
+                        <StackPanel Orientation="Horizontal"
+                                            HorizontalAlignment="Center">
+
+                            <Button
+  Style="{DynamicResource MaterialDesignFlatButton}"
+                                        Background="Transparent">
+
+                                <materialDesign:PackIcon
+                                    Foreground="White"
+    Kind="ShuffleVariant"
+    Height="20"
+    Width="20" />
+                            </Button>
+
+                            <Button
+  Style="{DynamicResource MaterialDesignFlatButton}"
+                                        Background="Transparent">
+
+                                <materialDesign:PackIcon
+                                    Foreground="White"
+    Kind="SkipPrevious"
+    Height="20"
+    Width="20" />
+                            </Button>
+
+                            <Button
+  Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                
+                                Background="White"
+                                BorderBrush="White"
+  ToolTip="MaterialDesignFloatingActionMiniAccentButton">
+
+
+                                
+
+
+                                <materialDesign:PackIcon
+                                    
+    Kind="Play"
+    Height="25"
+    Width="25" />
+                            </Button>
+
+
+                            <Button
+  Style="{DynamicResource MaterialDesignFlatButton}"
+                                        Background="Transparent">
+
+                                <materialDesign:PackIcon
+                                    Foreground="White"
+    Kind="SkipNext"
+    Height="20"
+    Width="20" />
+                            </Button>
+
+
+                            <Button
+  Style="{DynamicResource MaterialDesignFlatButton}"
+                                        Background="Transparent">
+
+                                <materialDesign:PackIcon
+                                    Foreground="White"
+    Kind="Help"
+    Height="20"
+    Width="20" />
+                            </Button>
+
+
+                        </StackPanel>
+
+
+                    </Grid>
+
+
+
+                    <Grid Grid.Row="0"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Right"
+                          Width="200">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="5*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <materialDesign:PackIcon Kind="VolumeHigh"
+                                                     Grid.Column="0"
+                                                     VerticalAlignment="Center"
+                                                 HorizontalAlignment="Center"/>
+
+
+                        <Slider VerticalAlignment="Center"
+                                    Grid.Column="1"
+                                    Margin="0,0,15,0"
+                                Foreground="White"
+                                
+                                
+  
+  Minimum="0"
+  Maximum="100"
+  Value="25" />
+
+
+                    </Grid>
+
+
+                    <Grid Width="700"
+                          Grid.Row="1">
+
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+
+                            <Slider Grid.Column="1"
+                                        VerticalAlignment="Center"
+                                    Margin="5"
+                                        Foreground="White"
+                                        
+                                        
+  Minimum="0"
+  Maximum="180"
+  Value="100" />
+
+
+                            <TextBlock Grid.Column="0"
+                                        
+                                               Margin="5"
+                                        
+                                        FontSize="13"
+                                        VerticalAlignment="Center"
+                                               HorizontalAlignment="Right"
+                                        
+                                        >0:00</TextBlock>
+
+
+                            <TextBlock Grid.Column="2"
+                                        
+                                               Margin="5"
+                                        
+                                        FontSize="13"
+                                        VerticalAlignment="Center"
+                                               HorizontalAlignment="Left"
+                                        
+                                        >0:00</TextBlock>
+
+
+                        </Grid>
+
+                    </Grid>
+
+
+                </Grid>
+
+
+
+
+            </materialDesign:Card>
+
+
+
         </Grid>
 
         <Grid DockPanel.Dock="Top">
@@ -361,7 +604,7 @@
 
                                             <ControlTemplate.Triggers>
                                                 <Trigger Property="IsSelected" Value="True">
-                                                    <Setter TargetName="Panel" Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                                    <Setter TargetName="Panel" Property="Background" Value="White" />
                                                     <Setter TargetName="Panel" Property="Foreground" Value="Black"/>
 
                                                 </Trigger>
