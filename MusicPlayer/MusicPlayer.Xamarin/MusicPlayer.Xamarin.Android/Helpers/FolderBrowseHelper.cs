@@ -1,9 +1,11 @@
-﻿using Android.App;
+﻿using Android;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using AndroidX.Core.App;
 using MusicPlayer.Xamarin.Droid.Helpers;
 using MusicPlayer.Xamarin.Infrastructure;
 using System;
@@ -19,6 +21,11 @@ namespace MusicPlayer.Xamarin.Droid.Helpers
     public class FolderBrowseHelper : IFolderBrowser
     {
         private string documentBasePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+     
+        public FolderBrowseHelper()
+        {
+
+        }
         public void FolderBrowseDialog()
         {
             
@@ -26,7 +33,7 @@ namespace MusicPlayer.Xamarin.Droid.Helpers
         public string FolderPath
         {
             get; private set;
-        } = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryMusic).Path;
+        } = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, (Android.OS.Environment.DirectoryMusic));
 
         public string RenameDirectory(string oldDirectoryName, string newDirectoryName)
         {

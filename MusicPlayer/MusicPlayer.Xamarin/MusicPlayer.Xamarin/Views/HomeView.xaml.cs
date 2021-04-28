@@ -1,4 +1,7 @@
-﻿using MvvmCross.Forms.Presenters.Attributes;
+﻿using MusicPlayer.Core.Services;
+using MusicPlayer.Core.ViewModels;
+using MusicPlayer.Xamarin.Infrastructure;
+using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using System;
 using System.Collections.Generic;
@@ -39,6 +42,16 @@ namespace MusicPlayer.Xamarin.Views
             selectedTab.FontSize = (int)LabelsSize.Selected;
             labelTabs = new List<Label> { queueLabel, playlistsLabel, tracksLabel, albumsLabel, artistsLabel };
             this.SizeChanged += HomeView_SizeChanged;
+            this.Appearing += HomeView_Appearing;
+        }
+
+        private async void HomeView_Appearing(object sender, EventArgs e)
+        {
+           
+            IFolderBrowser folderBrowser = DependencyService.Get<IFolderBrowser>();
+            CatalogScaner scaner = new CatalogScaner();
+            scaner.ScanFolder(folderBrowser.FolderPath);
+            ((HomeViewModel)this.DataContext).UpdateCollections(scaner.ScannedFiles);
         }
 
         private void HomeView_SizeChanged(object sender, EventArgs e)

@@ -46,16 +46,12 @@ namespace MusicPlayer.Core.ViewModels
         public void UpdateCollections(IEnumerable<string> files)
         {
             TracksManager tracksManager = new TracksManager();
-
-
-            
-
             AddToCollection(Tracks, tracksManager.GetTracksList(files));
             AddToCollection(Artists, tracksManager.GetArtists(Tracks));
             AddToCollection(Albums, tracksManager.GetAlbums(Tracks));
 
-            //CoreApp.InitializatePlayer(Tracks);
-            //CoreApp.Player.Play();
+            CoreApp.InitializatePlayer(Tracks);
+            CoreApp.Player.Play();
         }
 
         private void AddToCollection<T>(MvxObservableCollection<T> listToAdd, IEnumerable<T> addFrom)
