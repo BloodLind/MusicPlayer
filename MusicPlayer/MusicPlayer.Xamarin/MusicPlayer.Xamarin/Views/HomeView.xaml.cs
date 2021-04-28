@@ -1,4 +1,5 @@
-﻿using MvvmCross.Forms.Views;
+﻿using MvvmCross.Forms.Presenters.Attributes;
+using MvvmCross.Forms.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace MusicPlayer.Xamarin.Views
         Selected = 24,
         Unselected = 18
     }
-
+    [MvxNavigationPagePresentationAttribute()]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomeView : MvxContentPage
     {

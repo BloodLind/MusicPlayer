@@ -9,23 +9,21 @@
              x:Class="MusicPlayer.Xamarin.Views.NowPlayingView" NavigationPage.HasNavigationBar="False">
     <ContentPage.Content BackgroundColor="{StaticResource PrimaryLightColor}">
         <Grid BackgroundColor="{StaticResource PrimaryMidColor}">
-            <ffi:CachedImage Source="https://www.iphones.ru/wp-content/uploads/2021/02/metallica-master-of-puppets.jpg"
-                             Aspect="AspectFill"
-                             x:Name="backgroundImage">
-                <ffi:CachedImage.GestureRecognizers>
-                    <SwipeGestureRecognizer Direction="Down" Command="{Binding ReturnCommand}"></SwipeGestureRecognizer>
-                </ffi:CachedImage.GestureRecognizers>
+              
+                
+                <ffi:CachedImage Source="https://www.iphones.ru/wp-content/uploads/2021/02/metallica-master-of-puppets.jpg"
+                                 Aspect="AspectFill"
+                                 x:Name="backgroundImage">
                 <ffi:CachedImage.Transformations>
-                    
-                    
                     <ffiTransformation:CropTransformation ZoomFactor="1"></ffiTransformation:CropTransformation>
-                </ffi:CachedImage.Transformations>
-            </ffi:CachedImage>
+                    </ffi:CachedImage.Transformations>
+                </ffi:CachedImage>
+            
          
             <sharpnado:MaterialFrame 
                                      IsVisible="True"
-                                     LightThemeBackgroundColor="Gray"
-                                     AndroidBlurRadius="25" 
+                                     LightThemeBackgroundColor="Transparent"
+                                     AndroidBlurRadius="17" 
                                      MaterialTheme="AcrylicBlur"
                                      MaterialBlurStyle="Dark"
                                      AndroidBlurOverlayColor="Transparent"
@@ -35,14 +33,17 @@
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Frame Padding="0" CornerRadius="10">  
-                    <ffi:CachedImage Source="https://www.iphones.ru/wp-content/uploads/2021/02/metallica-master-of-puppets.jpg"
+                    <Frame Padding="0" CornerRadius="10">
+                        <ffi:CachedImage Source="https://www.iphones.ru/wp-content/uploads/2021/02/metallica-master-of-puppets.jpg"
                              Aspect="AspectFill">
                         
                     </ffi:CachedImage>
                     </Frame>
                     
                     <Grid>
+                        <Grid.GestureRecognizers>
+                        <SwipeGestureRecognizer Direction="Down" Command="{Binding ReturnCommand}"></SwipeGestureRecognizer>
+                        </Grid.GestureRecognizers>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="7*"></RowDefinition>
                             <RowDefinition Height="1*"></RowDefinition>

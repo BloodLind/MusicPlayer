@@ -12,18 +12,17 @@ namespace MusicPlayer.Core.ViewModels
 
     public class NowPlayingViewModel : MvxViewModel
     {
-        private readonly IMvxNavigationService mvxNavigationService;
-        public NowPlayingViewModel(IMvxNavigationService mvxNavigationService)
+        public NowPlayingViewModel()
         {
-            this.mvxNavigationService = mvxNavigationService;
+            
             InitCommands();
         }
 
         public void InitCommands()
         {
-            ReturnCommand = new MvxCommand(() =>
+            ReturnCommand = new MvxCommand( () =>
             {
-                mvxNavigationService.Close(this);
+                 CoreApp.Navigation.MvxNavigationService.Navigate(CoreApp.Navigation.HomeView);
             });
         }
 

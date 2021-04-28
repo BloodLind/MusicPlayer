@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ManagedBass, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ManagedBass.3.0.0\lib\net45\ManagedBass.dll</HintPath>
+    </Reference>
     <Reference Include="MvvmCross, Version=7.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.7.1.2\lib\net461\MvvmCross.dll</HintPath>
     </Reference>
@@ -53,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CoreApp.cs" />
+    <Compile Include="CoreAppStart.cs" />
     <Compile Include="Infrastructure\Interfaces\ICatalogScaner.cs" />
     <Compile Include="Infrastructure\Interfaces\IMusicPlayer.cs" />
     <Compile Include="Infrastructure\Interfaces\ITrackContainer.cs" />
@@ -68,6 +72,7 @@
     <Compile Include="Services\TrackInfoGrabber.cs" />
     <Compile Include="Services\TracksManager.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\NavigationPresenter.cs" />
     <Compile Include="ViewModels\NowPlayingViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

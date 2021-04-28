@@ -1,5 +1,4 @@
-﻿using CSCore.SoundOut;
-using MusicPlayer.Core.Models;
+﻿using MusicPlayer.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
