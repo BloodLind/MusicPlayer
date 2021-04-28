@@ -553,13 +553,70 @@
 
                 <Grid>
 
-                    <ListBox x:Name="ListBoxtest"
-                             >
-                        <TextBlock>1</TextBlock>
-                        <TextBlock>1</TextBlock>
-                        <TextBlock>1</TextBlock>
-                        <TextBlock>1</TextBlock>
-                    </ListBox>
+                    <ListView
+                        x:Name="TracksListView"
+                        Style="{DynamicResource MaterialDesignListView}"
+                        ItemsSource="{Binding Tracks, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        SelectedItem="{Binding SelectedTrack, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        >
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="5"
+                                      Width="{Binding RelativeSource={RelativeSource AncestorType=ListView}, Path=ActualWidth}">
+                                    <materialDesign:Card>
+                                        <Grid>
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition Width="9*"/>
+                                            </Grid.ColumnDefinitions>
+                                            
+                                            <Rectangle Grid.Column="0"
+                        
+                        
+                        
+                        HorizontalAlignment="Left"
+                        RadiusX="5" 
+                        RadiusY="5"
+                        Width="35"
+                        Height="35">
+
+
+
+                                                <Rectangle.Fill>
+                                                    <ImageBrush x:Name="myImage" ImageSource="https://www.meme-arsenal.com/memes/04792a873effe68d2688a16fb09163e2.jpg" />
+                                                </Rectangle.Fill>
+                                            </Rectangle>
+
+                                            <Grid Grid.Column="1">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="7*"/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+
+
+                                                <TextBlock
+                                                    HorizontalAlignment="Left"
+                                                    Grid.Column="0"
+  Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
+  Text="{Binding Title}" />
+
+                                                <TextBlock
+                                                    HorizontalAlignment="Center"
+                                                    Grid.Column="1"
+  Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
+  Text="{Binding PlayTime}" />
+
+                                            </Grid>
+                                            
+                                        </Grid>
+                                    </materialDesign:Card> 
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        
+                    </ListView>
                     
                 </Grid>
                 

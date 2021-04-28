@@ -47,14 +47,25 @@ namespace MusicPlayer.Core.ViewModels
         {
             TracksManager tracksManager = new TracksManager();
 
-            Tracks.AddRange(tracksManager.GetTracksList(files));
-            Artists.AddRange(tracksManager.GetArtists(Tracks));
-            Albums.AddRange(tracksManager.GetAlbums(Tracks));
 
+            
 
-            CoreApp.InitializatePlayer(Tracks);
-            CoreApp.Player.Play();
+            AddToCollection(Tracks, tracksManager.GetTracksList(files));
+            AddToCollection(Artists, tracksManager.GetArtists(Tracks));
+            AddToCollection(Albums, tracksManager.GetAlbums(Tracks));
+
+            //CoreApp.InitializatePlayer(Tracks);
+            //CoreApp.Player.Play();
         }
+
+        private void AddToCollection<T>(MvxObservableCollection<T> listToAdd, IEnumerable<T> addFrom)
+        {
+            foreach(var a in addFrom)
+            {
+                listToAdd.Add(a);
+            }
+        }
+        
 
         public Track SelectedTrack
         {
