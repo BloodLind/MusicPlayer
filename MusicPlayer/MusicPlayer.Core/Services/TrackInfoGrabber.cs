@@ -2,7 +2,7 @@
 using MusicPlayer.Core.Models;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -22,18 +22,17 @@ namespace MusicPlayer.Core.Services
         {
 
             var tmp = TagLib.File.Create(path);
-            MemoryStream ms = new MemoryStream(tmp.Tag.Pictures[0].Data.ToArray());
             Track track = new Track();
 
             track.Title = tmp.Tag.Title;
             track.FilePath = path;
             track.PlayTime = tmp.Properties.Duration;
-            track.Artist = tmp.Tag.Performers[0];
+            track.Artist = tmp.Tag.Performers.Count() >= 1 ? tmp.Tag.Performers[0] : "Undefined";
             track.Album = tmp.Tag.Album;
-            track.Genre = tmp.Tag.Genres[0];
-            track.Image = Image.FromStream(ms);
+            track.Genre = tmp.Tag.Genres.Count() >= 1 ? tmp.Tag.Genres[0] : "Undefined";
+            track.Image = tmp.Tag.Pictures.ElementAt(0).Data.ToArray();
 
-            ms.Dispose();
+           
 
             return track;
         }

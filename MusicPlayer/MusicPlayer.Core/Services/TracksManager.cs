@@ -13,18 +13,18 @@ namespace MusicPlayer.Core.Services
 
         public IEnumerable<Track> GetTracksList(IEnumerable<string> paths)
         {
-            IEnumerable<Track> tracks = new List<Track>();
+            List<Track> tracks = new List<Track>();
 
             foreach (var a in paths)
             {
-                tracks.Append(grabber.TrackByPath(a));
+                tracks.Add(grabber.TrackByPath(a));
             }
 
             return tracks;
         }
         public IEnumerable<Artist> GetArtists(IEnumerable<Track> tracks)
         {
-            IEnumerable<Artist> artists = new List<Artist>();
+            List<Artist> artists = new List<Artist>();
 
             foreach (var track in tracks)
             {
@@ -46,7 +46,7 @@ namespace MusicPlayer.Core.Services
                     newArtist.Tracks = tracksToAdd.ToList();
                     newArtist.PlayTime = GetPlayTime(newArtist.Tracks);
                     newArtist.TracksCount = newArtist.Tracks.Count;
-                    artists.Append(newArtist);
+                    artists.Add(newArtist);
                 }
 
             }
@@ -56,7 +56,7 @@ namespace MusicPlayer.Core.Services
         }
         public IEnumerable<Album> GetAlbums(IEnumerable<Track> tracks)
         {
-            IEnumerable<Album> albums = new List<Album>();
+            List<Album> albums = new List<Album>();
 
             foreach (var track in tracks)
             {
@@ -78,7 +78,7 @@ namespace MusicPlayer.Core.Services
                     newAlbum.Tracks = tracksToAdd.ToList();
                     newAlbum.PlayTime = GetPlayTime(newAlbum.Tracks);
                     newAlbum.TracksCount = newAlbum.Tracks.Count;
-                    albums.Append(newAlbum);
+                    albums.Add(newAlbum);
                 }
 
             }

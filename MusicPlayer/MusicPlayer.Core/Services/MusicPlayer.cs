@@ -1,6 +1,4 @@
-﻿using CSCore;
-using CSCore.CoreAudioAPI;
-using CSCore.SoundOut;
+﻿using ManagedBass;
 using MusicPlayer.Core.Infrastructure.Interfaces;
 using MusicPlayer.Core.Models;
 using System;
@@ -14,130 +12,86 @@ namespace MusicPlayer.Core.Services
 {
     public class MusicPlayer : IMusicPlayer
     {
-        private IWaveSource waveSource;
+        #region Fields
+        private ManagedBass.MediaPlayer musicPlayer;
+        #endregion
 
-        public ISoundOut SoundOut { get; set; }
-        public Queue<Track> Queue { get; set; }
-        public Track CurrentTrack { get; set; }
+        public MusicPlayer(IEnumerable<Track> tracks)
+        {
+            musicPlayer = new MediaPlayer();
+            musicPlayer.MediaEnded += TrackPlayEnded;
+            Queue = new List<Track>(tracks);
+            CurrentTrack = Queue.Count >= 1 ? Queue[0] : null;
+        }
 
-        public event EventHandler<PlaybackStoppedEventArgs> PlaybackStopped;
+
+        #region Properties
+        public List<Track> Queue { get; set; }
+        public Track CurrentTrack { get; private set; }
+        
+        public double CurrentPosition {
+            get 
+            { 
+                return musicPlayer.Position.TotalSeconds; 
+            }
+            set
+            {
+                musicPlayer.Position = TimeSpan.FromSeconds(value);
+                PositionChanged?.Invoke(value);
+            }
+        }
+
+        #endregion
+        
+        #region Events
         public event EventHandler Disposed;
         public event Action<Track> CurrentTrackChanged;
+        public event Action<double> PositionChanged;
+        #endregion
 
-        public MusicPlayer(IEnumerable<Track> tracks, ISoundOut soundOut)
+        #region Events Methods
+        private void TrackPlayEnded(object sender, EventArgs e)
         {
-            SoundOut = soundOut;
-            Queue = new Queue<Track>(tracks);
+
+            int index = Queue.IndexOf(CurrentTrack);
+            
+            if (index < Queue.Count - 1)
+            {
+                CurrentTrack = Queue[index + 1];
+            }
+            else if (Queue.Count >= 1)
+            {
+                CurrentTrack = Queue[0];
+            }
+            else
+            {
+                CurrentTrack = null;
+            }
+
+            if(musicPlayer.State != PlaybackState.Stopped 
+                && CurrentTrack != null)
+            {
+                CurrentPosition = 0;
+                Play();
+            }
+
+
         }
+        #endregion
 
-
-
-
-        public PlaybackState PlaybackState
-        {
-            get
-            {
-                if (SoundOut != null)
-                    return SoundOut.PlaybackState;
-                return PlaybackState.Stopped;
-            }
-        }
-
-        public TimeSpan Position
-        {
-            get
-            {
-                if (waveSource != null)
-                    return waveSource.GetPosition();
-                return TimeSpan.Zero;
-            }
-            set
-            {
-                if (waveSource != null)
-                    waveSource.SetPosition(value);
-            }
-        }
-
-        public TimeSpan Length
-        {
-            get
-            {
-                if (waveSource != null)
-                    return waveSource.GetLength();
-                return TimeSpan.Zero;
-            }
-        }
-
-        public int Volume
-        {
-            get
-            {
-                if (SoundOut != null)
-                    return Math.Min(100, ((int)SoundOut.Volume * 100));
-                return 100;
-            }
-            set
-            {
-                if (SoundOut != null)
-                {
-                    SoundOut.Volume = Math.Min(1.0f, (value / 100f));
-                }
-            }
-        }
-
+        #region Methods
         public void ShuffleQueue()
         {
             Random rng = new Random();
             int n = Queue.Count;
-            List<Track> queueToList = Queue.ToList();
             while (n > 1)
             {
                 n--;
                 int k = rng.Next(n + 1);
-                Track value = queueToList[k];
-                queueToList[k] = queueToList[n];
-                queueToList[n] = value;
+                Track value = Queue[k];
+                Queue[k] = Queue[n];
+                Queue[n] = value;
             }
-
-            Queue = new Queue<Track>(queueToList);
-        }
-
-        public void CleanupPlayback()
-        {
-            if (SoundOut != null)
-            {
-                SoundOut.Dispose();
-                SoundOut = null;
-            }
-            if (waveSource != null)
-            {
-                waveSource.Dispose();
-                waveSource = null;
-            }
-        }
-
-        public void Pause()
-        {
-
-            if (SoundOut != null)
-                SoundOut.Pause();
-
-
-        }
-
-        public void Play()
-        {
-
-            if (SoundOut != null)
-                SoundOut.Play();
-
-
-        }
-
-        public void Stop()
-        {
-            if (SoundOut != null)
-                SoundOut.Stop();
         }
 
         public virtual void Dispose()
@@ -148,5 +102,42 @@ namespace MusicPlayer.Core.Services
             }
             CleanupPlayback();
         }
+
+        public void Play()
+        {
+            if(musicPlayer.State == PlaybackState.Paused)
+            {
+                musicPlayer.Play();
+            }
+            else if(Queue.Count >= 1)
+            {
+                musicPlayer.LoadAsync(CurrentTrack.FilePath)
+                    .ContinueWith((x) => musicPlayer.Play());
+            }
+        }
+
+        public void Pause()
+        {
+            musicPlayer.Pause();
+        }
+
+        public void Stop()
+        {
+            musicPlayer.Stop();
+        }
+
+        public void CleanupPlayback()
+        {
+            musicPlayer.Dispose();
+            Queue.Clear();
+        }
+
+        public void ChangeCurrentTrack(Track track)
+        {
+            Stop();
+            CurrentTrack = track;
+            Play();
+        }
+        #endregion
     }
 }

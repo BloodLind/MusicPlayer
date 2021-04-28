@@ -8,6 +8,8 @@ using Android.Widget;
 using Android.OS;
 using MvvmCross.Forms.Platforms.Android.Views;
 using MvvmCross.Forms.Platforms.Android.Core;
+using FFImageLoading.Transformations;
+using AndroidX.AppCompat.App;
 
 namespace MusicPlayer.Xamarin.Droid
 {
@@ -18,10 +20,14 @@ namespace MusicPlayer.Xamarin.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-            Window.SetStatusBarColor(Android.Graphics.Color.Black);
-      
+            Window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#1C1C1C"));
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
+            BlurredTransformation.LegacyMode = false;
+            AppCompatDelegate.DefaultNightMode = AppCompatDelegate.ModeNightNo;
+            
+
             base.OnCreate(bundle);
         }
-
+       
     }
 }

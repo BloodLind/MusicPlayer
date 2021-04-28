@@ -1,4 +1,5 @@
 ﻿using MusicPlayer.Core.Models;
+using MusicPlayer.Core.Services;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -12,68 +13,48 @@ namespace MusicPlayer.Core.ViewModels
 {
     public class HomeViewModel : MvxViewModel
     {
-        private readonly IMvxNavigationService mvxNavigationService;
-
-        public HomeViewModel(IMvxNavigationService mvxNavigationService)
-        {
-            this.mvxNavigationService = mvxNavigationService;
-            InitCommands();
-        }
-
-        private MvxObservableCollection<Track> tracks = new MvxObservableCollection<Track>(CoreApp.Tracks);
-        private MvxObservableCollection<Playlist> playlists = new MvxObservableCollection<Playlist>(CoreApp.Playlists);
-        private MvxObservableCollection<Artist> artists = new MvxObservableCollection<Artist>(CoreApp.Artists);
-        private MvxObservableCollection<Album> albums = new MvxObservableCollection<Album>(CoreApp.Albums);
-        private MvxObservableCollection<Track> queue = new MvxObservableCollection<Track>();
-
         private Track selectedTrack = new Track();
         private TimeSpan currentPosition = new TimeSpan();
 
-        public MvxObservableCollection<Track> Tracks
+        public HomeViewModel()
         {
-            get => tracks;
-            set
-            {
-                tracks = value;
-            }
+           
+            InitCommands();
         }
 
-        public MvxObservableCollection<Playlist> Playlists
-        {
-            get => playlists;
-            set
-            {
-                playlists = value;
-            }
-        }
+        #region Collections
+        public MvxObservableCollection<Track> Tracks { get; set; } = new MvxObservableCollection<Track>();
+        public MvxObservableCollection<Playlist> Playlists { get; set; } = new MvxObservableCollection<Playlist>();
+        public MvxObservableCollection<Artist> Artists { get; set; } = new MvxObservableCollection<Artist>();
+        public MvxObservableCollection<Album> Albums { get; set; } = new MvxObservableCollection<Album>();
+        public MvxObservableCollection<Track> Queue { get; set; } = new MvxObservableCollection<Track>();
+        #endregion
 
-        public MvxObservableCollection<Artist> Artists
+        public Task UpdateCollectionsAsync(IEnumerable<string>files)
         {
-            get => artists;
-            set
+            
+            return Task.Run(() =>
             {
-                artists = value;
-            }
-        }
+                UpdateCollections(files);
+                
+            });
 
-        public MvxObservableCollection<Album> Albums
+            
+
+        }
+        
+        public void UpdateCollections(IEnumerable<string> files)
         {
-            get => albums;
-            set
-            {
-                albums = value;
-            }
-        }
+            TracksManager tracksManager = new TracksManager();
 
-        public MvxObservableCollection<Track> Queue
-        {
-            get => queue;
-            set
-            {
-                queue = value;
-            }
-        }
+            Tracks.AddRange(tracksManager.GetTracksList(files));
+            Artists.AddRange(tracksManager.GetArtists(Tracks));
+            Albums.AddRange(tracksManager.GetAlbums(Tracks));
 
+
+            CoreApp.InitializatePlayer(Tracks);
+            CoreApp.Player.Play();
+        }
 
         public Track SelectedTrack
         {
@@ -100,10 +81,11 @@ namespace MusicPlayer.Core.ViewModels
         {
             TrackInfoCommand = new MvxCommand(() =>
             {
-                mvxNavigationService.Navigate(new NowPlayingViewModel(this.mvxNavigationService));
+                CoreApp.Navigation.MvxNavigationService.Navigate(CoreApp.Navigation.NowPlayingView);
             });
         }
 
         public IMvxCommand TrackInfoCommand { get; private set; }
+        
     }
 }

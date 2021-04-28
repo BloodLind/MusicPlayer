@@ -3,7 +3,7 @@
                 xmlns:vm ="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MusicPlayer.Xamarin.Views.HomeView"
-                   NavigationPage.HasNavigationBar="False">
+                   NavigationPage.HasNavigationBar="False" BackgroundColor="{StaticResource PrimaryAccentColor}">
     
     <ContentPage.Content>
         <Grid BackgroundColor="{StaticResource PrimaryLightColor}">
@@ -32,7 +32,7 @@
                                PlaceholderColor="{StaticResource FontMidColor}"
                                TextColor="{StaticResource FontLightColor}"
                        ></SearchBar>
-                        <ImageButton Grid.Column="1" Aspect="AspectFit" Margin="5" 
+                        <ImageButton Grid.Column="1" Aspect="AspectFit" Margin="5" Padding="3" 
                                      Source="more.png" BackgroundColor="Transparent">
                         </ImageButton>
                     </Grid>
@@ -128,6 +128,10 @@
                             <Label TextColor="{StaticResource FontLightColor}" FontSize="16" Text="SUS"></Label>
                             <Label TextColor="{StaticResource FontMidColor}" FontSize="14" Text="Post Malone - Hollywood Bleeding"></Label>
                         </StackLayout>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TrackInfoCommand}"></TapGestureRecognizer>
+                            <SwipeGestureRecognizer Direction="Up" Command="{Binding TrackInfoCommand}"></SwipeGestureRecognizer>
+                        </Grid.GestureRecognizers>
                     </Grid>
                     
                     <Grid Grid.Column="1" 

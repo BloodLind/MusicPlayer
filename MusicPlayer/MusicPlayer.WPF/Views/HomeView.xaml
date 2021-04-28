@@ -10,7 +10,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MusicPlayer.WPF.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="720" d:DesignWidth="1280"
+             d:DesignHeight="720" d:DesignWidth="1300"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -621,9 +621,23 @@
 
                         <TabItem
                             Height="30"
-                            Width="70"
+                            Width="80"
                             Foreground="DimGray"
                             Header="Tracks">
+
+                            <TabItem.Content>
+
+                                <Grid Margin="15">
+
+                                    <Button
+                                        VerticalAlignment="Top"
+  Style="{StaticResource MaterialDesignRaisedButton}"
+  ToolTip="Resource name: MaterialDesignRaisedButton"
+  Content="Show tracks" />
+
+                                </Grid>
+                                
+                            </TabItem.Content>
                             
                         </TabItem>
                         
