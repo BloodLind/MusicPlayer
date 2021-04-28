@@ -13,7 +13,7 @@ namespace MusicPlayer.Core.Services
     public class CatalogScaner : ICatalogScaner
     {
         public IEnumerable<string> ScannedFiles { get; set; }
-        string[] extensions;
+        string[] extensions = { "*.mp3", "*.wav", "*.wma", "*.aac", "*.m4a", "*.flac" };
 
         public void RemoveFolderFromScan(string path)
         {
@@ -31,7 +31,7 @@ namespace MusicPlayer.Core.Services
 
             foreach (string extension in extensions)
             {
-                tmpList.AddRange(Directory.GetFiles(path, $"*.{extension}", SearchOption.AllDirectories));
+                tmpList.AddRange(Directory.GetFiles(path, extension, SearchOption.AllDirectories));
             }
 
 

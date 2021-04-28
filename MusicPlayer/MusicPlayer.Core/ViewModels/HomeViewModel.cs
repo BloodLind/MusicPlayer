@@ -1,4 +1,5 @@
 ﻿using MusicPlayer.Core.Models;
+using MusicPlayer.Core.Services;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -22,12 +23,38 @@ namespace MusicPlayer.Core.ViewModels
         }
 
         #region Collections
-        public MvxObservableCollection<Track> Tracks { get; set; } = new MvxObservableCollection<Track>(CoreApp.Tracks);
-        public MvxObservableCollection<Playlist> Playlists { get; set; } = new MvxObservableCollection<Playlist>(CoreApp.Playlists);
-        public MvxObservableCollection<Artist> Artists { get; set; } = new MvxObservableCollection<Artist>(CoreApp.Artists);
-        public MvxObservableCollection<Album> Albums { get; set; } = new MvxObservableCollection<Album>(CoreApp.Albums);
+        public MvxObservableCollection<Track> Tracks { get; set; } = new MvxObservableCollection<Track>();
+        public MvxObservableCollection<Playlist> Playlists { get; set; } = new MvxObservableCollection<Playlist>();
+        public MvxObservableCollection<Artist> Artists { get; set; } = new MvxObservableCollection<Artist>();
+        public MvxObservableCollection<Album> Albums { get; set; } = new MvxObservableCollection<Album>();
         public MvxObservableCollection<Track> Queue { get; set; } = new MvxObservableCollection<Track>();
         #endregion
+
+        public Task UpdateCollectionsAsync(IEnumerable<string>files)
+        {
+            
+            return Task.Run(() =>
+            {
+                UpdateCollections(files);
+                
+            });
+
+            
+
+        }
+        
+        public void UpdateCollections(IEnumerable<string> files)
+        {
+            TracksManager tracksManager = new TracksManager();
+
+            Tracks.AddRange(tracksManager.GetTracksList(files));
+            Artists.AddRange(tracksManager.GetArtists(Tracks));
+            Albums.AddRange(tracksManager.GetAlbums(Tracks));
+
+
+            CoreApp.InitializatePlayer(Tracks);
+            CoreApp.Player.Play();
+        }
 
         public Track SelectedTrack
         {
@@ -59,5 +86,6 @@ namespace MusicPlayer.Core.ViewModels
         }
 
         public IMvxCommand TrackInfoCommand { get; private set; }
+        
     }
 }
