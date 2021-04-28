@@ -1,4 +1,7 @@
-﻿using MusicPlayer.Core.Services;
+﻿using MaterialDesignThemes.Wpf;
+using MusicPlayer.Core;
+using MusicPlayer.Core.Models;
+using MusicPlayer.Core.Services;
 using MusicPlayer.Core.ViewModels;
 using MusicPlayer.WPF.Infrastructure;
 using System;
@@ -24,6 +27,8 @@ namespace MusicPlayer.WPF.Views
     /// </summary>
     public partial class HomeView : CustomView
     {
+        
+
         public HomeView()
         {
             
@@ -57,7 +62,33 @@ namespace MusicPlayer.WPF.Views
 
             var vm = (HomeViewModel)this.DataContext;
 
-            vm.UpdateCollectionsAsync(files);
+            vm.UpdateCollections(files);
+        }
+
+        protected void ArtistItemDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var artistItem = ((FrameworkElement)e.OriginalSource).DataContext as Artist;
+        }
+
+        protected void CurrentTrackListDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var trackItem = ((FrameworkElement)e.OriginalSource).DataContext as Track;
+
+            ((HomeViewModel)DataContext).SelectedTrack = trackItem;
+
+            ((HomeViewModel)DataContext).PlaySelectedCommand.Execute(this);
+        }
+
+        private void PlayPauseClick(object sender, RoutedEventArgs e)
+        {
+            if(CoreApp.Player.PlaybackState == ManagedBass.PlaybackState.Playing)
+            {
+                CoreApp.Player.Pause();
+            }
+            else
+            {
+                CoreApp.Player.Play();
+            }
         }
     }
 }

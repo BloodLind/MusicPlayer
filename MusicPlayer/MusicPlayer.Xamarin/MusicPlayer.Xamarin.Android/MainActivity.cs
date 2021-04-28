@@ -10,6 +10,8 @@ using MvvmCross.Forms.Platforms.Android.Views;
 using MvvmCross.Forms.Platforms.Android.Core;
 using FFImageLoading.Transformations;
 using AndroidX.AppCompat.App;
+using AndroidX.Core.App;
+using Android;
 
 namespace MusicPlayer.Xamarin.Droid
 {
@@ -24,7 +26,14 @@ namespace MusicPlayer.Xamarin.Droid
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
             BlurredTransformation.LegacyMode = false;
             AppCompatDelegate.DefaultNightMode = AppCompatDelegate.ModeNightNo;
-            
+
+            if (!ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.ReadExternalStorage) &&
+                !ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.WriteExternalStorage))
+            {
+                ActivityCompat.RequestPermissions(this, new String[] { Manifest.Permission.ReadExternalStorage }, 1);
+                ActivityCompat.RequestPermissions(this, new String[] { Manifest.Permission.WriteExternalStorage }, 2);
+            }
+
 
             base.OnCreate(bundle);
         }

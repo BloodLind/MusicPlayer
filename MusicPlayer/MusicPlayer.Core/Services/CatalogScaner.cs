@@ -29,6 +29,7 @@ namespace MusicPlayer.Core.Services
 
             List<string> tmpList = (List<string>)ScannedFiles;
 
+            var r = Directory.EnumerateDirectories(path, "*.*", SearchOption.AllDirectories).ToList();
             foreach (string extension in extensions)
             {
                 tmpList.AddRange(Directory.GetFiles(path, extension, SearchOption.AllDirectories));

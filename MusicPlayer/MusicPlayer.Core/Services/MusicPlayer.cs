@@ -14,6 +14,7 @@ namespace MusicPlayer.Core.Services
     {
         #region Fields
         private ManagedBass.MediaPlayer musicPlayer;
+        private Track currentTrack;
         #endregion
 
         public MusicPlayer(IEnumerable<Track> tracks)
@@ -27,7 +28,11 @@ namespace MusicPlayer.Core.Services
 
         #region Properties
         public List<Track> Queue { get; set; }
-        public Track CurrentTrack { get; private set; }
+        public Track CurrentTrack { get => currentTrack; private set { currentTrack = value; CurrentTrackChanged?.Invoke(CurrentTrack); } }
+        public PlaybackState PlaybackState 
+        {
+            get => musicPlayer.State;
+        }
         
         public double CurrentPosition {
             get 
@@ -111,6 +116,7 @@ namespace MusicPlayer.Core.Services
             }
             else if(Queue.Count >= 1)
             {
+                CurrentTrack = CurrentTrack == null ? Queue[0] : CurrentTrack;
                 musicPlayer.LoadAsync(CurrentTrack.FilePath)
                     .ContinueWith((x) => musicPlayer.Play());
             }
