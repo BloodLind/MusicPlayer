@@ -29,6 +29,10 @@ namespace MusicPlayer.Core.Services
         #region Properties
         public List<Track> Queue { get; set; }
         public Track CurrentTrack { get => currentTrack; private set { currentTrack = value; CurrentTrackChanged?.Invoke(CurrentTrack); } }
+        public PlaybackState PlaybackState 
+        {
+            get => musicPlayer.State;
+        }
         
         public double CurrentPosition {
             get 

@@ -9,18 +9,24 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MusicPlayer.WPF.Views"
+    
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="1300"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     
-    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:z="clr-namespace:MusicPlayer.WPF.Services"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
         FontFamily="{materialDesign:MaterialDesignFont}"
     
     >
+
+    <customView:CustomView.Resources>
+        <z:TimeConverter x:Key="timeConverter"/>
+    </customView:CustomView.Resources>
+
     <DockPanel LastChildFill="True"
                Height="auto">
         <Grid VerticalAlignment="Top" DockPanel.Dock="Top">
@@ -29,7 +35,7 @@
                                  materialDesign:ShadowAssist.ShadowDepth="Depth0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
 
-                    
+
 
                     <Button
                     Click="ClickMinimizeWindow"
@@ -72,223 +78,12 @@
             </materialDesign:Card>
         </Grid>
 
-        
+
 
         <Grid DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
 
-           
-                <!--<materialDesign:Card
-                Margin="4,0,4,10"
-                UniformCornerRadius="6"
-                Background="{DynamicResource MaterialDesignDarkBackground}"
-                    materialDesign:ShadowAssist.ShadowEdges="All"
-                MaxHeight="100"
-                Height="95">
 
 
-                <Grid>
-
-                    <Grid HorizontalAlignment="Left"
-                          Margin="15,0,0,0">
-
-                        <StackPanel Orientation="Horizontal">
-
-                            <Rectangle
-                        DockPanel.Dock="Left"
-                        Margin="3"
-                        HorizontalAlignment="Left"
-                        RadiusX="10" 
-                        RadiusY="10"
-                        Width="70"
-                        Height="70">
-                                <Rectangle.Fill>
-                                    <ImageBrush x:Name="myImage" ImageSource="https://www.meme-arsenal.com/memes/04792a873effe68d2688a16fb09163e2.jpg" />
-                                </Rectangle.Fill>
-                            </Rectangle>
-
-                            <Grid Width="150"
-                          HorizontalAlignment="Left">
-
-                                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-
-                                    <TextBlock
-  Margin="5,0,0,0"
-  Style="{StaticResource MaterialDesignCaptionTextBlock}"
-  Text="Adhshba song" />
-
-
-                                    <TextBlock
-  Margin="5,0,0,0"
-  Style="{StaticResource MaterialDesignCharacterCounterTextBlock}"
-  Text="Adhshba" />
-
-
-                                   
-
-                                </StackPanel>
-
-                            </Grid>
-                        </StackPanel>
-
-
-                    </Grid>
-
-                    <Grid HorizontalAlignment="Center">
-
-                        <DockPanel LastChildFill="False">
-                            <Grid DockPanel.Dock="Top"
-                                  Margin="0,10,0,5">
-
-                                <StackPanel Orientation="Horizontal"
-                                            HorizontalAlignment="Center">
-
-                                    <Button
-  Style="{DynamicResource MaterialDesignFlatAccentButton}"
-                                        Background="Transparent">
-
-                                        <materialDesign:PackIcon
-    Kind="ShuffleVariant"
-    Height="20"
-    Width="20" />
-                                    </Button>
-
-                                    <Button
-  Style="{DynamicResource MaterialDesignFlatAccentButton}"
-                                        Background="Transparent">
-
-                                        <materialDesign:PackIcon
-    Kind="SkipPrevious"
-    Height="20"
-    Width="20" />
-                                    </Button>
-
-                                    <Button
-  Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
-  ToolTip="MaterialDesignFloatingActionMiniAccentButton">
-                                        <materialDesign:PackIcon
-    Kind="Play"
-    Height="25"
-    Width="25" />
-                                    </Button>
-
-
-                                    <Button
-  Style="{DynamicResource MaterialDesignFlatAccentButton}"
-                                        Background="Transparent">
-
-                                        <materialDesign:PackIcon
-    Kind="SkipNext"
-    Height="20"
-    Width="20" />
-                                    </Button>
-
-
-                                    <Button
-  Style="{DynamicResource MaterialDesignFlatAccentButton}"
-                                        Background="Transparent">
-
-                                        <materialDesign:PackIcon
-    Kind="Help"
-    Height="20"
-    Width="20" />
-                                    </Button>
-
-
-                                </StackPanel>
-                                
-                            </Grid>
-
-                            <Grid DockPanel.Dock="Bottom"
-                                  Margin="0,0,0,15"
-                                  HorizontalAlignment="Center">
-
-                                <Grid.ColumnDefinitions>
-                                    
-                                    <ColumnDefinition Width="0.1*"/>
-                                    <ColumnDefinition Width="0.8*"/>
-                                    <ColumnDefinition Width="0.1*"/>
-                                    
-                                </Grid.ColumnDefinitions>
-                                
-
-                                    <TextBlock Grid.Column="0"
-                                        
-                                               Margin="0,0,3,0"
-                                        Width="25"
-                                        FontSize="11"
-                                        VerticalAlignment="Center"
-                                               HorizontalAlignment="Left"
-                                        
-                                        >0:00</TextBlock>
-
-                                    <Slider Grid.Column="1"
-                                        
-                                        Foreground="{DynamicResource SecondaryHueMidBrush}"
-                                        
-                                        Width="380"
-  Minimum="0"
-  Maximum="180"
-  Value="100" />
-
-                                <TextBlock Grid.Column="2"
-                                        
-                                               Margin="3,0,0,0"
-                                        VerticalAlignment="Center"
-                                           HorizontalAlignment="Right"
-                                        Width="25"
-                                        FontSize="11"
-                                        >0:00</TextBlock>
-
-
-
-                                
-                                
-                            </Grid>
-                            
-                        </DockPanel>
-                        
-                    </Grid>
-
-
-                    <Grid HorizontalAlignment="Right">
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.2*"/>
-                            <ColumnDefinition Width="0.2*"/>
-                        </Grid.ColumnDefinitions>
-
-                            <Slider VerticalAlignment="Center"
-                                    Grid.Column="1"
-                                    Margin="5,0,15,0"
-                                Foreground="{DynamicResource SecondaryHueMidBrush}"
-                                
-                                Width="100"
-  
-  Minimum="0"
-  Maximum="100"
-  Value="25" />
-
-                        
-
-
-                            <materialDesign:PackIcon Kind="VolumeHigh"
-                                                     Grid.Column="0"
-                                                     VerticalAlignment="Center"/>
-
-
-                        
-                    </Grid>
-
-
-
-
-
-                </Grid>
-                    
-                    
-                    
-                    
-                </materialDesign:Card>-->
 
 
             <materialDesign:Card Grid.Row="1"
@@ -325,7 +120,7 @@
                         <materialDesign:Card Margin="10,3,3,3"
                                              Background="Transparent"
                                              >
-                            
+
 
                             <Rectangle
                         
@@ -337,32 +132,32 @@
                         Width="70"
                         Height="70">
 
-                                
+
 
                                 <Rectangle.Fill>
-                                    <ImageBrush x:Name="myImage" ImageSource="https://www.meme-arsenal.com/memes/04792a873effe68d2688a16fb09163e2.jpg" />
+                                    <ImageBrush x:Name="myImage" ImageSource="{Binding SelectedTrack.Image}" />
                                 </Rectangle.Fill>
                             </Rectangle>
                         </materialDesign:Card>
-                        
+
 
                         <StackPanel Grid.Column="1" VerticalAlignment="Center" Orientation="Vertical">
 
                             <TextBlock
   Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
-  Text="Medium 14sp" />
+  Text="{Binding SelectedTrack.Title}" />
 
                             <TextBlock
                                 
   Style="{StaticResource MaterialDesignCaptionTextBlock}"
-  Text="Regular 12sp" />
+  Text="{Binding SelectedTrack.Album}" />
 
 
 
                         </StackPanel>
-                        
+
                     </Grid>
-                    
+
 
 
 
@@ -374,6 +169,7 @@
 
                             <Button
   Style="{DynamicResource MaterialDesignFlatButton}"
+                                Command="{Binding ShuffleCommand}"
                                         Background="Transparent">
 
                                 <materialDesign:PackIcon
@@ -385,7 +181,8 @@
 
                             <Button
   Style="{DynamicResource MaterialDesignFlatButton}"
-                                        Background="Transparent">
+                                        Background="Transparent"
+                                Command="{Binding PreviousCommand}">
 
                                 <materialDesign:PackIcon
                                     Foreground="White"
@@ -395,18 +192,23 @@
                             </Button>
 
                             <Button
+                                
+                                
   Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                                 
                                 Background="White"
                                 BorderBrush="White"
-  ToolTip="MaterialDesignFloatingActionMiniAccentButton">
+  ToolTip="MaterialDesignFloatingActionMiniAccentButton"
+                                Click="PlayPauseClick"
+                                x:Name="PlayPauseButton"
+                                >
 
 
-                                
+
 
 
                                 <materialDesign:PackIcon
-                                    
+                             
     Kind="Play"
     Height="25"
     Width="25" />
@@ -415,7 +217,8 @@
 
                             <Button
   Style="{DynamicResource MaterialDesignFlatButton}"
-                                        Background="Transparent">
+                                        Background="Transparent"
+                                Command="{Binding NextCommand}">
 
                                 <materialDesign:PackIcon
                                     Foreground="White"
@@ -427,6 +230,7 @@
 
                             <Button
   Style="{DynamicResource MaterialDesignFlatButton}"
+                                Command="{Binding RandomCommand}"
                                         Background="Transparent">
 
                                 <materialDesign:PackIcon
@@ -495,8 +299,8 @@
                                         
                                         
   Minimum="0"
-  Maximum="180"
-  Value="100" />
+  Maximum="{Binding SelectedTrack.PlayTime.TotalSeconds, Mode=OneWay}"
+  Value="{Binding CurrentPosition}" />
 
 
                             <TextBlock Grid.Column="0"
@@ -506,8 +310,8 @@
                                         FontSize="13"
                                         VerticalAlignment="Center"
                                                HorizontalAlignment="Right"
-                                        
-                                        >0:00</TextBlock>
+                                        Text="{Binding CurrentPosition, Converter={StaticResource timeConverter}, UpdateSourceTrigger=PropertyChanged}"
+                                        ></TextBlock>
 
 
                             <TextBlock Grid.Column="2"
@@ -517,8 +321,8 @@
                                         FontSize="13"
                                         VerticalAlignment="Center"
                                                HorizontalAlignment="Left"
-                                        
-                                        >0:00</TextBlock>
+                                        Text="{Binding SelectedTrack.PlayTime, Converter={StaticResource timeConverter}}"
+                                        ></TextBlock>
 
 
                         </Grid>
@@ -554,76 +358,84 @@
                 <Grid>
 
                     <ListView
+                        MouseDoubleClick="CurrentTrackListDoubleClick"
                         x:Name="TracksListView"
                         Style="{DynamicResource MaterialDesignListView}"
                         ItemsSource="{Binding Tracks, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         SelectedItem="{Binding SelectedTrack, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         >
 
+
+
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Grid Margin="5"
-                                      Width="{Binding RelativeSource={RelativeSource AncestorType=ListView}, Path=ActualWidth}">
-                                    <materialDesign:Card>
-                                        <Grid>
+                                <Grid
+                                      >
+                                    <materialDesign:Card
+                                        Margin="5"
+                                        Background="Transparent"
+                                        >
+                                        <StackPanel Orientation="Horizontal">
 
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition/>
-                                                <ColumnDefinition Width="9*"/>
-                                            </Grid.ColumnDefinitions>
-                                            
+
+
                                             <Rectangle Grid.Column="0"
                         
                         
                         
-                        HorizontalAlignment="Left"
-                        RadiusX="5" 
-                        RadiusY="5"
-                        Width="35"
-                        Height="35">
+                        
+                        RadiusX="10" 
+                        RadiusY="10"
+                        Width="75"
+                        Height="75">
 
 
 
                                                 <Rectangle.Fill>
-                                                    <ImageBrush x:Name="myImage" ImageSource="https://www.meme-arsenal.com/memes/04792a873effe68d2688a16fb09163e2.jpg" />
+                                                    <ImageBrush x:Name="myImage" ImageSource="{Binding Image}" />
                                                 </Rectangle.Fill>
                                             </Rectangle>
 
-                                            <Grid Grid.Column="1">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="7*"/>
-                                                    <ColumnDefinition/>
-                                                </Grid.ColumnDefinitions>
 
 
-                                                <TextBlock
-                                                    HorizontalAlignment="Left"
-                                                    Grid.Column="0"
+                                            <TextBlock
+                                                    VerticalAlignment="Center"
+                                             Margin="10,0,0,0"
   Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
-  Text="{Binding Title}" />
+  Text="{Binding Title}">
 
-                                                <TextBlock
-                                                    HorizontalAlignment="Center"
-                                                    Grid.Column="1"
+                                            </TextBlock>
+
+                                            <TextBlock
+                                                    VerticalAlignment="Center"
+                                             Margin="10,0,0,0"
   Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
-  Text="{Binding PlayTime}" />
+  Text="{Binding Artist}">
 
-                                            </Grid>
-                                            
-                                        </Grid>
-                                    </materialDesign:Card> 
+                                            </TextBlock>
+
+                                            <TextBlock
+                                                    VerticalAlignment="Center"
+                                             Margin="10,0,0,0"
+  Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
+  Text="{Binding Album}">
+
+                                            </TextBlock>
+
+                                        </StackPanel>
+                                    </materialDesign:Card>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
-                        
+
                     </ListView>
-                    
+
                 </Grid>
-                
+
             </materialDesign:Card>
 
 
-                
+
 
             <materialDesign:Card Grid.Column="1"
                                  Margin="5"
@@ -678,7 +490,7 @@
 
                         <TabItem
                             Height="30"
-                            Width="80"
+                            Width="70"
                             Foreground="DimGray"
                             Header="Tracks">
 
@@ -693,15 +505,15 @@
   Content="Show tracks" />
 
                                 </Grid>
-                                
+
                             </TabItem.Content>
-                            
+
                         </TabItem>
-                        
+
                         <TabItem
                             Foreground="DimGray"
                             Height="30"
-                            Width="70"
+                            Width="80"
                             Header="Playlists">
 
 
@@ -737,7 +549,7 @@
                                 </ListBox>
 
                             </TabItem.Content>
-                            
+
                         </TabItem>
                         <TabItem
                             Foreground="DimGray"
@@ -748,31 +560,44 @@
 
                             <TabItem.Content>
 
-                                <ListBox>
+                                <ListBox
+                                    MouseDoubleClick="ArtistItemDoubleClick"
+                                    x:Name="ArtistListBox"
+                                    ItemsSource="{Binding Artists}"
+                                   >
+
+                                    <!--<ListBox.Resources>
+                                        <Style x:Key="artistItemEventSetter" TargetType="{x:Type ListBoxItem}">
+                                            <EventSetter  Event="MouseDoubleClick" Handler="ArtistItemDoubleClick"></EventSetter>
+                                        </Style>
+                                        
+                                    </ListBox.Resources>-->
+
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" Margin="5">
+                                            <Grid Margin="5">
 
-                                                <Rectangle
-                                                    RadiusX="5" 
-                        RadiusY="5"
-                        Width="35"
-                        Height="35"
-                                                    
-                                                    >
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
 
-                                                    <Rectangle.Fill>
-                                                        <ImageBrush x:Name="myImage" ImageSource="https://www.meme-arsenal.com/memes/04792a873effe68d2688a16fb09163e2.jpg" />
-                                                    </Rectangle.Fill>
 
-                                                </Rectangle>
 
                                                 <TextBlock
   
-  Style="{StaticResource MaterialDesignCaptionTextBlock}"
-  Text="Adhshba song" />
+  Style="{StaticResource MaterialDesignBody2TextBlock}"
+  Text="{Binding Name}" />
 
-                                            </StackPanel>
+                                                <TextBlock
+                                                    Grid.Row="1"
+           FontSize="11"                     
+  Foreground="Gray"
+  Text="{Binding TracksCount, StringFormat='Tracks: {0}'}" />
+
+
+
+                                            </Grid>
                                         </DataTemplate>
                                     </ListBox.ItemTemplate>
                                 </ListBox>
@@ -791,29 +616,23 @@
 
                             <TabItem.Content>
 
-                                <ListBox>
+                                <ListBox
+                                    ItemsSource="{Binding Albums}">
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" Margin="5">
+                                            <StackPanel Orientation="Vertical" Margin="5">
 
-                                                <Rectangle
-                                                    RadiusX="5" 
-                        RadiusY="5"
-                        Width="35"
-                        Height="35"
-                                                    
-                                                    >
 
-                                                    <Rectangle.Fill>
-                                                        <ImageBrush x:Name="myImage" ImageSource="https://www.meme-arsenal.com/memes/04792a873effe68d2688a16fb09163e2.jpg" />
-                                                    </Rectangle.Fill>
-
-                                                </Rectangle>
 
                                                 <TextBlock
   
-  Style="{StaticResource MaterialDesignCaptionTextBlock}"
-  Text="Adhshba song" />
+  Style="{StaticResource MaterialDesignBody2TextBlock}"
+  Text="{Binding Name}" />
+
+                                                <TextBlock
+           FontSize="11"                     
+  Foreground="Gray"
+  Text="{Binding TracksCount, StringFormat='Tracks: {0}'}" />
 
                                             </StackPanel>
                                         </DataTemplate>
@@ -826,17 +645,17 @@
                         </TabItem>
 
                     </TabControl>
-                    
-                    
-                
 
-            </Grid>
+
+
+
+                </Grid>
 
 
             </materialDesign:Card>
 
-            
-            
+
+
         </Grid>
 
     </DockPanel>

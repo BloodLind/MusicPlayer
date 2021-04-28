@@ -1,4 +1,5 @@
-﻿using MusicPlayer.Core.Models;
+﻿using ManagedBass;
+using MusicPlayer.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,9 @@ namespace MusicPlayer.Core.Infrastructure.Interfaces
         double CurrentPosition { get; set; }
         Track CurrentTrack { get; }
         List<Track> Queue { get; set; }
-        
+        PlaybackState PlaybackState { get; }
+
+        void ShuffleQueue();
         void Play();
         void Pause();
         void Stop();
