@@ -14,18 +14,15 @@ namespace MusicPlayer.Core.ViewModels
     public class HomeViewModel : MvxViewModel
     {
         private Track selectedTrack = new Track();
-        private TimeSpan currentPosition = new TimeSpan();
+        private double currentPosition;
+        private double volume = 0.5;
 
         public HomeViewModel()
         {
-
             InitCommands();
         }
 
-        private void Player_CurrentTrackChanged(Track obj)
-        {
-            SelectedTrack = obj;
-        }
+        
 
         #region Collections
         public MvxObservableCollection<Track> Tracks { get; set; } = new MvxObservableCollection<Track>();
@@ -64,7 +61,12 @@ namespace MusicPlayer.Core.ViewModels
 
         private void Player_PositionChanged(double obj)
         {
-            CurrentPosition = TimeSpan.FromSeconds(obj);
+            CurrentPosition = obj;
+        }
+
+        private void Player_CurrentTrackChanged(Track obj)
+        {
+            SelectedTrack = obj;
         }
 
         private void AddToCollection<T>(MvxObservableCollection<T> listToAdd, IEnumerable<T> addFrom)
@@ -87,13 +89,25 @@ namespace MusicPlayer.Core.ViewModels
             }
         }
 
-        public TimeSpan CurrentPosition
+        public double CurrentPosition
         {
             get => currentPosition;
             set
             {
                 currentPosition = value;
                 RaisePropertyChanged(() => CurrentPosition);
+            }
+        }
+        public double Volume
+        {
+            get => volume;
+            set
+            {
+                volume = value;
+
+                CoreApp.Player.Volume = value;
+
+                RaisePropertyChanged(() => Volume);
             }
         }
 

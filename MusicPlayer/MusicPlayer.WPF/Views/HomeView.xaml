@@ -273,8 +273,8 @@
                                 
   
   Minimum="0"
-  Maximum="100"
-  Value="25" />
+  Maximum="1"
+  Value="{Binding Volume}" />
 
 
                     </Grid>
@@ -298,7 +298,6 @@
                                         Foreground="White"
                                         
                                         
-  Minimum="0"
   Maximum="{Binding SelectedTrack.PlayTime.TotalSeconds, Mode=OneWay}"
   Value="{Binding CurrentPosition}" />
 
