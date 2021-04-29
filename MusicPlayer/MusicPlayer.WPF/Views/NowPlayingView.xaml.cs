@@ -1,4 +1,6 @@
-﻿using MusicPlayer.WPF.Infrastructure;
+﻿using MusicPlayer.Core;
+using MusicPlayer.Core.ViewModels;
+using MusicPlayer.WPF.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +23,49 @@ namespace MusicPlayer.WPF.Views
     /// </summary>
     public partial class NowPlayingView : CustomView
     {
+        NowPlayingViewModel viewModel;
         public NowPlayingView()
         {
             InitializeComponent();
+            this.Loaded += NowPlayingView_Loaded;
         }
+
+        private void NowPlayingView_Loaded(object sender, RoutedEventArgs e)
+        {
+            viewModel = (NowPlayingViewModel)DataContext;
+        }
+
+        private void PlayPauseClick(object sender, RoutedEventArgs e)
+        {
+            if (CoreApp.Player.PlaybackState == ManagedBass.PlaybackState.Playing)
+            {
+                viewModel.PauseCommand.Execute();
+            }
+            else
+            {
+                viewModel.PlayCommand.Execute();
+            }
+        }
+
+
+
+        void Slider_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e) => viewModel.IsPositionChanging = true;
+
+        void Slider_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            viewModel.IsPositionChanging = false;
+            viewModel.CurrentPosition = ((Slider)sender).Value;
+            CoreApp.Player.CurrentPosition = viewModel.CurrentPosition;
+        }
+
+        private void Slider_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
+            => viewModel.IsPositionChanging = true;
+
+        private void Slider_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+        {
+            viewModel.IsPositionChanging = false;
+            CoreApp.Player.CurrentPosition = viewModel.CurrentPosition;
+        }
+
     }
 }

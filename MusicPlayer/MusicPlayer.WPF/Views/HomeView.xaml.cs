@@ -27,7 +27,7 @@ namespace MusicPlayer.WPF.Views
     /// </summary>
     public partial class HomeView : CustomView
     {
-        
+        HomeViewModel viewModel;
 
         public HomeView()
         {
@@ -38,6 +38,7 @@ namespace MusicPlayer.WPF.Views
 
         private void HomeView_Loaded(object sender, RoutedEventArgs e)
         {
+            viewModel = (HomeViewModel)this.DataContext;
             ScanMusic();
         }
 
@@ -60,9 +61,7 @@ namespace MusicPlayer.WPF.Views
                 files.Add(a);
             }
 
-            var vm = (HomeViewModel)this.DataContext;
-
-            vm.UpdateCollections(files);
+            viewModel.UpdateCollections(files);
         }
 
         protected void ArtistItemDoubleClick(object sender, MouseButtonEventArgs e)
@@ -74,21 +73,43 @@ namespace MusicPlayer.WPF.Views
         {
             var trackItem = ((FrameworkElement)e.OriginalSource).DataContext as Track;
 
-            ((HomeViewModel)DataContext).SelectedTrack = trackItem;
+           viewModel.SelectedTrack = trackItem;
 
-            ((HomeViewModel)DataContext).PlaySelectedCommand.Execute(this);
+            viewModel.PlaySelectedCommand.Execute(this);
         }
 
         private void PlayPauseClick(object sender, RoutedEventArgs e)
         {
             if(CoreApp.Player.PlaybackState == ManagedBass.PlaybackState.Playing)
             {
-                CoreApp.Player.Pause();
+                viewModel.PauseCommand.Execute();
             }
             else
             {
-                CoreApp.Player.Play();
+                viewModel.PlayCommand.Execute();
             }
         }
+
+        
+
+        void Slider_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e) => viewModel.IsPositionChanging = true;
+
+        void Slider_MouseLeftButtonUp(object sender, MouseButtonEventArgs e) 
+        {
+            viewModel.IsPositionChanging = false;
+            viewModel.CurrentPosition = ((Slider)sender).Value;
+            CoreApp.Player.CurrentPosition = viewModel.CurrentPosition;
+        }
+
+        private void Slider_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e) 
+            => viewModel.IsPositionChanging = true;
+
+        private void Slider_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+        {
+            viewModel.IsPositionChanging = false;
+            CoreApp.Player.CurrentPosition = viewModel.CurrentPosition;
+        }
+
+        
     }
 }

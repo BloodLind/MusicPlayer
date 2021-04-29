@@ -17,6 +17,7 @@ namespace MusicPlayer.Core.Infrastructure.Interfaces
         List<Track> Queue { get; set; }
         PlaybackState PlaybackState { get; }
 
+
         void ShuffleQueue();
         void Play();
         void Pause();
@@ -25,6 +26,5 @@ namespace MusicPlayer.Core.Infrastructure.Interfaces
         void ChangeCurrentTrack(Track track);
 
         event Action<Track> CurrentTrackChanged;
-        event Action<double> PositionChanged;
     }
 }

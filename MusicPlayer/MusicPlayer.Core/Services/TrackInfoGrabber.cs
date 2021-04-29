@@ -26,7 +26,7 @@ namespace MusicPlayer.Core.Services
 
             track.Title = tmp.Tag.Title;
             track.FilePath = path;
-            track.PlayTime = tmp.Properties.Duration;
+            track.PlayTime = tmp.Properties.Duration.TotalSeconds;
             track.Artist = tmp.Tag.Performers.Count() >= 1 ? tmp.Tag.Performers[0] : "Undefined";
             track.Album = tmp.Tag.Album;
             track.Genre = tmp.Tag.Genres.Count() >= 1 ? tmp.Tag.Genres[0] : "Undefined";

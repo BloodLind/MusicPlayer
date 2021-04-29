@@ -269,6 +269,7 @@
                                     Grid.Column="1"
                                     Margin="0,0,15,0"
                                 Foreground="White"
+                                IsMoveToPointEnabled="True"
                                 
                                 
   
@@ -296,9 +297,11 @@
                                         VerticalAlignment="Center"
                                     Margin="5"
                                         Foreground="White"
-                                        
-                                        
-  Maximum="{Binding SelectedTrack.PlayTime.TotalSeconds, Mode=OneWay}"
+                                        MouseLeftButtonUp="Slider_MouseLeftButtonUp"
+                                    PreviewMouseLeftButtonDown="Slider_PreviewMouseLeftButtonDown"
+                                        IsMoveToPointEnabled="True"
+                                    Thumb.DragCompleted="Slider_DragCompleted"
+  Maximum="{Binding SelectedTrack.PlayTime, Mode=OneWay}"
   Value="{Binding CurrentPosition}" />
 
 
@@ -309,7 +312,8 @@
                                         FontSize="13"
                                         VerticalAlignment="Center"
                                                HorizontalAlignment="Right"
-                                        Text="{Binding CurrentPosition, Converter={StaticResource timeConverter}, UpdateSourceTrigger=PropertyChanged}"
+                                        Text="{Binding CurrentPosition, Converter={StaticResource timeConverter},
+                                UpdateSourceTrigger=PropertyChanged}"
                                         ></TextBlock>
 
 
@@ -565,12 +569,7 @@
                                     ItemsSource="{Binding Artists}"
                                    >
 
-                                    <!--<ListBox.Resources>
-                                        <Style x:Key="artistItemEventSetter" TargetType="{x:Type ListBoxItem}">
-                                            <EventSetter  Event="MouseDoubleClick" Handler="ArtistItemDoubleClick"></EventSetter>
-                                        </Style>
-                                        
-                                    </ListBox.Resources>-->
+                                    
 
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>

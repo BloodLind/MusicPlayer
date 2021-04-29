@@ -9,7 +9,7 @@ namespace MusicPlayer.Core.Models
 {
     public class Album : ITrackContainer
     {
-        public TimeSpan PlayTime { get; set; }
+        public double PlayTime { get; set; }
         public int TracksCount { get; set; }
         public string Name { get; set; }
         public List<Track> Tracks { get; set; }

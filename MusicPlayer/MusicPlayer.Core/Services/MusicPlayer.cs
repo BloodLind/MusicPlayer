@@ -21,6 +21,8 @@ namespace MusicPlayer.Core.Services
         {
             musicPlayer = new MediaPlayer();
             musicPlayer.MediaEnded += TrackPlayEnded;
+            
+            
             Queue = new List<Track>(tracks);
             CurrentTrack = Queue.Count >= 1 ? Queue[0] : null;
         }
@@ -38,7 +40,6 @@ namespace MusicPlayer.Core.Services
             set
             {
                 musicPlayer.Position = TimeSpan.FromSeconds(value);
-                PositionChanged?.Invoke(value);
             }
         }
         public PlaybackState PlaybackState 
@@ -59,8 +60,7 @@ namespace MusicPlayer.Core.Services
 
         #region Events
         public event EventHandler Disposed;
-        public event Action<Track> CurrentTrackChanged;
-        public event Action<double> PositionChanged;
+        public event Action<Track> CurrentTrackChanged; 
         #endregion
 
         #region Events Methods
@@ -91,6 +91,8 @@ namespace MusicPlayer.Core.Services
 
 
         }
+
+
         #endregion
 
         #region Methods

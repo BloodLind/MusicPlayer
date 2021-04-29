@@ -30,8 +30,12 @@ namespace MusicPlayer.Core
         }
 
         public static NavigationPresenter Navigation { get; set; }
-        public static IMusicPlayer Player { get; set; }
+        public static IMusicPlayer Player { get; private set; }
 
-        public static void InitializatePlayer(IEnumerable<Track> tracks) => Player = new Services.MusicPlayer(tracks);
+        public static void InitializatePlayer(IEnumerable<Track> tracks) 
+        {
+            if(Player == null)
+                Player = new Services.MusicPlayer(tracks);
+         }
     }
 }

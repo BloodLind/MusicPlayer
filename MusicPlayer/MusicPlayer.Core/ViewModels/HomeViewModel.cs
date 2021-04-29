@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Timers;
 using System.Threading.Tasks;
 
 namespace MusicPlayer.Core.ViewModels
@@ -14,15 +15,20 @@ namespace MusicPlayer.Core.ViewModels
     public class HomeViewModel : MvxViewModel
     {
         private Track selectedTrack = new Track();
-        private double currentPosition;
         private double volume = 0.5;
+        private bool isPlaying = false;
+        private Timer trackPositionTimer;
+        private double currentPosition;
 
         public HomeViewModel()
         {
+
+            trackPositionTimer = new Timer(1000);
+            trackPositionTimer.Elapsed += TrackPositionTimer_Elapsed;
             InitCommands();
         }
 
-        
+
 
         #region Collections
         public MvxObservableCollection<Track> Tracks { get; set; } = new MvxObservableCollection<Track>();
@@ -32,6 +38,7 @@ namespace MusicPlayer.Core.ViewModels
         public MvxObservableCollection<Track> Queue { get; set; } = new MvxObservableCollection<Track>();
         #endregion
 
+        #region Methods
         public Task UpdateCollectionsAsync(IEnumerable<string> files)
         {
 
@@ -44,9 +51,6 @@ namespace MusicPlayer.Core.ViewModels
 
 
         }
-
-
-
         public void UpdateCollections(IEnumerable<string> files)
         {
             TracksManager tracksManager = new TracksManager();
@@ -56,19 +60,103 @@ namespace MusicPlayer.Core.ViewModels
             
             CoreApp.InitializatePlayer(Tracks);
             CoreApp.Player.CurrentTrackChanged += Player_CurrentTrackChanged;
-            CoreApp.Player.PositionChanged += Player_PositionChanged;
+            
         }
-
-        private void Player_PositionChanged(double obj)
+        public void InitCommands()
         {
-            CurrentPosition = obj;
-        }
+            TrackInfoCommand = new MvxCommand(() =>
+            {
+                CoreApp.Navigation.MvxNavigationService.Navigate(CoreApp.Navigation.NowPlayingView);
+            });
+            PlaySelectedCommand = new MvxCommand(() =>
+            {
+                isPlaying = true;
+                CoreApp.Player.ChangeCurrentTrack(SelectedTrack);
+                ResetTimer();
+            });
+            ShuffleCommand = new MvxCommand(() =>
+            {
+                CoreApp.Player.ShuffleQueue();
+                CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[0]);
+            });
+            RandomCommand = new MvxCommand(() =>
+            {
+                isPlaying = true;
+                Random rnd = new Random();
+                CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[rnd.Next(0, CoreApp.Player.Queue.Count())]);
+                ResetTimer();
+            });
+            PreviousCommand = new MvxCommand(() =>
+            {
+                if ((CoreApp.Player.Queue.IndexOf(CoreApp.Player.CurrentTrack) - 1) >= 0)
+                {
+                    CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[CoreApp.Player.Queue.IndexOf(CoreApp.Player.CurrentTrack) - 1]);
+                }
+                else
+                {
+                    CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[CoreApp.Player.Queue.Count - 1]);
+                }
+                ResetTimer();
 
+            });
+            NextCommand = new MvxCommand(() =>
+            {
+                if ((CoreApp.Player.Queue.IndexOf(CoreApp.Player.CurrentTrack) + 1) < CoreApp.Player.Queue.Count())
+                {
+                    CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[CoreApp.Player.Queue.IndexOf(CoreApp.Player.CurrentTrack) + 1]);
+                }
+                else
+                {
+                    CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[0]);
+                }
+                ResetTimer();
+            });
+            PauseCommand = new MvxCommand(() =>
+            {
+                isPlaying = false;
+                ResetTimer();
+                CoreApp.Player.Pause();
+            });
+            PlayCommand = new MvxCommand(() =>
+            {
+                isPlaying = true;
+                ResetTimer();
+                CoreApp.Player.Play();
+            });
+        }
+        #endregion
+
+        private void ResetTimer()
+        {
+            
+            if(CoreApp.Player.PlaybackState == ManagedBass.PlaybackState.Stopped)
+            {
+                if (isPlaying)
+                {
+                    CurrentPosition = 0;
+                    trackPositionTimer.Start();
+                }
+            }
+            if (!isPlaying)
+            {
+                trackPositionTimer.Stop();
+            }
+            else
+            {
+                trackPositionTimer.Start();
+            }
+        }
+        private void TrackPositionTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+           if(!IsPositionChanging)
+            {
+                CurrentPosition += 1;
+            }
+        }
         private void Player_CurrentTrackChanged(Track obj)
         {
             SelectedTrack = obj;
         }
-
         private void AddToCollection<T>(MvxObservableCollection<T> listToAdd, IEnumerable<T> addFrom)
         {
             foreach (var a in addFrom)
@@ -78,6 +166,7 @@ namespace MusicPlayer.Core.ViewModels
         }
 
 
+        #region Properties
         public Track SelectedTrack
         {
             get => selectedTrack;
@@ -88,14 +177,15 @@ namespace MusicPlayer.Core.ViewModels
                 
             }
         }
-
         public double CurrentPosition
         {
             get => currentPosition;
             set
             {
+
                 currentPosition = value;
                 RaisePropertyChanged(() => CurrentPosition);
+                
             }
         }
         public double Volume
@@ -110,58 +200,19 @@ namespace MusicPlayer.Core.ViewModels
                 RaisePropertyChanged(() => Volume);
             }
         }
+        public bool IsPositionChanging { get; set; } = false;
+        #endregion
 
 
-        public void InitCommands()
-        {
-            TrackInfoCommand = new MvxCommand(() =>
-            {
-                CoreApp.Navigation.MvxNavigationService.Navigate(CoreApp.Navigation.NowPlayingView);
-            });
-            PlaySelectedCommand = new MvxCommand(() =>
-            {
-                CoreApp.Player.ChangeCurrentTrack(SelectedTrack);
-            });
-            ShuffleCommand = new MvxCommand(() =>
-            {
-                CoreApp.Player.ShuffleQueue();
-                CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[0]);
-            });
-            RandomCommand = new MvxCommand(() =>
-            {
-                Random rnd = new Random();
-                CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[rnd.Next(0, CoreApp.Player.Queue.Count())]);
-            });
-            PreviousCommand = new MvxCommand(() =>
-            {
-                if ((CoreApp.Player.Queue.IndexOf(CoreApp.Player.CurrentTrack) - 1) >= 0)
-                {
-                    CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[CoreApp.Player.Queue.IndexOf(CoreApp.Player.CurrentTrack) - 1]);
-                }
-                else
-                {
-                    CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[0]);
-                }
-
-            });
-            NextCommand = new MvxCommand(() =>
-            {
-                if ((CoreApp.Player.Queue.IndexOf(CoreApp.Player.CurrentTrack) + 1) < CoreApp.Player.Queue.Count())
-                {
-                    CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[CoreApp.Player.Queue.IndexOf(CoreApp.Player.CurrentTrack) + 1]);
-                }
-                else
-                {
-                    CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[CoreApp.Player.Queue.Count() - 1]);
-                }
-            });
-        }
-
+        #region Commands
         public IMvxCommand TrackInfoCommand { get; private set; }
         public IMvxCommand PlaySelectedCommand { get; private set; }
         public IMvxCommand ShuffleCommand { get; private set; }
         public IMvxCommand RandomCommand { get; private set; }
         public IMvxCommand PreviousCommand { get; private set; }
         public IMvxCommand NextCommand { get; private set; }
+        public IMvxCommand PauseCommand { get; private set; }
+        public IMvxCommand PlayCommand { get; private set; }
+        #endregion
     }
 }

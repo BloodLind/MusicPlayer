@@ -9,7 +9,7 @@ namespace MusicPlayer.Core.Infrastructure.Interfaces
 {
     public interface ITrackContainer
     {
-        TimeSpan PlayTime { get; set; }
+        double PlayTime { get; set; }
         int TracksCount { get; set; }
         List<Track> Tracks { get; set; }
     }

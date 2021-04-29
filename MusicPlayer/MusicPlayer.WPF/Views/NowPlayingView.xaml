@@ -7,21 +7,26 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MusicPlayer.WPF.Views"
+             xmlns:converters="clr-namespace:MusicPlayer.WPF.Services"
+               xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+    xmlns:viewmodels="clr-namespace:MusicPlayer.Core.ViewModels;assembly=MusicPlayer.Core"
+    d:DataContext="{d:DesignInstance Type=viewmodels:NowPlayingViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="1280"
     
-    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
         FontFamily="{materialDesign:MaterialDesignFont}">
-    
-    
-    
+
+
+    <customView:CustomView.Resources>
+        <converters:TimeConverter x:Key="TimeConverter"></converters:TimeConverter>
+    </customView:CustomView.Resources>
     <Grid>
 
-        <Image Source="E:\Music\Alstroemeria Records\2019.05.05 [ARCD-0071] RESONATE DANCEHALL [例大祭16]\folder.jpg" Stretch="Fill"
+        <Image Source="{Binding CurrentTrack.Image,UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill"
                Opacity="0.9">
             <Image.Effect>
                 <BlurEffect Radius="75"/>
@@ -99,106 +104,41 @@
                 <Rectangle
                         Grid.Column="0"
                         Margin="35"
-                        RadiusX="35" 
-                        RadiusY="35">
+                       RadiusX="15"
+                           RadiusY="15"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth0">
 
                     <Rectangle.Fill>
-                        <ImageBrush x:Name="myImage" ImageSource="E:\Music\Alstroemeria Records\2019.05.05 [ARCD-0071] RESONATE DANCEHALL [例大祭16]\folder.jpg" />
+                        <ImageBrush ImageSource="{Binding CurrentTrack.Image,UpdateSourceTrigger=PropertyChanged}" Stretch="Uniform">
+
+                        </ImageBrush>
                     </Rectangle.Fill>
+                   
                 </Rectangle>
 
 
                 <materialDesign:Card Grid.Column="1"
-                                     UniformCornerRadius="35"
+                                     UniformCornerRadius="15"
                                      Margin="35"
                                      Background="{DynamicResource MaterialDesignDarkBackground}"
                                      Opacity="0.4"
                                      >
+                </materialDesign:Card>
 
-                    <Grid
-                        Margin="25">
+                    <Grid Grid.Column="1"
+                        Margin="50">
 
-                        <StackPanel Orientation="Vertical">
-
-                            <Grid Margin="0,0,0,25">
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition Width="3*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0" FontSize="18">Title:</TextBlock>
-
-                            </Grid>
-
-
-                            <Grid Margin="0,0,0,25">
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition Width="3*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0" FontSize="18">Album:</TextBlock>
-
-                            </Grid>
-
-
-                            <Grid Margin="0,0,0,25">
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition Width="3*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0" FontSize="18">Artist:</TextBlock>
-
-                            </Grid>
-
-
-                            <Grid Margin="0,0,0,25">
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition Width="3*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0" FontSize="18">Length:</TextBlock>
-
-                            </Grid>
-
-
-                            <Grid Margin="0,0,0,25">
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition Width="3*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0" FontSize="18">Filepath:</TextBlock>
-
-                            </Grid>
-
-
-                            <Grid Margin="0,0,0,25">
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition Width="3*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0" FontSize="18">Bitrate:</TextBlock>
-
-                            </Grid>
-
-
-
-                        </StackPanel>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Margin="15" FontSize="18" Text="{Binding CurrentTrack.Title, StringFormat='Title: {0}', UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                        <TextBlock Margin="15" FontSize="18" Text="{Binding CurrentTrack.Album, StringFormat='Album: {0}', UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                        <TextBlock Margin="15" FontSize="18" Text="{Binding CurrentTrack.Artist, StringFormat='Artist: {0}', UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                        <TextBlock Margin="15" FontSize="18" Text="{Binding CurrentTrack.PlayTime,Converter={StaticResource TimeConverter}, StringFormat='Duration: {0}', UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                        <TextBlock Margin="15" FontSize="18" Text="{Binding CurrentTrack.FilePath, StringFormat='Path: {0}', UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                    </StackPanel>
                         
                     </Grid>
                     
                     
-                </materialDesign:Card>
 
 
             </Grid>
@@ -242,6 +182,7 @@
 
                             <Button
   Style="{DynamicResource MaterialDesignFlatButton}"
+                                Command="{Binding ShuffleCommand}"
                                         Background="Transparent">
 
                                 <materialDesign:PackIcon
@@ -253,7 +194,8 @@
 
                             <Button
   Style="{DynamicResource MaterialDesignFlatButton}"
-                                        Background="Transparent">
+                                        Background="Transparent"
+                                Command="{Binding PreviousCommand}">
 
                                 <materialDesign:PackIcon
                                     Foreground="White"
@@ -263,12 +205,23 @@
                             </Button>
 
                             <Button
+                                
+                                
   Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                
                                 Background="White"
                                 BorderBrush="White"
-  ToolTip="MaterialDesignFloatingActionMiniAccentButton">
+  ToolTip="MaterialDesignFloatingActionMiniAccentButton"
+                                Click="PlayPauseClick"
+                                x:Name="PlayPauseButton"
+                                >
+
+
+
+
+
                                 <materialDesign:PackIcon
-                                    
+                             
     Kind="Play"
     Height="25"
     Width="25" />
@@ -277,7 +230,8 @@
 
                             <Button
   Style="{DynamicResource MaterialDesignFlatButton}"
-                                        Background="Transparent">
+                                        Background="Transparent"
+                                Command="{Binding NextCommand}">
 
                                 <materialDesign:PackIcon
                                     Foreground="White"
@@ -289,6 +243,7 @@
 
                             <Button
   Style="{DynamicResource MaterialDesignFlatButton}"
+                                Command="{Binding RandomCommand}"
                                         Background="Transparent">
 
                                 <materialDesign:PackIcon
@@ -354,11 +309,12 @@
                                         VerticalAlignment="Center"
                                     Margin="5"
                                         Foreground="White"
-                                        
-                                        
-  Minimum="0"
-  Maximum="180"
-  Value="100" />
+                                        MouseLeftButtonUp="Slider_MouseLeftButtonUp"
+                                    PreviewMouseLeftButtonDown="Slider_PreviewMouseLeftButtonDown"
+                                        IsMoveToPointEnabled="True"
+                                    Thumb.DragCompleted="Slider_DragCompleted"
+  Maximum="{Binding CurrentTrack.PlayTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+  Value="{Binding CurrentPosition}" />
 
 
                             <TextBlock Grid.Column="0"
@@ -367,9 +323,10 @@
                                         
                                         FontSize="13"
                                         VerticalAlignment="Center"
-                                               HorizontalAlignment="Center"
-                                        
-                                        >0:00</TextBlock>
+                                               HorizontalAlignment="Right"
+                                        Text="{Binding CurrentPosition, Converter={StaticResource TimeConverter},
+                                UpdateSourceTrigger=PropertyChanged}"
+                                        ></TextBlock>
 
 
                             <TextBlock Grid.Column="2"
@@ -378,9 +335,10 @@
                                         
                                         FontSize="13"
                                         VerticalAlignment="Center"
-                                               HorizontalAlignment="Center"
-                                        
-                                        >0:00</TextBlock>
+                                               HorizontalAlignment="Right"
+                                        Text="{Binding CurrentTrack.PlayTime, Converter={StaticResource TimeConverter},
+                                UpdateSourceTrigger=PropertyChanged}"
+                                        ></TextBlock>
 
 
                         </Grid>

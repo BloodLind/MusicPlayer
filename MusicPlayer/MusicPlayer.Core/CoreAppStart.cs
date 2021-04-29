@@ -1,4 +1,5 @@
-﻿using MvvmCross.Navigation;
+﻿using MusicPlayer.Core.Infrastructure.Interfaces;
+using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;

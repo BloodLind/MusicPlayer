@@ -19,7 +19,7 @@ namespace MusicPlayer.Core.Services
             {
                 tracks.Add(grabber.TrackByPath(a));
             }
-
+            tracks.Sort((x, y) => x.Title.CompareTo(y.Title));
             return tracks;
         }
         public IEnumerable<Artist> GetArtists(IEnumerable<Track> tracks)
@@ -51,7 +51,7 @@ namespace MusicPlayer.Core.Services
 
             }
 
-            
+            artists.Sort((x, y) => x.Name.CompareTo(y.Name));
             return artists;
         }
         public IEnumerable<Album> GetAlbums(IEnumerable<Track> tracks)
@@ -83,16 +83,16 @@ namespace MusicPlayer.Core.Services
 
             }
 
-
+            albums.Sort((x, y) => x.Name.CompareTo(y.Name));
             return albums;
         }
 
-        private TimeSpan GetPlayTime(IEnumerable<Track> tracks)
+        private double GetPlayTime(IEnumerable<Track> tracks)
         {
-            TimeSpan playTime = new TimeSpan();
+            double playTime = 0;
             foreach (var a in tracks)
             {
-                playTime.Add(a.PlayTime);
+                playTime += a.PlayTime;
             }
 
             return playTime;
