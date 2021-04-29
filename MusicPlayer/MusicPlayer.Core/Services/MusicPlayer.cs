@@ -29,15 +29,11 @@ namespace MusicPlayer.Core.Services
         #region Properties
         public List<Track> Queue { get; set; }
         public Track CurrentTrack { get => currentTrack; private set { currentTrack = value; CurrentTrackChanged?.Invoke(CurrentTrack); } }
-        public PlaybackState PlaybackState 
+        public double CurrentPosition
         {
-            get => musicPlayer.State;
-        }
-        
-        public double CurrentPosition {
-            get 
-            { 
-                return musicPlayer.Position.TotalSeconds; 
+            get
+            {
+                return musicPlayer.Position.TotalSeconds;
             }
             set
             {
@@ -45,9 +41,22 @@ namespace MusicPlayer.Core.Services
                 PositionChanged?.Invoke(value);
             }
         }
+        public PlaybackState PlaybackState 
+        {
+            get => musicPlayer.State;
+        }
+        public double Volume 
+        {
+            set
+            {
+                musicPlayer.Volume = value;
+            }
+        }
+
+
 
         #endregion
-        
+
         #region Events
         public event EventHandler Disposed;
         public event Action<Track> CurrentTrackChanged;
