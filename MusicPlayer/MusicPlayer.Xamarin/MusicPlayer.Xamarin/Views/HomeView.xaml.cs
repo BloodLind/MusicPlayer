@@ -48,10 +48,10 @@ namespace MusicPlayer.Xamarin.Views
         private async void HomeView_Appearing(object sender, EventArgs e)
         {
            
-            IFolderBrowser folderBrowser = DependencyService.Get<IFolderBrowser>();
-            CatalogScaner scaner = new CatalogScaner();
-            scaner.ScanFolder(folderBrowser.FolderPath);
-            ((HomeViewModel)this.DataContext).UpdateCollections(scaner.ScannedFiles);
+            //IFolderBrowser folderBrowser = DependencyService.Get<IFolderBrowser>();
+            //CatalogScaner scaner = new CatalogScaner();
+            //scaner.ScanFolder(folderBrowser.FolderPath);
+            //((HomeViewModel)this.DataContext).UpdateCollections(scaner.ScannedFiles);
         }
 
         private void HomeView_SizeChanged(object sender, EventArgs e)

@@ -62,6 +62,7 @@
     <Compile Include="Infrastructure\Interfaces\ITrackContainer.cs" />
     <Compile Include="Infrastructure\Interfaces\ITrackInfoEditor.cs" />
     <Compile Include="Infrastructure\Interfaces\ITrackInfoGrabber.cs" />
+    <Compile Include="Infrastructure\ViewModels\MusicViewModel.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
     <Compile Include="Models\Playlist.cs" />

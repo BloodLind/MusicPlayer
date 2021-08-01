@@ -35,17 +35,7 @@ namespace MusicPlayer.WPF.Views
             viewModel = (NowPlayingViewModel)DataContext;
         }
 
-        private void PlayPauseClick(object sender, RoutedEventArgs e)
-        {
-            if (CoreApp.Player.PlaybackState == ManagedBass.PlaybackState.Playing)
-            {
-                viewModel.PauseCommand.Execute();
-            }
-            else
-            {
-                viewModel.PlayCommand.Execute();
-            }
-        }
+        
 
 
 

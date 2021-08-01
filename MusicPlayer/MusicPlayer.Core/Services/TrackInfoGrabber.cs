@@ -24,15 +24,13 @@ namespace MusicPlayer.Core.Services
             var tmp = TagLib.File.Create(path);
             Track track = new Track();
 
-            track.Title = tmp.Tag.Title;
+            track.Title = tmp.Tag.Title == null ? path : tmp.Tag.Title;
             track.FilePath = path;
             track.PlayTime = tmp.Properties.Duration.TotalSeconds;
             track.Artist = tmp.Tag.Performers.Count() >= 1 ? tmp.Tag.Performers[0] : "Undefined";
-            track.Album = tmp.Tag.Album;
+            track.Album = tmp.Tag.Album == null ? "Undefined" : tmp.Tag.Album;
             track.Genre = tmp.Tag.Genres.Count() >= 1 ? tmp.Tag.Genres[0] : "Undefined";
             track.Image = tmp.Tag.Pictures.Length>= 1 ? tmp.Tag.Pictures.ElementAt(0).Data.ToArray() : null;
-
-           
 
             return track;
         }

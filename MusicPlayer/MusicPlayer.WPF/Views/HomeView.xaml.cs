@@ -4,6 +4,7 @@ using MusicPlayer.Core.Models;
 using MusicPlayer.Core.Services;
 using MusicPlayer.Core.ViewModels;
 using MusicPlayer.WPF.Infrastructure;
+using MvvmCross.Platforms.Wpf.Presenters.Attributes;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,20 +26,28 @@ namespace MusicPlayer.WPF.Views
     /// <summary>
     /// Логика взаимодействия для HomeView.xaml
     /// </summary>
+    /// 
     public partial class HomeView : CustomView
     {
-        HomeViewModel viewModel;
-
+        private HomeViewModel viewModel;
         public HomeView()
         {
             
             InitializeComponent();
-            this.Loaded += HomeView_Loaded; ;
+            this.DataContext = CoreApp.Navigation.HomeView;
+            viewModel = (HomeViewModel)this.DataContext;
+            this.Loaded += HomeView_Loaded;
         }
+        
+       
+
+        
 
         private void HomeView_Loaded(object sender, RoutedEventArgs e)
         {
-            viewModel = (HomeViewModel)this.DataContext;
+            if(Core.CoreApp.IsScaned)
+                return;
+            CoreApp.SetScanned();
             ScanMusic();
         }
 
@@ -71,23 +80,20 @@ namespace MusicPlayer.WPF.Views
 
         protected void CurrentTrackListDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var trackItem = ((FrameworkElement)e.OriginalSource).DataContext as Track;
-
-           viewModel.SelectedTrack = trackItem;
-
-            viewModel.PlaySelectedCommand.Execute(this);
+            if(e.ClickCount == 2)
+            {
+               var trackItem = ((FrameworkElement)e.OriginalSource).DataContext as Track;
+               viewModel.SelectedTrack = trackItem;
+               viewModel.PlaySelectedCommand.Execute(this);
+            }
         }
 
         private void PlayPauseClick(object sender, RoutedEventArgs e)
         {
-            if(CoreApp.Player.PlaybackState == ManagedBass.PlaybackState.Playing)
-            {
+            if (viewModel.IsPlaying)
                 viewModel.PauseCommand.Execute();
-            }
             else
-            {
                 viewModel.PlayCommand.Execute();
-            }
         }
 
         

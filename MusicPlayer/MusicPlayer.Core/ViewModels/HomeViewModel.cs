@@ -9,26 +9,24 @@ using System.Linq;
 using System.Text;
 using System.Timers;
 using System.Threading.Tasks;
+using MusicPlayer.Core.Infrastructure.ViewModels;
 
 namespace MusicPlayer.Core.ViewModels
 {
-    public class HomeViewModel : MvxViewModel
+    public class HomeViewModel : MusicViewModel
     {
-        private Track selectedTrack = new Track();
-        private double volume = 0.5;
-        private bool isPlaying = false;
-        private Timer trackPositionTimer;
-        private double currentPosition;
+        #region Fields
+        private Artist selectedArtist;
+        private Album selectedAlbum;
+        private Playlist selecetedPlaylist;
+        #endregion
 
         public HomeViewModel()
         {
-
-            trackPositionTimer = new Timer(1000);
-            trackPositionTimer.Elapsed += TrackPositionTimer_Elapsed;
             InitCommands();
         }
 
-
+       
 
         #region Collections
         public MvxObservableCollection<Track> Tracks { get; set; } = new MvxObservableCollection<Track>();
@@ -45,24 +43,25 @@ namespace MusicPlayer.Core.ViewModels
             return Task.Run(() =>
             {
                 UpdateCollections(files);
-
             });
 
 
 
         }
+        
         public void UpdateCollections(IEnumerable<string> files)
         {
             TracksManager tracksManager = new TracksManager();
             AddToCollection(Tracks, tracksManager.GetTracksList(files));
             AddToCollection(Artists, tracksManager.GetArtists(Tracks));
             AddToCollection(Albums, tracksManager.GetAlbums(Tracks));
-            
+
             CoreApp.InitializatePlayer(Tracks);
+            SelectedTrack = CoreApp.Player.CurrentTrack;
             CoreApp.Player.CurrentTrackChanged += Player_CurrentTrackChanged;
-            
         }
-        public void InitCommands()
+
+        private void InitCommands()
         {
             TrackInfoCommand = new MvxCommand(() =>
             {
@@ -70,93 +69,14 @@ namespace MusicPlayer.Core.ViewModels
             });
             PlaySelectedCommand = new MvxCommand(() =>
             {
-                isPlaying = true;
+                IsPlaying = true;
                 CoreApp.Player.ChangeCurrentTrack(SelectedTrack);
                 ResetTimer();
             });
-            ShuffleCommand = new MvxCommand(() =>
-            {
-                CoreApp.Player.ShuffleQueue();
-                CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[0]);
-            });
-            RandomCommand = new MvxCommand(() =>
-            {
-                isPlaying = true;
-                Random rnd = new Random();
-                CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[rnd.Next(0, CoreApp.Player.Queue.Count())]);
-                ResetTimer();
-            });
-            PreviousCommand = new MvxCommand(() =>
-            {
-                if ((CoreApp.Player.Queue.IndexOf(CoreApp.Player.CurrentTrack) - 1) >= 0)
-                {
-                    CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[CoreApp.Player.Queue.IndexOf(CoreApp.Player.CurrentTrack) - 1]);
-                }
-                else
-                {
-                    CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[CoreApp.Player.Queue.Count - 1]);
-                }
-                ResetTimer();
-
-            });
-            NextCommand = new MvxCommand(() =>
-            {
-                if ((CoreApp.Player.Queue.IndexOf(CoreApp.Player.CurrentTrack) + 1) < CoreApp.Player.Queue.Count())
-                {
-                    CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[CoreApp.Player.Queue.IndexOf(CoreApp.Player.CurrentTrack) + 1]);
-                }
-                else
-                {
-                    CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[0]);
-                }
-                ResetTimer();
-            });
-            PauseCommand = new MvxCommand(() =>
-            {
-                isPlaying = false;
-                ResetTimer();
-                CoreApp.Player.Pause();
-            });
-            PlayCommand = new MvxCommand(() =>
-            {
-                isPlaying = true;
-                ResetTimer();
-                CoreApp.Player.Play();
-            });
+            
         }
         #endregion
 
-        private void ResetTimer()
-        {
-            
-            if(CoreApp.Player.PlaybackState == ManagedBass.PlaybackState.Stopped)
-            {
-                if (isPlaying)
-                {
-                    CurrentPosition = 0;
-                    trackPositionTimer.Start();
-                }
-            }
-            if (!isPlaying)
-            {
-                trackPositionTimer.Stop();
-            }
-            else
-            {
-                trackPositionTimer.Start();
-            }
-        }
-        private void TrackPositionTimer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-           if(!IsPositionChanging)
-            {
-                CurrentPosition += 1;
-            }
-        }
-        private void Player_CurrentTrackChanged(Track obj)
-        {
-            SelectedTrack = obj;
-        }
         private void AddToCollection<T>(MvxObservableCollection<T> listToAdd, IEnumerable<T> addFrom)
         {
             foreach (var a in addFrom)
@@ -165,54 +85,20 @@ namespace MusicPlayer.Core.ViewModels
             }
         }
 
-
         #region Properties
-        public Track SelectedTrack
-        {
-            get => selectedTrack;
-            set
-            {
-                selectedTrack = value;
-                RaisePropertyChanged(() => SelectedTrack);
-                
-            }
-        }
-        public double CurrentPosition
-        {
-            get => currentPosition;
-            set
-            {
-
-                currentPosition = value;
-                RaisePropertyChanged(() => CurrentPosition);
-                
-            }
-        }
-        public double Volume
-        {
-            get => volume;
-            set
-            {
-                volume = value;
-
-                CoreApp.Player.Volume = value;
-
-                RaisePropertyChanged(() => Volume);
-            }
-        }
-        public bool IsPositionChanging { get; set; } = false;
+        public Artist SelectedArtist { get => selectedArtist; set { selectedArtist = value; RaisePropertyChanged(() => SelectedArtist); } }
+        public Album SelectedAlbum { get => selectedAlbum; set { SelectedAlbum = value; RaisePropertyChanged(() => SelectedAlbum); } }
+        public Playlist SelecetedPlaylist { get => selecetedPlaylist; set { SelecetedPlaylist = value; RaisePropertyChanged(() => SelecetedPlaylist); } }
         #endregion
-
 
         #region Commands
         public IMvxCommand TrackInfoCommand { get; private set; }
         public IMvxCommand PlaySelectedCommand { get; private set; }
-        public IMvxCommand ShuffleCommand { get; private set; }
-        public IMvxCommand RandomCommand { get; private set; }
-        public IMvxCommand PreviousCommand { get; private set; }
-        public IMvxCommand NextCommand { get; private set; }
-        public IMvxCommand PauseCommand { get; private set; }
-        public IMvxCommand PlayCommand { get; private set; }
+        public IMvxCommand ShowSelectedPlaylist { get; private set; }
+        public IMvxCommand ShowSelectedAlbum { get; private set; }
+        public IMvxCommand ShowSelectedArtist { get; private set; }
         #endregion
+
+
     }
 }

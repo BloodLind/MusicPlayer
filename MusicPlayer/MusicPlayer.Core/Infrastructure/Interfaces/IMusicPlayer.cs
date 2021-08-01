@@ -12,7 +12,7 @@ namespace MusicPlayer.Core.Infrastructure.Interfaces
     public interface IMusicPlayer : IDisposable
     {
         double CurrentPosition { get; set; }
-        double Volume { set; }
+        double Volume { set; get; }
         Track CurrentTrack { get; }
         List<Track> Queue { get; set; }
         PlaybackState PlaybackState { get; }

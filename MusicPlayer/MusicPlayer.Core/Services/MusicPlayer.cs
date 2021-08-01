@@ -21,8 +21,7 @@ namespace MusicPlayer.Core.Services
         {
             musicPlayer = new MediaPlayer();
             musicPlayer.MediaEnded += TrackPlayEnded;
-            
-            
+
             Queue = new List<Track>(tracks);
             CurrentTrack = Queue.Count >= 1 ? Queue[0] : null;
         }
@@ -33,29 +32,20 @@ namespace MusicPlayer.Core.Services
         public Track CurrentTrack { get => currentTrack; private set { currentTrack = value; CurrentTrackChanged?.Invoke(CurrentTrack); } }
         public double CurrentPosition
         {
-            get
-            {
-                return musicPlayer.Position.TotalSeconds;
-            }
-            set
-            {
-                musicPlayer.Position = TimeSpan.FromSeconds(value);
-            }
+            get => musicPlayer.Position.TotalSeconds;
+            set => musicPlayer.Position = TimeSpan.FromSeconds(value);  
         }
+
         public PlaybackState PlaybackState 
         {
             get => musicPlayer.State;
         }
+
         public double Volume 
         {
-            set
-            {
-                musicPlayer.Volume = value;
-            }
+            set => musicPlayer.Volume = value;
+            get => musicPlayer.Volume;
         }
-
-
-
         #endregion
 
         #region Events
@@ -68,7 +58,6 @@ namespace MusicPlayer.Core.Services
         {
 
             int index = Queue.IndexOf(CurrentTrack);
-            
             if (index < Queue.Count - 1)
             {
                 CurrentTrack = Queue[index + 1];
@@ -82,7 +71,7 @@ namespace MusicPlayer.Core.Services
                 CurrentTrack = null;
             }
 
-            if(musicPlayer.State != PlaybackState.Stopped 
+            if(musicPlayer.State == PlaybackState.Stopped 
                 && CurrentTrack != null)
             {
                 CurrentPosition = 0;
@@ -91,8 +80,6 @@ namespace MusicPlayer.Core.Services
 
 
         }
-
-
         #endregion
 
         #region Methods
@@ -129,7 +116,10 @@ namespace MusicPlayer.Core.Services
             {
                 CurrentTrack = CurrentTrack == null ? Queue[0] : CurrentTrack;
                 musicPlayer.LoadAsync(CurrentTrack.FilePath)
-                    .ContinueWith((x) => musicPlayer.Play());
+                    .ContinueWith((x) => {
+                        musicPlayer.Play();
+                    });
+
             }
         }
 
@@ -151,9 +141,13 @@ namespace MusicPlayer.Core.Services
 
         public void ChangeCurrentTrack(Track track)
         {
+            bool isPlayed = PlaybackState != PlaybackState.Paused && PlaybackState != PlaybackState.Stopped;
             Stop();
             CurrentTrack = track;
-            Play();
+            CurrentPosition = 0;
+
+            if(isPlayed)
+                Play();
         }
         #endregion
     }
