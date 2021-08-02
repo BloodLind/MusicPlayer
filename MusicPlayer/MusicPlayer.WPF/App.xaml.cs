@@ -19,6 +19,7 @@ namespace MusicPlayer.WPF
     {
         public App()
         {
+            
             this.RegisterSetupType<MvxWpfSetup<Core.CoreApp>>();
         }
     }

@@ -61,7 +61,9 @@ namespace MusicPlayer.WPF.Views
             }
             else
             {
-                catalogScaner.ScanFolder(Environment.GetFolderPath(Environment.SpecialFolder.MyMusic));
+                //catalogScaner.ScanFolder(Environment.GetFolderPath(Environment.SpecialFolder.MyMusic));
+                //Change when work on your computer!
+                catalogScaner.ScanFolder(@"A:\Music\");
             }
 
 

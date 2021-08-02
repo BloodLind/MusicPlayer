@@ -10,7 +10,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
 
-                <ResourceDictionary x:Name="Theme" Source="S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\bin\Debug\themes\darkTheme050621.xaml" />
+                <ResourceDictionary x:Name="Theme" Source="pack://siteoforigin:,,,/themes/darkTheme050621.xaml"/>
                 <ResourceDictionary x:Name="App" Source="Resources\AppResources.xaml" />
                 <materialDesign:CustomColorTheme
                     BaseTheme="Dark"
