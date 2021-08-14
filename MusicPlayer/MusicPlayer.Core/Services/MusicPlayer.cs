@@ -4,6 +4,7 @@ using MusicPlayer.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -115,11 +116,13 @@ namespace MusicPlayer.Core.Services
             else if(Queue.Count >= 1)
             {
                 CurrentTrack = CurrentTrack == null ? Queue[0] : CurrentTrack;
-                musicPlayer.LoadAsync(CurrentTrack.FilePath)
-                    .ContinueWith((x) => {
-                        musicPlayer.Play();
-                    });
-
+                if(!CoreApp.IsFileLocked(CurrentTrack.FilePath))
+                {
+                    musicPlayer.LoadAsync(CurrentTrack.FilePath)
+                        .ContinueWith((x) => {
+                            musicPlayer.Play();
+                        });
+                }
             }
         }
 
