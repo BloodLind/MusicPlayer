@@ -14,6 +14,8 @@
     WindowStyle="None"
     mc:Ignorable="d">
     <views:MvxWindow.Resources>
+
+
         <Style x:Key="ScrollBarLineButton" TargetType="RepeatButton">
             <Setter Property="Visibility" Value="Hidden" />
             <Setter Property="SnapsToDevicePixels" Value="True" />
@@ -75,6 +77,7 @@
                 <Track
                     Name="PART_Track"
                     Grid.Row="1"
+                    MinHeight="5"
                     IsDirectionReversed="true">
                     <Track.DecreaseRepeatButton>
                         <RepeatButton Command="ScrollBar.PageUpCommand" Style="{StaticResource ScrollBarPageButton}" />

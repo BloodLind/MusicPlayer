@@ -39,14 +39,10 @@ namespace MusicPlayer.Core.ViewModels
         #region Methods
         public Task UpdateCollectionsAsync(IEnumerable<string> files)
         {
-
             return Task.Run(() =>
             {
                 UpdateCollections(files);
             });
-
-
-
         }
         
         public void UpdateCollections(IEnumerable<string> files)
@@ -70,7 +66,9 @@ namespace MusicPlayer.Core.ViewModels
             PlaySelectedCommand = new MvxCommand(() =>
             {
                 IsPlaying = true;
+                CoreApp.Player.Stop();
                 CoreApp.Player.ChangeCurrentTrack(SelectedTrack);
+                CoreApp.Player.Play();
                 ResetTimer();
             });
             

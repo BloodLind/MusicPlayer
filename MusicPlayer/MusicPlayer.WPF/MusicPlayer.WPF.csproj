@@ -96,9 +96,14 @@
       <DependentUpon>RadialSlider.xaml</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\CustomView.cs" />
+    <Compile Include="Services\TrackImageConverter.cs" />
+    <Compile Include="Services\Factories\ImagesFlyWeightFactory.cs" />
+    <Compile Include="Services\InverseBoolValueConverter.cs" />
     <Compile Include="Services\PlayIconConverter.cs" />
     <Compile Include="Services\TimeConverter.cs" />
     <Compile Include="Services\TrackMultiConverter.cs" />
+    <Compile Include="Services\ViewportHelper.cs" />
+    <Compile Include="Services\ApplicationVisualTreeHelper.cs" />
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>

@@ -1,5 +1,6 @@
 ﻿using MusicPlayer.Core.Models;
 using MusicPlayer.Core.ViewModels;
+using MusicPlayer.WPF.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,26 +27,41 @@ namespace MusicPlayer.WPF.Views.SubViews
         public TracksView()
         {
             InitializeComponent();
+            //App.CacheCollectorTimer.Elapsed += CacheCollectorTimer_Elapsed;
         }
-        protected void CurrentTrackListDoubleClick(object sender, MouseButtonEventArgs e)
+
+        private void CacheCollectorTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            if (e.ClickCount == 2)
+            Application.Current.Dispatcher.InvokeAsync(() =>
             {
-                var trackItem = ((FrameworkElement)e.OriginalSource).DataContext as Track;
-                HomeViewModel viewModel = (HomeViewModel)DataContext;
-                viewModel.SelectedTrack = trackItem;
-                viewModel.PlaySelectedCommand.Execute(this);
-            }
-            
+                if(ViewportHelper.IsItemInViewport(this))
+                foreach(Track track in TracksListView.ItemsSource)
+                {
+                    ListViewItem item = TracksListView.ItemContainerGenerator.ContainerFromItem(track) as ListViewItem;
+                    if (!ViewportHelper.IsContainerItemInViewport(item))
+                    {
+                        string key = String.Join("_", track.Artist, track.Album);
+                            if (!App.images.IsKeyAvaible(key))
+                            {
+                                App.images.RemoveData(key);
+                                Console.WriteLine(key);
+                            }
+                    }
+                 }
+                
+                
+            });
         }
 
         private void Grid_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ClickCount == 1)
+            if (e.ClickCount == 1 && e.GetPosition(this).X <= this.ActualWidth - 10)
             {
                 e.Handled = true;
                 return;
             }
         }
+
+        
     }
 }

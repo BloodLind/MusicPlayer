@@ -151,7 +151,6 @@ namespace MusicPlayer.Core.Infrastructure.ViewModels
             {
                 currentPosition = value;
                 RaisePropertyChanged(() => CurrentPosition);
-
             }
         }
 

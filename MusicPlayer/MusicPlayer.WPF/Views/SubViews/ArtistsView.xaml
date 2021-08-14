@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:MusicPlayer.WPF.Views.SubViews"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:properties="clr-namespace:MusicPlayer.WPF.Properties"
     xmlns:z="clr-namespace:MusicPlayer.WPF.Services"
     d:DesignHeight="450"
     d:DesignWidth="800"
@@ -13,80 +14,64 @@
     <UserControl.Resources>
         <z:TrackMultiConverter x:Key="trackMultiConverter" />
         <z:TimeConverter x:Key="timeConverter" />
+        <z:TrackImageConverter x:Key="imageConverter" />
+        <z:InverseBoolValueConverter x:Key="boolConverter" />
     </UserControl.Resources>
 
     <ListView
         x:Name="TracksListView"
         Margin="0,5,0,5"
         Background="Transparent"
-        ItemsSource="{Binding Artists, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        ItemsSource="{Binding Artists, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
+        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
         SelectedItem="{Binding SelectedArtist, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-        Style="{DynamicResource MaterialDesignListView}">
+        Style="{DynamicResource MaterialDesignListView}"
+        Visibility="{Binding IsArtistSelected, Converter={StaticResource boolConverter}}">
 
 
+        <ListView.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel Margin="0" IsItemsHost="True" />
+            </ItemsPanelTemplate>
+        </ListView.ItemsPanel>
 
         <ListView.ItemTemplate>
             <DataTemplate>
-                <Grid >
-                    <materialDesign:Card Margin="5" Background="Transparent">
+                <Grid Width="{Binding Source={x:Static properties:Settings.Default}, Path=ArtistCoverSize}">
+                    <materialDesign:Card Margin="0" Background="Transparent">
 
-                        <Grid Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListView}, Path=ActualWidth}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="85" />
-                                <ColumnDefinition Width="8*" />
-                            </Grid.ColumnDefinitions>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="{Binding Source={x:Static properties:Settings.Default}, Path=ArtistCoverSize}" />
+                                <RowDefinition Height="60" />
+                            </Grid.RowDefinitions>
                             <Rectangle
-                                Grid.Column="0"
-                                Width="80"
-                                Height="80"
+                                Grid.Row="0"
+                                Width="{Binding Source={x:Static properties:Settings.Default}, Path=ArtistCoverSize}"
+                                Margin="0"
                                 HorizontalAlignment="Center"
-                                RadiusX="10"
-                                RadiusY="10">
+                                RadiusX="15"
+                                RadiusY="15">
                                 <Rectangle.Fill>
-                                    <ImageBrush x:Name="myImage" ImageSource="{Binding Image}" />
+                                    <ImageBrush x:Name="myImage">
+                                        <ImageBrush.ImageSource>
+                                            <MultiBinding Converter="{StaticResource imageConverter}">
+                                                <Binding Path="Tracks[0]" />
+                                                <Binding Path="ArtistCoverSize" Source="{x:Static properties:Settings.Default}" />
+                                            </MultiBinding>
+                                        </ImageBrush.ImageSource>
+                                    </ImageBrush>
+
                                 </Rectangle.Fill>
                             </Rectangle>
 
-                            <Grid
-                                Grid.Column="1"
-                                Margin="10,10,0,10"
-                                HorizontalAlignment="Stretch">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <StackPanel Grid.Column="0">
-
-                                    <TextBlock
-                                        Margin="10,5,0,0"
-                                        VerticalAlignment="Center"
-                                        FontSize="18"
-                                        Text="{Binding Name}"
-                                        TextTrimming="CharacterEllipsis" />
-
-
-                                </StackPanel>
-                                <TextBlock
-                                    Grid.Column="1"
-                                    Margin="10,0,0,0"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    FontSize="16"
-                                    Foreground="{DynamicResource ForegroundMidColor}"
-                                    Text="{Binding Genre}"
-                                    TextTrimming="CharacterEllipsis" />
-
-                                <TextBlock
-                                    Grid.Column="2"
-                                    Margin="0,0,0,0"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    FontSize="14"
-                                    Foreground="{DynamicResource ForegroundMidColor}"
-                                    Text="{Binding PlayTime, Converter={StaticResource timeConverter}}"
-                                    TextTrimming="CharacterEllipsis" />
-                            </Grid>
+                            <TextBlock
+                                Grid.Row="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Foreground="{DynamicResource ForegroundLightColor}"
+                                Text="{Binding Name}"
+                                TextAlignment="Center" />
                         </Grid>
                     </materialDesign:Card>
                 </Grid>

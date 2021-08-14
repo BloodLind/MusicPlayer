@@ -58,6 +58,7 @@
     <Compile Include="CoreApp.cs" />
     <Compile Include="CoreAppStart.cs" />
     <Compile Include="Infrastructure\Interfaces\ICatalogScaner.cs" />
+    <Compile Include="Infrastructure\Interfaces\IFlyWeightFactory.cs" />
     <Compile Include="Infrastructure\Interfaces\IMusicPlayer.cs" />
     <Compile Include="Infrastructure\Interfaces\ITrackContainer.cs" />
     <Compile Include="Infrastructure\Interfaces\ITrackInfoEditor.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Models\Track.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CatalogScaner.cs" />
+    <Compile Include="Services\Factories\FlyWeightFactory.cs" />
     <Compile Include="Services\MusicPlayer.cs" />
     <Compile Include="Services\TrackInfoGrabber.cs" />
     <Compile Include="Services\TracksManager.cs" />

@@ -145,7 +145,7 @@ namespace MusicPlayer.Core.Services
             Stop();
             CurrentTrack = track;
             CurrentPosition = 0;
-
+            
             if(isPlayed)
                 Play();
         }

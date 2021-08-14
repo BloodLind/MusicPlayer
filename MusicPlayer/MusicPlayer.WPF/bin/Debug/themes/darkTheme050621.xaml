@@ -26,7 +26,7 @@
     <ImageSource x:Key="Speaker">../themes/drawable/dark/speaker.png</ImageSource>
     <ImageSource x:Key="Loop">../themes/drawable/dark/loopIcon.png</ImageSource>
     <ImageSource x:Key="Back">../themes/drawable/dark/previous.png</ImageSource>
-
+    <ImageSource x:Key="Cover">../themes/drawable/dark/defaultcover.png</ImageSource>
     <ImageBrush
         x:Key="Background"
         ImageSource="../themes/drawable/backs/backdark1.png"

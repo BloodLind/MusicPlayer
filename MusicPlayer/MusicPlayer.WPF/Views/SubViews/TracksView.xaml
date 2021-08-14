@@ -3,48 +3,68 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:local="clr-namespace:MusicPlayer.WPF.Views.SubViews"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:properties="clr-namespace:MusicPlayer.WPF.Properties"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:z="clr-namespace:MusicPlayer.WPF.Services"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
 
     <UserControl.Resources>
+
         <z:TrackMultiConverter x:Key="trackMultiConverter" />
         <z:TimeConverter x:Key="timeConverter" />
+        <z:TrackImageConverter x:Key="imageConverter" />
     </UserControl.Resources>
     <ListView
         x:Name="TracksListView"
         Margin="0,5,0,5"
         Background="Transparent"
         ItemsSource="{Binding Tracks, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-        MouseDown="CurrentTrackListDoubleClick"
+        PreviewMouseDown="Grid_PreviewMouseDown"
+        ScrollViewer.CanContentScroll="False"
         SelectedItem="{Binding SelectedTrack, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-        Style="{DynamicResource MaterialDesignListView}">
+        Style="{DynamicResource MaterialDesignListView}"
+        VirtualizingPanel.VirtualizationMode="Recycling">
+
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="MouseDoubleClick">
+                <i:InvokeCommandAction Command="{Binding PlaySelectedCommand}" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
 
 
 
         <ListView.ItemTemplate>
             <DataTemplate>
-                <Grid MouseDown="CurrentTrackListDoubleClick" PreviewMouseDown="Grid_PreviewMouseDown">
+                <Grid>
                     <materialDesign:Card Margin="5" Background="Transparent">
 
                         <Grid Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListView}, Path=ActualWidth}">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="85" />
+                                <ColumnDefinition Width="{Binding Source={x:Static properties:Settings.Default}, Path=TrackCoverSize}" />
                                 <ColumnDefinition Width="8*" />
                             </Grid.ColumnDefinitions>
                             <Rectangle
                                 Grid.Column="0"
-                                Width="80"
-                                Height="80"
+                                Width="{Binding Source={x:Static properties:Settings.Default}, Path=TrackCoverSize}"
+                                Height="{Binding Source={x:Static properties:Settings.Default}, Path=TrackCoverSize}"
                                 HorizontalAlignment="Center"
                                 RadiusX="10"
                                 RadiusY="10">
                                 <Rectangle.Fill>
-                                    <ImageBrush x:Name="myImage" ImageSource="{Binding Image}" />
+                                    <ImageBrush x:Name="myImage">
+                                        <ImageBrush.ImageSource>
+                                            <MultiBinding Converter="{StaticResource imageConverter}">
+                                                <Binding Path="." />
+                                                <Binding Path="TrackCoverSize" Source="{x:Static properties:Settings.Default}" />
+                                            </MultiBinding>
+                                        </ImageBrush.ImageSource>
+                                    </ImageBrush>
                                 </Rectangle.Fill>
                             </Rectangle>
 
