@@ -29,7 +29,7 @@ namespace MusicPlayer.WPF.Views.SubViews
             InitializeComponent();
             //App.CacheCollectorTimer.Elapsed += CacheCollectorTimer_Elapsed;
         }
-
+       
         private void CacheCollectorTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             Application.Current.Dispatcher.InvokeAsync(() =>

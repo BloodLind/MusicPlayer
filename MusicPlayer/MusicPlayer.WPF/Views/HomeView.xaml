@@ -39,63 +39,7 @@
 
     </customView:CustomView.Resources>
     <Grid>
-        <Rectangle
-            x:Name="leftSizeGrip"
-            Width="2"
-            HorizontalAlignment="Left"
-            Cursor="SizeWE"
-            Style="{StaticResource RectBorderStyle}" />
-        <Rectangle
-            x:Name="rightSizeGrip"
-            Width="2"
-            HorizontalAlignment="Right"
-            Cursor="SizeWE"
-            Style="{StaticResource RectBorderStyle}" />
-        <Rectangle
-            x:Name="topSizeGrip"
-            Height="2"
-            VerticalAlignment="Top"
-            Cursor="SizeNS"
-            Style="{StaticResource RectBorderStyle}" />
-        <Rectangle
-            x:Name="bottomSizeGrip"
-            Height="2"
-            VerticalAlignment="Bottom"
-            Cursor="SizeNS"
-            Style="{StaticResource RectBorderStyle}" />
-        <!--  Corners  -->
-        <Rectangle
-            Name="topLeftSizeGrip"
-            Width="4"
-            Height="4"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Cursor="SizeNWSE"
-            Style="{StaticResource RectBorderStyle}" />
-        <Rectangle
-            Name="bottomRightSizeGrip"
-            Width="4"
-            Height="4"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom"
-            Cursor="SizeNWSE"
-            Style="{StaticResource RectBorderStyle}" />
-        <Rectangle
-            Name="topRightSizeGrip"
-            Width="4"
-            Height="4"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"
-            Cursor="SizeNESW"
-            Style="{StaticResource RectBorderStyle}" />
-        <Rectangle
-            Name="bottomLeftSizeGrip"
-            Width="4"
-            Height="4"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Bottom"
-            Cursor="SizeNESW"
-            Style="{StaticResource RectBorderStyle}" />
+        
         <DockPanel
             Height="auto"
             Background="{DynamicResource Background}"
@@ -437,7 +381,7 @@
                                 Header="Tracks">
 
                                 <TabItem.Content>
-                                    <ContentControl Content="{StaticResource Tracks}" DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=customView:CustomView}, Path=DataContext}" />
+                                    <ContentControl  Content="{StaticResource Tracks}" DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=customView:CustomView}, Path=DataContext}" />
                                 </TabItem.Content>
                             </TabItem>
                             <!--#endregion-->

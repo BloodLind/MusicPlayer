@@ -9,10 +9,13 @@
     Title="MainWindow"
     Width="1300"
     Height="720"
-    ResizeMode="NoResize"
+    ResizeMode="CanResize"
     Style="{DynamicResource Font}"
     WindowStyle="None"
     mc:Ignorable="d">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0" ResizeBorderThickness="5" />
+    </WindowChrome.WindowChrome>
     <views:MvxWindow.Resources>
 
 

@@ -17,7 +17,7 @@ namespace MusicPlayer.WPF.Services
     public class TrackImageConverter : IMultiValueConverter
     {
         private int SCREEN_DPI;
-        private double SCREEN_SIZE_COEFICIENT = System.Windows.SystemParameters.PrimaryScreenWidth  / 1920;
+        private double SCREEN_SIZE_COEFICIENT = System.Windows.SystemParameters.PrimaryScreenWidth / 1920;
         private void ChangeDecodeOfImage(int dpiSize, BitmapImage image)
         {
             if (dpiSize != 0)
@@ -42,7 +42,7 @@ namespace MusicPlayer.WPF.Services
                 return null;
             }
             else if (values.Length != 1 && values.ElementAt(1) is int)
-                dpiSize = (int)((int)values[1] * SCREEN_SIZE_COEFICIENT) ;
+                dpiSize = (int)(((int)values[1] + 10)  * SCREEN_SIZE_COEFICIENT) ;
 
             if (!(values[0] is Track) && values[0] == null)
             {
@@ -57,7 +57,6 @@ namespace MusicPlayer.WPF.Services
                 {
                     if(image.DecodePixelHeight != dpiSize)
                     {
-                        
                         var oldBitmap = App.images.RemoveData(key);
                         oldBitmap.StreamSource.Seek(0, SeekOrigin.Begin);
                         image = new BitmapImage();
