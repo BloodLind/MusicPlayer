@@ -16,6 +16,7 @@ namespace MusicPlayer.WPF.Infrastructure
         {
             Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
+        
         protected void ClickMaximizeWindow(object sender, RoutedEventArgs e)
         {
             Application.Current.MainWindow.WindowState = (Application.Current.MainWindow.WindowState == WindowState.Normal) ? WindowState.Maximized : WindowState.Normal;

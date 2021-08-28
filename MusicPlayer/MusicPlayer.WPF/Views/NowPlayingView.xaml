@@ -24,15 +24,7 @@
         <converters:TrackMultiConverter x:Key="trackMultiConverter" />
         <converters:TimeConverter x:Key="timeConverter" />
         <converters:PlayIconConverter x:Key="iconConverter" />
-        <Style x:Key="RectBorderStyle" TargetType="Rectangle">
-            <Setter Property="Panel.ZIndex" Value="1" />
-            <Setter Property="Focusable" Value="False" />
-            <Setter Property="Fill" Value="Transparent" />
-            <Setter Property="Tag" Value="{Binding RelativeSource={RelativeSource AncestorType=Window}}" />
-            <EventSetter Event="MouseLeftButtonDown" Handler="Resize_Init" />
-            <EventSetter Event="MouseLeftButtonUp" Handler="Resize_End" />
-            <EventSetter Event="MouseMove" Handler="Resizeing_Form" />
-        </Style>
+       
     </customView:CustomView.Resources>
     <Grid>
         <Image
