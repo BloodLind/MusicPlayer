@@ -8,6 +8,7 @@
     xmlns:local="clr-namespace:MusicPlayer.WPF.Views"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:properties="clr-namespace:MusicPlayer.WPF.Properties"
     xmlns:viewmodels="clr-namespace:MusicPlayer.Core.ViewModels;assembly=MusicPlayer.Core"
     d:DataContext="{d:DesignInstance Type=viewmodels:NowPlayingViewModel}"
     d:DesignHeight="720"
@@ -21,16 +22,20 @@
 
 
     <customView:CustomView.Resources>
+        <converters:TrackImageConverter x:Key="imageConverter" />
         <converters:TrackMultiConverter x:Key="trackMultiConverter" />
         <converters:TimeConverter x:Key="timeConverter" />
         <converters:PlayIconConverter x:Key="iconConverter" />
-       
+
     </customView:CustomView.Resources>
     <Grid>
-        <Image
-            Opacity="0.9"
-            Source="{Binding SelectedTrack.Image, UpdateSourceTrigger=PropertyChanged}"
-            Stretch="UniformToFill">
+        <Image Opacity="0.9" Stretch="UniformToFill">
+            <Image.Source>
+                <MultiBinding Converter="{StaticResource imageConverter}">
+                    <Binding Path="SelectedTrack" />
+                </MultiBinding>
+
+            </Image.Source>
             <Image.Effect>
                 <BlurEffect Radius="75" />
             </Image.Effect>
@@ -118,10 +123,13 @@
                     RadiusY="5">
 
                     <Rectangle.Fill>
-                        <ImageBrush
-                            ImageSource="{Binding SelectedTrack.Image, UpdateSourceTrigger=PropertyChanged}"
-                            RenderOptions.BitmapScalingMode="HighQuality"
-                            Stretch="UniformToFill" />
+                        <ImageBrush>
+                            <ImageBrush.ImageSource>
+                                <MultiBinding Converter="{StaticResource imageConverter}">
+                                    <Binding Path="SelectedTrack" />
+                                </MultiBinding>
+                            </ImageBrush.ImageSource>
+                        </ImageBrush>
                     </Rectangle.Fill>
 
                 </Rectangle>

@@ -63,5 +63,10 @@ namespace MusicPlayer.Core.Services.Factories
         {
             CachedData.Add(key, value);
         }
+
+        public void ReleaseData()
+        {
+            CachedData.Clear();
+        }
     }
 }

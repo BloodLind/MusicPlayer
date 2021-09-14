@@ -15,5 +15,7 @@ namespace MusicPlayer.Core.Infrastructure.Interfaces
         bool IsKeyAvaible(TKey key);
         bool TryAddData(TKey key, TValue value);
         void AddData(TKey key, TValue value);
+
+        void ReleaseData();
     }
 }

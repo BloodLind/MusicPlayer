@@ -14,6 +14,6 @@ namespace MusicPlayer.Core.Models
         public string Artist { get; set; }
         public string Album { get; set; }
         public string Genre { get; set; }
-        public byte[] Image { get; set; }
+        //public byte[] Image { get; set; }
     }
 }

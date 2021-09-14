@@ -22,34 +22,21 @@ namespace MusicPlayer.WPF.Views.SubViews
     /// </summary>
     public partial class ArtistsView : UserControl
     {
-        public bool IsSelectedArtist { get; set; } = false;
-        public bool IsSelecredAlbum { get; set; } = false;
+        
         public ArtistsView()
         {
             InitializeComponent();
-            //App.CacheCollectorTimer.Elapsed += CacheCollectorTimer_Elapsed;
         }
        
-        private void CacheCollectorTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        private void WrapPanel_CleanUpVirtualizedItem(object sender, CleanUpVirtualizedItemEventArgs e)
         {
-            Application.Current.Dispatcher.InvokeAsync(() =>
-            {
-
-            if(ViewportHelper.IsItemInViewport(this))
-                foreach (Artist artist in TracksListView.ItemsSource)
-                {
-                    ListViewItem item = TracksListView.ItemContainerGenerator.ContainerFromItem(artist) as ListViewItem;
-                        if (!ViewportHelper.IsContainerItemInViewport(item))
-                        {
-                            string key = String.Join("_", artist.Name, artist.Tracks[0].Album);
-                            if (!App.images.IsKeyAvaible(key))
-                            {
-                                App.images.RemoveData(key);
-                                Console.WriteLine(key);
-                            }
-                        }
-                }
-            });
+            Console.WriteLine(e.Value.ToString() + "\t");
+            Artist track = e.Value as Artist;
+            string key = String.Join("_", track.Tracks.ElementAt(0).Artist, track.Tracks.ElementAt(0).Album);
+            if (App.images.IsKeyAvaible(key) == false)
+                App.images.RemoveData(key);
         }
+
+        
     }
 }

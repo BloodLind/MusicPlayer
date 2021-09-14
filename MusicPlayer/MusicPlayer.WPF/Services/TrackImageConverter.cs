@@ -11,13 +11,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.IO;
 using System.Windows;
+using MusicPlayer.Core.Services;
 
 namespace MusicPlayer.WPF.Services
 {
+
     public class TrackImageConverter : IMultiValueConverter
     {
+        
         private int SCREEN_DPI;
         private double SCREEN_SIZE_COEFICIENT = System.Windows.SystemParameters.PrimaryScreenWidth / 1920;
+        private TrackInfoGrabber trackInfoGrabber = new TrackInfoGrabber();
+
         private void ChangeDecodeOfImage(int dpiSize, BitmapImage image)
         {
             if (dpiSize != 0)
@@ -26,13 +31,27 @@ namespace MusicPlayer.WPF.Services
                 image.DecodePixelHeight = dpiSize;
             }
         }
-        
+        private void SetScreenDPI()
+        {
+            if (Application.Current.MainWindow.IsVisible == true)
+            {
+                Matrix m = PresentationSource.FromVisual(Application.Current.MainWindow).CompositionTarget.TransformToDevice;
+                SCREEN_DPI = (int)(m.M11);
+                SCREEN_SIZE_COEFICIENT = System.Windows.SystemParameters.PrimaryScreenWidth * SCREEN_DPI / 1920;
+            }
+        }
         public TrackImageConverter()
         {
-            Matrix m = PresentationSource.FromVisual(Application.Current.MainWindow).CompositionTarget.TransformToDevice;
-            SCREEN_DPI = (int)(m.M11);
-            SCREEN_SIZE_COEFICIENT = System.Windows.SystemParameters.PrimaryScreenWidth * SCREEN_DPI/ 1920;
+            SetScreenDPI();
         }
+        
+        public TrackImageConverter(bool isImagesCached)
+        {
+            this.IsImagesCached = isImagesCached;
+            SetScreenDPI();
+        }
+
+        public bool IsImagesCached { get; set; } = true;
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             int dpiSize = 0;
@@ -55,45 +74,58 @@ namespace MusicPlayer.WPF.Services
                 BitmapImage image = App.images.GetData(key);
                 if (image != null)
                 {
-                    if(image.DecodePixelHeight != dpiSize)
-                    {
-                        var oldBitmap = App.images.RemoveData(key);
-                        oldBitmap.StreamSource.Seek(0, SeekOrigin.Begin);
-                        image = new BitmapImage();
-                        image.BeginInit();
-                        image.CacheOption = oldBitmap.CacheOption;
-                        image.StreamSource = oldBitmap.StreamSource;
-                        ChangeDecodeOfImage(dpiSize, image);
-                        image.EndInit();
-                        App.images.AddData(key, image);
-                    }
-                    
                     return image;
-                }
-                else if (track.Image == null)
-                {
-                    return Application.Current.Resources["Cover"];
                 }
                 else
                 {
-                    try
-                    {
-                        image = new BitmapImage();
-                        image.BeginInit();
-                        image.CacheOption = BitmapCacheOption.OnLoad;
-                        MemoryStream memoryStream = new MemoryStream(track.Image);
-                        image.StreamSource = memoryStream;
-                        ChangeDecodeOfImage(dpiSize, image);
-                        image.EndInit();
-                       
-                        App.images.AddData(key, image);
-                        return image;
-                    }
-                    catch
-                    {
+
+                    var byteImage = track.FilePath == null ? null : trackInfoGrabber.GetTrackImage(track.FilePath);
+                    if(byteImage == null)
                         return Application.Current.Resources["Cover"];
+                    else
+                    {
+                        try
+                        {
+                            image = new BitmapImage();
+                            image.BeginInit();
+                            image.CacheOption = BitmapCacheOption.OnLoad;
+                            MemoryStream memoryStream = new MemoryStream(byteImage);
+                            image.StreamSource = memoryStream;
+                            ChangeDecodeOfImage(dpiSize, image);
+                            image.EndInit();
+
+                            if(IsImagesCached)
+                                App.images.AddData(key, image);
+
+                            return image;
+                        }
+                        catch
+                        {
+                            return Application.Current.Resources["Cover"];
+                        }
                     }
                 }
+                //else
+                //{
+                //    try
+                //    {
+                //        image = new BitmapImage();
+                //        image.BeginInit();
+                //        image.CacheOption = BitmapCacheOption.OnLoad;
+
+                //        MemoryStream memoryStream = new MemoryStream(track.Image);
+                //        image.StreamSource = memoryStream;
+                //        ChangeDecodeOfImage(dpiSize, image);
+                //        image.EndInit();
+
+                //        App.images.AddData(key, image);
+                //        return image;
+                //    }
+                //    catch
+                //    {
+                //        return Application.Current.Resources["Cover"];
+                //    }
+                //}
             }
         }
 

@@ -118,6 +118,9 @@ namespace MusicPlayer.WPF.Views
             CoreApp.Player.CurrentPosition = viewModel.CurrentPosition;
         }
 
-        
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            App.images.ReleaseData();
+        }
     }
 }

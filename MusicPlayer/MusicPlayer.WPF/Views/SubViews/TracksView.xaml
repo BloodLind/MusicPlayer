@@ -15,21 +15,22 @@
     mc:Ignorable="d">
 
     <UserControl.Resources>
-
         <z:TrackMultiConverter x:Key="trackMultiConverter" />
         <z:TimeConverter x:Key="timeConverter" />
         <z:TrackImageConverter x:Key="imageConverter" />
     </UserControl.Resources>
+
     <ListView
         x:Name="TracksListView"
         Margin="0,5,0,5"
         Background="Transparent"
         ItemsSource="{Binding Tracks, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
         PreviewMouseDown="Grid_PreviewMouseDown"
-        ScrollViewer.CanContentScroll="False"
         SelectedItem="{Binding SelectedTrack, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
         Style="{DynamicResource MaterialDesignListView}"
-        VirtualizingPanel.VirtualizationMode="Recycling">
+   
+        VirtualizingPanel.IsContainerVirtualizable="True"
+        VirtualizingStackPanel.CleanUpVirtualizedItem="TracksListView_CleanUpVirtualizedItem">
 
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseDoubleClick">
@@ -42,90 +43,91 @@
         <ListView.ItemTemplate>
             <DataTemplate>
                 <Grid>
-                    <materialDesign:Card Margin="5" Background="Transparent">
 
-                        <Grid Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListView}, Path=ActualWidth}">
+
+                    <Grid Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListView}, Path=ActualWidth}" Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="{Binding Source={x:Static properties:Settings.Default}, Path=TrackCoverSize}" />
+                            <ColumnDefinition Width="8*" />
+                        </Grid.ColumnDefinitions>
+                        <Rectangle
+                            Grid.Column="0"
+                            Width="{Binding Source={x:Static properties:Settings.Default}, Path=TrackCoverSize}"
+                            Height="{Binding Source={x:Static properties:Settings.Default}, Path=TrackCoverSize}"
+                            HorizontalAlignment="Center"
+                            RadiusX="10"
+                            RadiusY="10">
+                            <Rectangle.Fill>
+                                <ImageBrush x:Name="myImage">
+                                    <ImageBrush.ImageSource>
+                                        <MultiBinding Converter="{StaticResource imageConverter}">
+                                            <Binding Path="." />
+                                            <Binding Path="TrackCoverSize" Source="{x:Static properties:Settings.Default}" />
+                                        </MultiBinding>
+                                    </ImageBrush.ImageSource>
+                                </ImageBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+
+                        <Grid
+                            Grid.Column="1"
+                            Margin="10,10,0,10"
+                            HorizontalAlignment="Stretch">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="{Binding Source={x:Static properties:Settings.Default}, Path=TrackCoverSize}" />
-                                <ColumnDefinition Width="8*" />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Rectangle
-                                Grid.Column="0"
-                                Width="{Binding Source={x:Static properties:Settings.Default}, Path=TrackCoverSize}"
-                                Height="{Binding Source={x:Static properties:Settings.Default}, Path=TrackCoverSize}"
-                                HorizontalAlignment="Center"
-                                RadiusX="10"
-                                RadiusY="10">
-                                <Rectangle.Fill>
-                                    <ImageBrush x:Name="myImage">
-                                        <ImageBrush.ImageSource>
-                                            <MultiBinding Converter="{StaticResource imageConverter}">
-                                                <Binding Path="." />
-                                                <Binding Path="TrackCoverSize" Source="{x:Static properties:Settings.Default}" />
-                                            </MultiBinding>
-                                        </ImageBrush.ImageSource>
-                                    </ImageBrush>
-                                </Rectangle.Fill>
-                            </Rectangle>
 
-                            <Grid
-                                Grid.Column="1"
-                                Margin="10,10,0,10"
-                                HorizontalAlignment="Stretch">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <StackPanel Grid.Column="0">
+                            <StackPanel Grid.Column="0">
 
-                                    <TextBlock
-                                        Margin="10,5,0,0"
-                                        VerticalAlignment="Center"
-                                        FontSize="18"
-                                        Text="{Binding Title}"
-                                        TextTrimming="CharacterEllipsis" />
-
-
-
-                                    <TextBlock
-                                        Margin="10,5,0,0"
-                                        VerticalAlignment="Center"
-                                        FontSize="14"
-                                        Foreground="{DynamicResource ForegroundMidColor}"
-                                        TextTrimming="CharacterEllipsis">
-                                        <TextBlock.Text>
-                                            <MultiBinding Converter="{StaticResource trackMultiConverter}">
-                                                <Binding Path="Artist" />
-                                                <Binding Path="Album" />
-                                            </MultiBinding>
-                                        </TextBlock.Text>
-                                    </TextBlock>
-
-
-                                </StackPanel>
                                 <TextBlock
-                                    Grid.Column="1"
-                                    Margin="10,0,0,0"
-                                    HorizontalAlignment="Center"
+                                    Margin="10,5,0,0"
                                     VerticalAlignment="Center"
-                                    FontSize="16"
-                                    Foreground="{DynamicResource ForegroundMidColor}"
-                                    Text="{Binding Genre}"
+                                    FontSize="18"
+                                    Text="{Binding Title}"
                                     TextTrimming="CharacterEllipsis" />
 
+
+
                                 <TextBlock
-                                    Grid.Column="2"
-                                    Margin="0,0,0,0"
-                                    HorizontalAlignment="Center"
+                                    Margin="10,5,0,0"
                                     VerticalAlignment="Center"
                                     FontSize="14"
                                     Foreground="{DynamicResource ForegroundMidColor}"
-                                    Text="{Binding PlayTime, Converter={StaticResource timeConverter}}"
-                                    TextTrimming="CharacterEllipsis" />
-                            </Grid>
+                                    TextTrimming="CharacterEllipsis">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource trackMultiConverter}">
+                                            <Binding Path="Artist" />
+                                            <Binding Path="Album" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+
+
+                            </StackPanel>
+
+                            <TextBlock
+                                Grid.Column="1"
+                                Margin="10,0,0,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="16"
+                                Foreground="{DynamicResource ForegroundMidColor}"
+                                Text="{Binding Genre}"
+                                TextTrimming="CharacterEllipsis" />
+
+                            <TextBlock
+                                Grid.Column="2"
+                                Margin="0,0,0,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                Foreground="{DynamicResource ForegroundMidColor}"
+                                Text="{Binding PlayTime, Converter={StaticResource timeConverter}}"
+                                TextTrimming="CharacterEllipsis" />
                         </Grid>
-                    </materialDesign:Card>
+                    </Grid>
                 </Grid>
             </DataTemplate>
         </ListView.ItemTemplate>

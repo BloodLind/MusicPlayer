@@ -61,6 +61,7 @@ namespace MusicPlayer.Core.ViewModels
         {
             TrackInfoCommand = new MvxCommand(() =>
             {
+                CoreApp.Navigation.NowPlayingView.SelectedTrack = SelectedTrack;
                 CoreApp.Navigation.MvxNavigationService.Navigate(CoreApp.Navigation.NowPlayingView);
             });
             PlaySelectedCommand = new MvxCommand(() =>

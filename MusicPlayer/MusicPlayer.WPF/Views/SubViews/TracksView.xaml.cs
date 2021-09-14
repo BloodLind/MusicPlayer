@@ -3,6 +3,7 @@ using MusicPlayer.Core.ViewModels;
 using MusicPlayer.WPF.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,6 +63,13 @@ namespace MusicPlayer.WPF.Views.SubViews
             }
         }
 
-        
+        private void TracksListView_CleanUpVirtualizedItem(object sender, CleanUpVirtualizedItemEventArgs e)
+        {
+            Console.WriteLine(e.Value.ToString() + "\t");
+            Track track = e.Value as Track;
+            string key = String.Join("_", track.Artist, track.Album);
+            if(App.images.IsKeyAvaible(key) == false)
+                App.images.RemoveData(key);
+        }
     }
 }
