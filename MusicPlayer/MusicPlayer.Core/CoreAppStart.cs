@@ -1,4 +1,5 @@
 ﻿using MusicPlayer.Core.Infrastructure.Interfaces;
+using MusicPlayer.Core.ViewModels;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System;
@@ -20,7 +21,7 @@ namespace MusicPlayer.Core
     }
     protected override Task NavigateToFirstViewModel(object hint = null)
     {
-            return CoreApp.Navigation.MvxNavigationService.Navigate(CoreApp.Navigation.HomeView);
+            return CoreApp.Navigation.MvxNavigationService.Navigate<MainViewModel>();
     }
 
 }

@@ -75,49 +75,6 @@ namespace MusicPlayer.WPF.Views
             viewModel.UpdateCollections(files);
         }
 
-        protected void ArtistItemDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            var artistItem = ((FrameworkElement)e.OriginalSource).DataContext as Artist;
-        }
-
-        protected void CurrentTrackListDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if(e.ClickCount == 2)
-            {
-               var trackItem = ((FrameworkElement)e.OriginalSource).DataContext as Track;
-               viewModel.SelectedTrack = trackItem;
-               viewModel.PlaySelectedCommand.Execute(this);
-            }
-        }
-
-        private void PlayPauseClick(object sender, RoutedEventArgs e)
-        {
-            if (viewModel.IsPlaying)
-                viewModel.PauseCommand.Execute();
-            else
-                viewModel.PlayCommand.Execute();
-        }
-
-        
-
-        void Slider_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e) => viewModel.IsPositionChanging = true;
-
-        void Slider_MouseLeftButtonUp(object sender, MouseButtonEventArgs e) 
-        {
-            viewModel.IsPositionChanging = false;
-            viewModel.CurrentPosition = ((Slider)sender).Value;
-            CoreApp.Player.CurrentPosition = viewModel.CurrentPosition;
-        }
-
-        private void Slider_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e) 
-            => viewModel.IsPositionChanging = true;
-
-        private void Slider_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
-        {
-            viewModel.IsPositionChanging = false;
-            CoreApp.Player.CurrentPosition = viewModel.CurrentPosition;
-        }
-
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             App.images.ReleaseData();

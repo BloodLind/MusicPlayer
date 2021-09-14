@@ -114,6 +114,7 @@
       <DependentUpon>RadialSlider.xaml</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\CustomView.cs" />
+    <Compile Include="Infrastructure\TrackManageView.cs" />
     <Compile Include="Services\TrackImageConverter.cs" />
     <Compile Include="Services\Factories\ImagesFlyWeightFactory.cs" />
     <Compile Include="Services\InverseBoolValueConverter.cs" />
@@ -124,6 +125,9 @@
     <Compile Include="Services\ApplicationVisualTreeHelper.cs" />
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NowPlayingView.xaml.cs">
       <DependentUpon>NowPlayingView.xaml</DependentUpon>
@@ -155,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

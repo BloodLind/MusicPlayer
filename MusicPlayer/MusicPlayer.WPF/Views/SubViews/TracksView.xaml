@@ -28,7 +28,6 @@
         PreviewMouseDown="Grid_PreviewMouseDown"
         SelectedItem="{Binding SelectedTrack, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
         Style="{DynamicResource MaterialDesignListView}"
-   
         VirtualizingPanel.IsContainerVirtualizable="True"
         VirtualizingStackPanel.CleanUpVirtualizedItem="TracksListView_CleanUpVirtualizedItem">
 

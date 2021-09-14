@@ -16,6 +16,7 @@ namespace MusicPlayer.Core.ViewModels
             this.MvxNavigationService = mvxNavigationService;
         }
 
+
         public HomeViewModel HomeView { get; } = new HomeViewModel();
         public NowPlayingViewModel NowPlayingView { get; } = new NowPlayingViewModel();
     }

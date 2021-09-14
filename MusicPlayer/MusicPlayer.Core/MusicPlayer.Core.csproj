@@ -75,6 +75,7 @@
     <Compile Include="Services\TrackInfoGrabber.cs" />
     <Compile Include="Services\TracksManager.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\NavigationPresenter.cs" />
     <Compile Include="ViewModels\NowPlayingViewModel.cs" />
   </ItemGroup>
