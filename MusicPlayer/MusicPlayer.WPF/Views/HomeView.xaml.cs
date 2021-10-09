@@ -5,6 +5,7 @@ using MusicPlayer.Core.Services;
 using MusicPlayer.Core.ViewModels;
 using MusicPlayer.WPF.Infrastructure;
 using MvvmCross.Platforms.Wpf.Presenters.Attributes;
+using MvvmCross.Platforms.Wpf.Views;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,7 +28,7 @@ namespace MusicPlayer.WPF.Views
     /// Логика взаимодействия для HomeView.xaml
     /// </summary>
     /// 
-    public partial class HomeView : CustomView
+    public partial class HomeView : MvxWpfView
     {
         private HomeViewModel viewModel;
         public HomeView()

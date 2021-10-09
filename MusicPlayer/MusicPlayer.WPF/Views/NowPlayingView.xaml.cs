@@ -1,6 +1,7 @@
 ﻿using MusicPlayer.Core;
 using MusicPlayer.Core.ViewModels;
 using MusicPlayer.WPF.Infrastructure;
+using MvvmCross.Platforms.Wpf.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace MusicPlayer.WPF.Views
     /// <summary>
     /// Логика взаимодействия для NowPlayingView.xaml
     /// </summary>
-    public partial class NowPlayingView : CustomView
+    public partial class NowPlayingView : MvxWpfView
     {
         NowPlayingViewModel viewModel;
         public NowPlayingView()
@@ -39,22 +40,23 @@ namespace MusicPlayer.WPF.Views
 
 
 
-        void Slider_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e) => viewModel.IsPositionChanging = true;
+        void Slider_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e) { //viewModel.IsPositionChanging = true;
+                                                                                        }
 
         void Slider_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            viewModel.IsPositionChanging = false;
-            viewModel.CurrentPosition = ((Slider)sender).Value;
-            CoreApp.Player.CurrentPosition = viewModel.CurrentPosition;
+            //viewModel.IsPositionChanging = false;
+            //viewModel.CurrentPosition = ((Slider)sender).Value;
+            //CoreApp.Player.CurrentPosition = viewModel.CurrentPosition;
         }
 
-        private void Slider_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
-            => viewModel.IsPositionChanging = true;
+        //private void Slider_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
+          //  => viewModel.IsPositionChanging = true;
 
         private void Slider_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
         {
-            viewModel.IsPositionChanging = false;
-            CoreApp.Player.CurrentPosition = viewModel.CurrentPosition;
+            //viewModel.IsPositionChanging = false;
+            //CoreApp.Player.CurrentPosition = viewModel.CurrentPosition;
         }
 
     }

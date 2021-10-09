@@ -13,7 +13,7 @@ using System.Timers;
 namespace MusicPlayer.Core.ViewModels
 {
 
-    public class NowPlayingViewModel : MusicViewModel
+    public class NowPlayingViewModel : MvxViewModel
     {
         public NowPlayingViewModel()
         {
@@ -28,10 +28,6 @@ namespace MusicPlayer.Core.ViewModels
             });
             PlayPauseCommand = new MvxCommand(() =>
             {
-                if (IsPlaying)
-                    PauseCommand.Execute();
-                else
-                    PlayCommand.Execute();
             });
         }
      

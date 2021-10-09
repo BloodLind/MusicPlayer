@@ -17,7 +17,7 @@ namespace MusicPlayer.Core.ViewModels
         }
 
 
-        public HomeViewModel HomeView { get; } = new HomeViewModel();
+        public HomeViewModel HomeView { get; set; }
         public NowPlayingViewModel NowPlayingView { get; } = new NowPlayingViewModel();
     }
 }

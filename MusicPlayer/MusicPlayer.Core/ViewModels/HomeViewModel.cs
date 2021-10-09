@@ -10,6 +10,7 @@ using System.Text;
 using System.Timers;
 using System.Threading.Tasks;
 using MusicPlayer.Core.Infrastructure.ViewModels;
+using MvvmCross.Logging;
 
 namespace MusicPlayer.Core.ViewModels
 {
@@ -21,7 +22,8 @@ namespace MusicPlayer.Core.ViewModels
         private Playlist selecetedPlaylist;
         #endregion
 
-        public HomeViewModel()
+        public HomeViewModel(IMvxNavigationService service, IMvxLogProvider mvxLog)
+            : base(mvxLog, service)
         {
             InitCommands();
         }
@@ -53,24 +55,24 @@ namespace MusicPlayer.Core.ViewModels
             AddToCollection(Albums, tracksManager.GetAlbums(Tracks));
 
             CoreApp.InitializatePlayer(Tracks);
-            SelectedTrack = CoreApp.Player.CurrentTrack;
-            CoreApp.Player.CurrentTrackChanged += Player_CurrentTrackChanged;
+            //SelectedTrack = CoreApp.Player.CurrentTrack;
+            //CoreApp.Player.CurrentTrackChanged += Player_CurrentTrackChanged;
         }
 
         private void InitCommands()
         {
             TrackInfoCommand = new MvxCommand(() =>
             {
-                CoreApp.Navigation.NowPlayingView.SelectedTrack = SelectedTrack;
-                CoreApp.Navigation.MvxNavigationService.Navigate(CoreApp.Navigation.NowPlayingView);
+                //CoreApp.Navigation.NowPlayingView.SelectedTrack = SelectedTrack;
+                //CoreApp.Navigation.MvxNavigationService.Navigate(CoreApp.Navigation.NowPlayingView);
             });
             PlaySelectedCommand = new MvxCommand(() =>
             {
-                IsPlaying = true;
-                CoreApp.Player.Stop();
-                CoreApp.Player.ChangeCurrentTrack(SelectedTrack);
-                CoreApp.Player.Play();
-                ResetTimer();
+                //IsPlaying = true;
+                //CoreApp.Player.Stop();
+                //CoreApp.Player.ChangeCurrentTrack(SelectedTrack);
+                //CoreApp.Player.Play();
+                //ResetTimer();
             });
             
         }

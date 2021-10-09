@@ -1,6 +1,8 @@
 ﻿using ManagedBass;
 using MusicPlayer.Core.Models;
 using MvvmCross.Commands;
+using MvvmCross.Logging;
+using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -11,7 +13,7 @@ using System.Timers;
 
 namespace MusicPlayer.Core.Infrastructure.ViewModels
 {
-    public class MusicViewModel : MvxViewModel
+    public class MusicViewModel : MvxNavigationViewModel
     {
         #region Fields
         private double volume = 0.5;
@@ -21,7 +23,8 @@ namespace MusicPlayer.Core.Infrastructure.ViewModels
 
         private Track selectedTrack = new Track();
 
-        public MusicViewModel()
+        public MusicViewModel(IMvxLogProvider mvxLog, IMvxNavigationService service)
+            :base(mvxLog, service)
         {
             InitCommands();
             CoreApp.TimerElapsed += CoreApp_TimerElapsed;

@@ -1,157 +1,182 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<vm:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-                xmlns:vm ="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MusicPlayer.Xamarin.Views.HomeView"
-                   NavigationPage.HasNavigationBar="False" BackgroundColor="{StaticResource PrimaryAccentColor}">
-    
+<vm:MvxContentPage
+    x:Class="MusicPlayer.Xamarin.Views.HomeView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="[vm ]clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+    BackgroundColor="{StaticResource PrimaryAccentColor}"
+    NavigationPage.HasNavigationBar="False">
+
     <ContentPage.Content>
         <Grid BackgroundColor="{StaticResource PrimaryLightColor}">
             <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition Height="6*"></RowDefinition>
+                <RowDefinition />
+                <RowDefinition Height="6*" />
             </Grid.RowDefinitions>
-            
-        <Grid BackgroundColor="{StaticResource PrimaryLightColor}">
+
+            <Grid BackgroundColor="{StaticResource PrimaryLightColor}">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="3*"></RowDefinition>
-                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="2*" />
                 </Grid.RowDefinitions>
-            
-                <Frame CornerRadius="15" Padding="7"
-                       Margin="5,10,5,10"
-                       BackgroundColor="{StaticResource PrimaryAccentColor}"
-                       >
+
+                <Frame
+                    Margin="5,10,5,10"
+                    Padding="7"
+                    BackgroundColor="{StaticResource PrimaryAccentColor}"
+                    CornerRadius="15">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="6*"></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="6*" />
+                            <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                    <SearchBar 
-                               Placeholder="Search..."
-                               PlaceholderColor="{StaticResource FontMidColor}"
-                               TextColor="{StaticResource FontLightColor}"
-                       ></SearchBar>
-                        <ImageButton Grid.Column="1" Aspect="AspectFit" Margin="5" Padding="3" 
-                                     Source="more.png" BackgroundColor="Transparent">
-                        </ImageButton>
+                        <SearchBar
+                            Placeholder="Search..."
+                            PlaceholderColor="{StaticResource FontMidColor}"
+                            TextColor="{StaticResource FontLightColor}" />
+                        <ImageButton
+                            Grid.Column="1"
+                            Margin="5"
+                            Padding="3"
+                            Aspect="AspectFit"
+                            BackgroundColor="Transparent"
+                            Source="more.png" />
                     </Grid>
                 </Frame>
-                <StackLayout x:Name="Categories"
-                             Grid.Row="1" 
-                             Orientation="Horizontal"
-                             VerticalOptions="Center"
-                             HorizontalOptions="Center">
-                    <Label Text="Queue"
-                           Margin="3"
-                           TextColor="{StaticResource FontLightColor}"
-                           FontSize="18"
-                           FontAttributes="Bold"
-                           x:Name="queueLabel">
+                <StackLayout
+                    x:Name="Categories"
+                    Grid.Row="1"
+                    HorizontalOptions="Center"
+                    Orientation="Horizontal"
+                    VerticalOptions="Center">
+                    <Label
+                        x:Name="queueLabel"
+                        Margin="3"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        Text="Queue"
+                        TextColor="{StaticResource FontLightColor}">
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped">
-                                
-                            </TapGestureRecognizer>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                         </Label.GestureRecognizers>
                     </Label>
-                    
-                    <Label Text="Playlists"
-                           Margin="3"
-                           TextColor="{StaticResource FontLightColor}"
-                           FontSize="18"
-                           FontAttributes="Bold"
-                           x:Name="playlistsLabel">
+
+                    <Label
+                        x:Name="playlistsLabel"
+                        Margin="3"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        Text="Playlists"
+                        TextColor="{StaticResource FontLightColor}">
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                         </Label.GestureRecognizers>
                     </Label>
-                    <Label Text="Tracks"
-                           Margin="3"
-                           TextColor="{StaticResource FontLightColor}"
-                           FontSize="18"
-                           FontAttributes="Bold"
-                           x:Name="tracksLabel">
+                    <Label
+                        x:Name="tracksLabel"
+                        Margin="3"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        Text="Tracks"
+                        TextColor="{StaticResource FontLightColor}">
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                         </Label.GestureRecognizers>
                     </Label>
-                    <Label Text="Albums"
-                           Margin="3"
-                           TextColor="{StaticResource FontLightColor}"
-                           FontSize="18"
-                           FontAttributes="Bold"
-                           x:Name="albumsLabel">
+                    <Label
+                        x:Name="albumsLabel"
+                        Margin="3"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        Text="Albums"
+                        TextColor="{StaticResource FontLightColor}">
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                         </Label.GestureRecognizers>
                     </Label>
-                    <Label Text="Artists"
-                           Margin="3"
-                           TextColor="{StaticResource FontLightColor}"
-                           FontSize="18"
-                           FontAttributes="Bold"
-                           x:Name="artistsLabel">
+                    <Label
+                        x:Name="artistsLabel"
+                        Margin="3"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        Text="Artists"
+                        TextColor="{StaticResource FontLightColor}">
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                         </Label.GestureRecognizers>
                     </Label>
                 </StackLayout>
-        </Grid>
-            
-            <Frame Grid.Row="1" CornerRadius="30"
-                   BackgroundColor="{StaticResource PrimaryMidColor}">
+            </Grid>
+
+            <Frame
+                Grid.Row="1"
+                BackgroundColor="{StaticResource PrimaryMidColor}"
+                CornerRadius="30">
                 <Frame.GestureRecognizers>
-                    <SwipeGestureRecognizer Direction="Left" Swiped="SwipeGestureRecognizer_Swiped"></SwipeGestureRecognizer>
-                    <SwipeGestureRecognizer Direction="Right" Swiped="SwipeGestureRecognizer_Swiped"></SwipeGestureRecognizer>
+                    <SwipeGestureRecognizer Direction="Left" Swiped="SwipeGestureRecognizer_Swiped" />
+                    <SwipeGestureRecognizer Direction="Right" Swiped="SwipeGestureRecognizer_Swiped" />
                 </Frame.GestureRecognizers>
             </Frame>
-            
-            <Frame Grid.Row="1"
-                   VerticalOptions="End"
-                   HeightRequest="55" 
-                   BackgroundColor="{StaticResource PrimaryLightColor}"
-                   CornerRadius="20" Padding="5">
+
+            <Frame
+                Grid.Row="1"
+                Padding="5"
+                BackgroundColor="{StaticResource PrimaryLightColor}"
+                CornerRadius="20"
+                HeightRequest="55"
+                VerticalOptions="End">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*"></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Grid  Margin="5">
+                    <Grid Margin="5">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition Width="4*"></ColumnDefinition>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="4*" />
                         </Grid.ColumnDefinitions>
-                        <Frame Padding="0" CornerRadius="10" BackgroundColor="Transparent">
-                            <Image Aspect="AspectFit"
-                                   Source="https://nyc3.digitaloceanspaces.com/memecreator-cdn/media/__processed__/2da/template-when-the-imposter-is-sus-sus-jerma-1568-155674f7a05e.png"></Image></Frame>
+                        <Frame
+                            Padding="0"
+                            BackgroundColor="Transparent"
+                            CornerRadius="10">
+                            <Image Aspect="AspectFit" Source="https://nyc3.digitaloceanspaces.com/memecreator-cdn/media/__processed__/2da/template-when-the-imposter-is-sus-sus-jerma-1568-155674f7a05e.png" />
+                        </Frame>
                         <StackLayout Grid.Column="1">
-                            <Label TextColor="{StaticResource FontLightColor}" FontSize="16" Text="SUS"></Label>
-                            <Label TextColor="{StaticResource FontMidColor}" FontSize="14" Text="Post Malone - Hollywood Bleeding"></Label>
+                            <Label
+                                FontSize="16"
+                                Text="SUS"
+                                TextColor="{StaticResource FontLightColor}" />
+                            <Label
+                                FontSize="14"
+                                Text="Post Malone - Hollywood Bleeding"
+                                TextColor="{StaticResource FontMidColor}" />
                         </StackLayout>
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding TrackInfoCommand}"></TapGestureRecognizer>
-                            <SwipeGestureRecognizer Direction="Up" Command="{Binding TrackInfoCommand}"></SwipeGestureRecognizer>
+                            <TapGestureRecognizer Command="{Binding TrackInfoCommand}" />
+                            <SwipeGestureRecognizer Command="{Binding TrackInfoCommand}" Direction="Up" />
                         </Grid.GestureRecognizers>
                     </Grid>
-                    
-                    <Grid Grid.Column="1" 
-                                 Margin="5"
-                                 WidthRequest="50"
-                                 HeightRequest="50">
-                        <Image Grid.Column="1" 
-                           WidthRequest="30" 
-                           HeightRequest="30"
-                           Aspect="AspectFit"
-                           Source="pause.png">
+
+                    <Grid
+                        Grid.Column="1"
+                        Margin="5"
+                        HeightRequest="50"
+                        WidthRequest="50">
+                        <Image
+                            Grid.Column="1"
+                            Aspect="AspectFit"
+                            HeightRequest="30"
+                            Source="pause.png"
+                            WidthRequest="30">
                             <Image.GestureRecognizers>
-                            <TapGestureRecognizer></TapGestureRecognizer>
-                        </Image.GestureRecognizers>
-                    </Image>
+                                <TapGestureRecognizer />
+                            </Image.GestureRecognizers>
+                        </Image>
                     </Grid>
-                    
+
                 </Grid>
             </Frame>
         </Grid>
-        
+
     </ContentPage.Content>
 </vm:MvxContentPage>

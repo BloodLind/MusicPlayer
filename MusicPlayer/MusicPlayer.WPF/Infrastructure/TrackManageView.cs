@@ -19,7 +19,7 @@ namespace MusicPlayer.WPF.Infrastructure
 
         public TrackManageView()
         {
-            this.DataContext = CoreApp.Navigation.HomeView;
+            
             viewModel = (MusicViewModel)this.DataContext;
             
         }

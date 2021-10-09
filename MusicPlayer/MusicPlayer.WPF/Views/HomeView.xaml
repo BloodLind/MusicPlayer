@@ -1,14 +1,15 @@
-﻿<view:
+﻿<view:MvxWpfView
     x:Class="MusicPlayer.WPF.Views.HomeView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:view="clr-namespace:MvvmCross.Platforms.Wpf.Core;assembly=MvvmCross.Platforms.Wpf"
+    xmlns:customView="clr-namespace:MusicPlayer.WPF.Infrastructure"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:local="clr-namespace:MusicPlayer.WPF.Views"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sub="clr-namespace:MusicPlayer.WPF.Views.SubViews"
+    xmlns:view="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
     xmlns:z="clr-namespace:MusicPlayer.WPF.Services"
     d:DesignHeight="720"
     d:DesignWidth="1300"
@@ -19,15 +20,14 @@
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     mc:Ignorable="d">
 
-    <customView:CustomView.Resources>
+    <view:MvxWpfView.Resources>
         <z:TimeConverter x:Key="timeConverter" />
         <!--  String Format converter that need minimum 2 arguments  -->
         <z:TrackMultiConverter x:Key="trackMultiConverter" />
         <z:PlayIconConverter x:Key="iconConverter" />
-        <z:TrackImageConverter x:Key="imageConverter" />
         <sub:TracksView x:Key="Tracks" />
         <sub:ArtistsView x:Key="Artists" />
-    </customView:CustomView.Resources>
+    </view:MvxWpfView.Resources>
 
 
 
@@ -56,7 +56,7 @@
                     Header="Tracks">
 
                     <TabItem.Content>
-                        <ContentControl Content="{StaticResource Tracks}" DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=customView:CustomView}, Path=DataContext}" />
+                        <ContentControl Content="{StaticResource Tracks}" DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=view:MvxWpfView}, Path=DataContext}" />
                     </TabItem.Content>
                 </TabItem>
                 <!--#endregion-->
@@ -68,7 +68,7 @@
                     Header="Artists">
 
                     <TabItem.Content>
-                        <ContentControl Content="{StaticResource Artists}" DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=customView:CustomView}, Path=DataContext}" />
+                        <ContentControl Content="{StaticResource Artists}" DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=view:MvxWpfView}, Path=DataContext}" />
                     </TabItem.Content>
                 </TabItem>
                 <!--#endregion-->
@@ -103,4 +103,4 @@
     </materialDesign:Card>
     <!--#endregion-->
 
-</customView:<Unknown>>
+</view:MvxWpfView>

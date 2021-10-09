@@ -1,5 +1,6 @@
 ﻿using MusicPlayer.Core.ViewModels;
 using MusicPlayer.WPF.Infrastructure;
+using MvvmCross.Platforms.Wpf.Presenters.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,8 @@ namespace MusicPlayer.WPF.Views
     /// <summary>
     /// Логика взаимодействия для MainView.xaml
     /// </summary>
+    /// 
+    
     public partial class MainView : TrackManageView
     {
         private MainViewModel viewModel;
@@ -35,6 +38,7 @@ namespace MusicPlayer.WPF.Views
         {
             viewModel = (MainViewModel)base.ViewModel;
             viewModel.ShowHome.Execute();
+            
         }
     }
 }
