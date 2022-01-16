@@ -4,6 +4,7 @@ using MusicPlayer.Core.Infrastructure.Interfaces;
 using MusicPlayer.Core.Models;
 using MusicPlayer.Core.ViewModels;
 using MvvmCross;
+using MvvmCross.IoC;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System;
@@ -23,8 +24,12 @@ namespace MusicPlayer.Core
 
         public override void Initialize()
         {
+            CreatableTypes()
+                .EndingWith("Service")
+                .AsInterfaces()
+                .RegisterAsLazySingleton();
 
-            this.RegisterCustomAppStart<CoreAppStart>();
+            RegisterAppStart<HomeViewModel>();
             
         }
         

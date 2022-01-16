@@ -23,16 +23,12 @@ namespace MusicPlayer.WPF
     public partial class App : MvxApplication
     {
         
-        public static Timer CacheCollectorTimer { get; } = new Timer(5000);
+        
         public static FlyWeightFactory<string, BitmapImage> images = new ImagesFlyWeightFactory();
-        static App()
+ 
+        protected override void RegisterSetup()
         {
-            CacheCollectorTimer.Start();
-        }
-        public App()
-        {
-            
-            this.RegisterSetupType<MvxWpfSetup<Core.CoreApp>>();
+            this.RegisterSetupType<WpfSetup>();
         }
     }
 }

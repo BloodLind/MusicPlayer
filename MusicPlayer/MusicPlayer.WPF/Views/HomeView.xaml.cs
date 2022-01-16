@@ -37,7 +37,7 @@ namespace MusicPlayer.WPF.Views
             InitializeComponent();
             this.DataContext = CoreApp.Navigation.HomeView;
             viewModel = (HomeViewModel)this.DataContext;
-            this.Loaded += HomeView_Loaded;
+            //this.Loaded += HomeView_Loaded;
         }
         
        

@@ -13,13 +13,12 @@ using System.Windows.Input;
 
 namespace MusicPlayer.WPF.Infrastructure
 {
-    public class TrackManageView : CustomView
+    public class TrackManageView : CustomWindow
     {
         private MusicViewModel viewModel;
 
         public TrackManageView()
         {
-            
             viewModel = (MusicViewModel)this.DataContext;
             
         }
@@ -30,9 +29,6 @@ namespace MusicPlayer.WPF.Infrastructure
             else
                 viewModel.PlayCommand.Execute();
         }
-
-
-
        public void Slider_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e) => viewModel.IsPositionChanging = true;
 
        public void Slider_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)

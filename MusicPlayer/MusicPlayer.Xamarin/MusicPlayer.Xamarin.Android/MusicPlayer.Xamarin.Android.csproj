@@ -143,10 +143,6 @@
       <Project>{9fd36acc-fe99-4577-8902-8db4477ea68a}</Project>
       <Name>MusicPlayer.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MusicPlayer.Xamarin\MusicPlayer.Xamarin.csproj">
-      <Project>{2B3D52A8-3705-4F03-A5DA-AD1241E4090D}</Project>
-      <Name>MusicPlayer.Xamarin</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\pause.png" />

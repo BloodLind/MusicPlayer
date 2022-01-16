@@ -118,5 +118,5 @@
             </Style.Triggers>
         </Style>
     </views:MvxWindow.Resources>
-    <Grid />
+
 </views:MvxWindow>

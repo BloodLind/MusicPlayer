@@ -27,7 +27,7 @@ namespace MusicPlayer.WPF
             AppIssueScan();
             FileInfo[] themes = new DirectoryInfo(System.IO.Path.Combine(Environment.CurrentDirectory, "themes")).GetFiles();
             Uri uri = new Uri(themes[0].FullName, UriKind.Absolute);
-
+            
            //ResourceDictionary dictionary = Application.LoadComponent(uri) as ResourceDictionary;
            // Application.Current.Resources.MergedDictionaries.Add(dictionary);
             InitializeComponent();
@@ -40,7 +40,7 @@ namespace MusicPlayer.WPF
             isGood = isGood | Directory.Exists("themes\\drawable");
             if (!isGood)
             {
-                MessageBox.Show("Some directories doesn't exist T_T. Please reinstall app!");
+                MessageBox.Show("Some directories doesn't exist T-T. Please reinstall app!");
                 this.Close();
             }
         }

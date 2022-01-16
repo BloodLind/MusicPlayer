@@ -11,6 +11,7 @@ using System.Timers;
 using System.Threading.Tasks;
 using MusicPlayer.Core.Infrastructure.ViewModels;
 using MvvmCross.Logging;
+using Microsoft.Extensions.Logging;
 
 namespace MusicPlayer.Core.ViewModels
 {
@@ -22,7 +23,7 @@ namespace MusicPlayer.Core.ViewModels
         private Playlist selecetedPlaylist;
         #endregion
 
-        public HomeViewModel(IMvxNavigationService service, IMvxLogProvider mvxLog)
+        public HomeViewModel(IMvxNavigationService service, ILoggerFactory mvxLog)
             : base(mvxLog, service)
         {
             InitCommands();

@@ -18,10 +18,11 @@ namespace MusicPlayer.Core
         : base(mvxApplication, mvxNavigationService)
     {
             CoreApp.Navigation = new ViewModels.NavigationPresenter(mvxNavigationService);
+            
     }
     protected override Task NavigateToFirstViewModel(object hint = null)
     {
-            return CoreApp.Navigation.MvxNavigationService.Navigate<MainViewModel>();
+            return CoreApp.Navigation.MvxNavigationService.Navigate<RootViewModel>();
     }
 
 }

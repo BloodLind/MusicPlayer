@@ -1,4 +1,5 @@
 ﻿using ManagedBass;
+using Microsoft.Extensions.Logging;
 using MusicPlayer.Core.Models;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
@@ -23,7 +24,7 @@ namespace MusicPlayer.Core.Infrastructure.ViewModels
 
         private Track selectedTrack = new Track();
 
-        public MusicViewModel(IMvxLogProvider mvxLog, IMvxNavigationService service)
+        public MusicViewModel(ILoggerFactory mvxLog, IMvxNavigationService service)
             :base(mvxLog, service)
         {
             InitCommands();
