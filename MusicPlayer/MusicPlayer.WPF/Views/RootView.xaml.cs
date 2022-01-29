@@ -23,22 +23,22 @@ namespace MusicPlayer.WPF.Views
     /// </summary>
     /// 
     
-    public partial class RootView : TrackManageView
+    [MvxWindowPresentation(Identifier = nameof(RootView))]
+    public partial class RootView : CustomWindow
     {
         private RootViewModel viewModel;
 
         public RootView()
         {
+            Application.Current.MainWindow = this;
             InitializeComponent();
             this.Loaded += RootView_Loaded;
-            
         }
 
         private void RootView_Loaded(object sender, RoutedEventArgs e)
         {
             viewModel = (RootViewModel)this.DataContext;
             viewModel.ShowHome.Execute();
-            
         }
 
 

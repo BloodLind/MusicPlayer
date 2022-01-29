@@ -13,7 +13,6 @@
     xmlns:z="clr-namespace:MusicPlayer.WPF.Services"
     d:DesignHeight="720"
     d:DesignWidth="1300"
-    Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{materialDesign:MaterialDesignFont}"
     TextElement.FontSize="14"
     TextElement.FontWeight="Medium"

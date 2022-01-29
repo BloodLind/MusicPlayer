@@ -1,27 +1,41 @@
 ﻿using MusicPlayer.Core;
-using MusicPlayer.Core.Infrastructure.ViewModels;
-using MusicPlayer.Core.Services;
+using MusicPlayer.Core.Infrastructure.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
-namespace MusicPlayer.WPF.Infrastructure
+namespace MusicPlayer.WPF.Controls
 {
-    public class TrackManageView : CustomWindow
+    /// <summary>
+    /// Логика взаимодействия для TrackControl.xaml
+    /// </summary>
+    public partial class TrackControl : UserControl
     {
-        private MusicViewModel viewModel;
 
-        public TrackManageView()
+        private ITrackController viewModel;
+
+        public TrackControl()
         {
-            viewModel = (MusicViewModel)this.DataContext;
-            
+            Loaded += TrackManageView_Loaded;
+            InitializeComponent();
         }
+
+        private void TrackManageView_Loaded(object sender, RoutedEventArgs e)
+        {
+            viewModel = (ITrackController)this.DataContext;
+        }
+
         public void PlayPauseClick(object sender, RoutedEventArgs e)
         {
             if (viewModel.IsPlaying)
@@ -29,9 +43,9 @@ namespace MusicPlayer.WPF.Infrastructure
             else
                 viewModel.PlayCommand.Execute();
         }
-       public void Slider_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e) => viewModel.IsPositionChanging = true;
+        public void Slider_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e) => viewModel.IsPositionChanging = true;
 
-       public void Slider_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        public void Slider_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             viewModel.IsPositionChanging = false;
             viewModel.CurrentPosition = ((Slider)sender).Value;
@@ -46,5 +60,6 @@ namespace MusicPlayer.WPF.Infrastructure
             viewModel.IsPositionChanging = false;
             CoreApp.Player.CurrentPosition = viewModel.CurrentPosition;
         }
+        
     }
 }

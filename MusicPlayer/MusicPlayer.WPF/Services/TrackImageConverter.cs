@@ -63,7 +63,7 @@ namespace MusicPlayer.WPF.Services
             else if (values.Length != 1 && values.ElementAt(1) is int)
                 dpiSize = (int)(((int)values[1] + 10)  * SCREEN_SIZE_COEFICIENT) ;
 
-            if (!(values[0] is Track) && values[0] == null)
+            if (!(values[0] is Track) || values[0] == null)
             {
                 return null;
             }

@@ -134,11 +134,17 @@
     </ApplicationDefinition>
     <Compile Include="Controls\Converters\AngleConverter.cs" />
     <Compile Include="Controls\Converters\ThumbSizeConverter.cs" />
+    <Compile Include="Controls\Menu.xaml.cs">
+      <DependentUpon>Menu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\RadialSlider.xaml.cs">
       <DependentUpon>RadialSlider.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TrackControl.xaml.cs">
+      <DependentUpon>TrackControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\CustomWindow.cs" />
-    <Compile Include="Infrastructure\TrackManageView.cs" />
+    <Compile Include="Infrastructure\IMenuContainer.cs" />
     <Compile Include="Services\TrackImageConverter.cs" />
     <Compile Include="Services\Factories\ImagesFlyWeightFactory.cs" />
     <Compile Include="Services\InverseBoolValueConverter.cs" />
@@ -163,7 +169,15 @@
       <DependentUpon>TracksView.xaml</DependentUpon>
     </Compile>
     <Compile Include="WpfSetup.cs" />
+    <Page Include="Controls\Menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\RadialSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TrackControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

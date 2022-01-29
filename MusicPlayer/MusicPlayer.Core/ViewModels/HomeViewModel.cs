@@ -56,24 +56,18 @@ namespace MusicPlayer.Core.ViewModels
             AddToCollection(Albums, tracksManager.GetAlbums(Tracks));
 
             CoreApp.InitializatePlayer(Tracks);
-            //SelectedTrack = CoreApp.Player.CurrentTrack;
-            //CoreApp.Player.CurrentTrackChanged += Player_CurrentTrackChanged;
+            SelectedTrack = CoreApp.Player.CurrentTrack;
+            CoreApp.Player.CurrentTrackChanged += Player_CurrentTrackChanged;
         }
 
         private void InitCommands()
         {
-            TrackInfoCommand = new MvxCommand(() =>
-            {
-                //CoreApp.Navigation.NowPlayingView.SelectedTrack = SelectedTrack;
-                //CoreApp.Navigation.MvxNavigationService.Navigate(CoreApp.Navigation.NowPlayingView);
-            });
             PlaySelectedCommand = new MvxCommand(() =>
             {
-                //IsPlaying = true;
-                //CoreApp.Player.Stop();
-                //CoreApp.Player.ChangeCurrentTrack(SelectedTrack);
-                //CoreApp.Player.Play();
-                //ResetTimer();
+                CoreApp.Player.Stop();
+                CoreApp.Player.ChangeCurrentTrack(SelectedTrack);
+                CoreApp.Player.Play();
+                ResetTimer();
             });
             
         }
@@ -94,7 +88,6 @@ namespace MusicPlayer.Core.ViewModels
         #endregion
 
         #region Commands
-        public IMvxCommand TrackInfoCommand { get; private set; }
         public IMvxCommand PlaySelectedCommand { get; private set; }
         public IMvxCommand ShowSelectedPlaylist { get; private set; }
         public IMvxCommand ShowSelectedAlbum { get; private set; }

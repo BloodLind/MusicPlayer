@@ -27,6 +27,9 @@
     <ImageSource x:Key="Loop">../themes/drawable/dark/loopIcon.png</ImageSource>
     <ImageSource x:Key="Back">../themes/drawable/dark/previous.png</ImageSource>
     <ImageSource x:Key="Cover">../themes/drawable/dark/defaultcover.png</ImageSource>
+    <ImageSource x:Key="Playlists">../themes/drawable/dark/playlist.png</ImageSource>
+    <ImageSource x:Key="Waves">../themes/drawable/dark/waves.png</ImageSource>
+    <ImageSource x:Key="Queue">../themes/drawable/dark/queue.png</ImageSource>
     <ImageBrush
         x:Key="Background"
         ImageSource="../themes/drawable/backs/backdark1.png"

@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace MusicPlayer.Core.Models
 {
-    public class Artist : ITrackContainer
+    public class Artist : ITracksContainer
     {
         public double PlayTime { get; set; }
         public int TracksCount { get; set; }
         public string Name { get; set; }
-        public List<Track> Tracks { get; set; }
+        public IEnumerable<Track> Tracks { get; set; }
 
         public override string ToString()
         {

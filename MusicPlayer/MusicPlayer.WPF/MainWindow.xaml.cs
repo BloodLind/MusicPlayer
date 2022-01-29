@@ -31,7 +31,7 @@ namespace MusicPlayer.WPF
            //ResourceDictionary dictionary = Application.LoadComponent(uri) as ResourceDictionary;
            // Application.Current.Resources.MergedDictionaries.Add(dictionary);
             InitializeComponent();
-
+            this.Close();
             
         }
         private void AppIssueScan()

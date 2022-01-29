@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace MusicPlayer.Core.Infrastructure.Interfaces
 {
-    public interface ITrackContainer
+    public interface ITracksContainer
     {
         double PlayTime { get; set; }
         int TracksCount { get; set; }
-        List<Track> Tracks { get; set; }
+        IEnumerable<Track> Tracks { get; set; }
     }
 }

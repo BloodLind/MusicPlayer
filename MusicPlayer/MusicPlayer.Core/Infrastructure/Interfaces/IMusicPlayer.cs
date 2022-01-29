@@ -26,5 +26,6 @@ namespace MusicPlayer.Core.Infrastructure.Interfaces
         void ChangeCurrentTrack(Track track);
 
         event Action<Track> CurrentTrackChanged;
+        event Action<PlaybackState> StateChanged;
     }
 }

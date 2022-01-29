@@ -51,7 +51,8 @@ namespace MusicPlayer.Core.Services
 
         #region Events
         public event EventHandler Disposed;
-        public event Action<Track> CurrentTrackChanged; 
+        public event Action<Track> CurrentTrackChanged;
+        public event Action<PlaybackState> StateChanged;
         #endregion
 
         #region Events Methods
@@ -87,12 +88,12 @@ namespace MusicPlayer.Core.Services
         public void ShuffleQueue()
         {
             Random rng = new Random();
+            Track value = null;
             int n = Queue.Count;
-            while (n > 1)
+            while (n-- > 1)
             {
-                n--;
                 int k = rng.Next(n + 1);
-                Track value = Queue[k];
+                value = Queue[k];
                 Queue[k] = Queue[n];
                 Queue[n] = value;
             }

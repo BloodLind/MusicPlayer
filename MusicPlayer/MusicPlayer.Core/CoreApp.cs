@@ -2,6 +2,7 @@
 
 using MusicPlayer.Core.Infrastructure.Interfaces;
 using MusicPlayer.Core.Models;
+using MusicPlayer.Core.Services;
 using MusicPlayer.Core.ViewModels;
 using MvvmCross;
 using MvvmCross.IoC;
@@ -29,7 +30,7 @@ namespace MusicPlayer.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            RegisterAppStart<HomeViewModel>();
+            RegisterCustomAppStart<CoreAppInitializer>();
             
         }
         
@@ -39,30 +40,33 @@ namespace MusicPlayer.Core
             WorkTimer.Start();
         }
 
-        private static void WorkTimer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            TimerElapsed?.Invoke();
-        }
-        public static Timer WorkTimer { get; } = new Timer(1000);
+        #region Static Properties
         public static NavigationPresenter Navigation { get; set; }
+        public static Timer WorkTimer { get; } = new Timer(1000);
         public static IMusicPlayer Player { get; private set; }
         public static bool IsScaned
         {
             get => isScanned;
         }
-    
+        #endregion
+
+        #region Static Methods
+        private static void WorkTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            TimerElapsed?.Invoke();
+        }
         public static void SetScanned()
         {
             isScanned = true;
         }
         public static void InitializatePlayer(IEnumerable<Track> tracks) 
         {
-            if(Player == null)
+            if (Player == null)
+            { 
                 Player = new Services.MusicPlayer(tracks);
+                PlayerLoaded?.Invoke();
+            }
          }
-
-        public static event Action TimerElapsed;
-
         public static bool IsFileLocked(string file)
         {
             try
@@ -85,5 +89,13 @@ namespace MusicPlayer.Core
             //file is not locked
             return false;
         }
+
+        #endregion
+
+
+        #region Static Events
+        public static event Action PlayerLoaded;
+        public static event Action TimerElapsed;
+        #endregion
     }
 }

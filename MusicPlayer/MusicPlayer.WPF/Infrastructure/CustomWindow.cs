@@ -10,8 +10,10 @@ using System.Windows.Shapes;
 
 namespace MusicPlayer.WPF.Infrastructure
 {
+
     public class CustomWindow : MvxWindow
     {
+        
         protected void ClickMinimizeWindow(object sender, RoutedEventArgs e)
         {
             Application.Current.MainWindow.WindowState = WindowState.Minimized;

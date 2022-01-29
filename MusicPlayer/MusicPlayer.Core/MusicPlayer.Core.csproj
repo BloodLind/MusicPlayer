@@ -59,13 +59,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CoreApp.cs" />
-    <Compile Include="CoreAppStart.cs" />
+    <Compile Include="CoreAppInitializer.cs" />
     <Compile Include="Infrastructure\Interfaces\ICatalogScaner.cs" />
     <Compile Include="Infrastructure\Interfaces\IFlyWeightFactory.cs" />
     <Compile Include="Infrastructure\Interfaces\IMusicPlayer.cs" />
-    <Compile Include="Infrastructure\Interfaces\ITrackContainer.cs" />
+    <Compile Include="Infrastructure\Interfaces\ITrackController.cs" />
+    <Compile Include="Infrastructure\Interfaces\ITracksContainer.cs" />
     <Compile Include="Infrastructure\Interfaces\ITrackInfoEditor.cs" />
     <Compile Include="Infrastructure\Interfaces\ITrackInfoGrabber.cs" />
+    <Compile Include="Infrastructure\ViewModels\IMenuViewModel.cs" />
     <Compile Include="Infrastructure\ViewModels\MusicViewModel.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
@@ -75,11 +77,12 @@
     <Compile Include="Services\CatalogScaner.cs" />
     <Compile Include="Services\Factories\FlyWeightFactory.cs" />
     <Compile Include="Services\MusicPlayer.cs" />
+    <Compile Include="Services\NavigationPresenter.cs" />
+    <Compile Include="Services\NavigationPresenterFlyoutMenuItem.cs" />
     <Compile Include="Services\TrackInfoGrabber.cs" />
     <Compile Include="Services\TracksManager.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\RootViewModel.cs" />
-    <Compile Include="ViewModels\NavigationPresenter.cs" />
     <Compile Include="ViewModels\NowPlayingViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

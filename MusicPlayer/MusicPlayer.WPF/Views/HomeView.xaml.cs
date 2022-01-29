@@ -28,6 +28,8 @@ namespace MusicPlayer.WPF.Views
     /// Логика взаимодействия для HomeView.xaml
     /// </summary>
     /// 
+
+    [MvxContentPresentation(WindowIdentifier = nameof(RootView))]
     public partial class HomeView : MvxWpfView
     {
         private HomeViewModel viewModel;
@@ -35,9 +37,8 @@ namespace MusicPlayer.WPF.Views
         {
             
             InitializeComponent();
-            this.DataContext = CoreApp.Navigation.HomeView;
-            viewModel = (HomeViewModel)this.DataContext;
-            //this.Loaded += HomeView_Loaded;
+            //this.DataContext = CoreApp.Navigation.HomeView;
+            this.Loaded += HomeView_Loaded;
         }
         
        
@@ -46,6 +47,7 @@ namespace MusicPlayer.WPF.Views
 
         private void HomeView_Loaded(object sender, RoutedEventArgs e)
         {
+            viewModel = (HomeViewModel)this.DataContext;
             if(Core.CoreApp.IsScaned)
                 return;
             CoreApp.SetScanned();

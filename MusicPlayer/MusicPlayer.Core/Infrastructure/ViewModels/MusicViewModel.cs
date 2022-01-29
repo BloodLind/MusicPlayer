@@ -1,5 +1,6 @@
 ﻿using ManagedBass;
 using Microsoft.Extensions.Logging;
+using MusicPlayer.Core.Infrastructure.Interfaces;
 using MusicPlayer.Core.Models;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
@@ -14,7 +15,7 @@ using System.Timers;
 
 namespace MusicPlayer.Core.Infrastructure.ViewModels
 {
-    public class MusicViewModel : MvxNavigationViewModel
+    public class MusicViewModel : MvxNavigationViewModel, ITrackController
     {
         #region Fields
         private double volume = 0.5;
@@ -31,12 +32,17 @@ namespace MusicPlayer.Core.Infrastructure.ViewModels
             CoreApp.TimerElapsed += CoreApp_TimerElapsed;
             CurrentPosition = CoreApp.Player == null ? 0 : CoreApp.Player.CurrentPosition;
             IsPlaying = CoreApp.Player == null? false : CoreApp.Player.PlaybackState == PlaybackState.Playing;
+            CoreApp.PlayerLoaded += PlayerLoaded;
         }
 
         protected virtual void Player_CurrentTrackChanged(Track obj)
         {
             SelectedTrack = obj;
             ResetTimer();
+        }
+        private void Player_StateChanged(PlaybackState obj)
+        {
+            IsPlaying = obj == PlaybackState.Playing;
         }
 
         private void CoreApp_TimerElapsed()
@@ -99,19 +105,20 @@ namespace MusicPlayer.Core.Infrastructure.ViewModels
                 CoreApp.Player.Play();
             });
         }
-
-        public override void ViewAppearing()
+        private void PlayerLoaded()
         {
             if (CoreApp.Player != null)
             {
                 CoreApp.Player.CurrentTrackChanged += Player_CurrentTrackChanged;
+                CoreApp.Player.StateChanged += Player_StateChanged;
                 IsPlaying = CoreApp.Player.PlaybackState == ManagedBass.PlaybackState.Playing;
                 CurrentPosition = CoreApp.Player.CurrentPosition;
                 Volume = CoreApp.Player.Volume;
                 SelectedTrack = CoreApp.Player.CurrentTrack;
             }
-            base.ViewAppearing();
         }
+
+       
 
         protected void ResetTimer()
         {
@@ -127,7 +134,6 @@ namespace MusicPlayer.Core.Infrastructure.ViewModels
 
 
         #region Properties
-
         public Track SelectedTrack
         {
             get => selectedTrack;
@@ -135,10 +141,8 @@ namespace MusicPlayer.Core.Infrastructure.ViewModels
             {
                 selectedTrack = value;
                 RaisePropertyChanged(() => SelectedTrack);
-
             }
         }
-
         public bool IsPlaying
         {
             get => isPlaying;
@@ -157,7 +161,6 @@ namespace MusicPlayer.Core.Infrastructure.ViewModels
                 RaisePropertyChanged(() => CurrentPosition);
             }
         }
-
         public double Volume
         {
             get => volume;
@@ -170,7 +173,6 @@ namespace MusicPlayer.Core.Infrastructure.ViewModels
             }
         }
         public bool IsPositionChanging { get; set; } = false;
-
         #endregion
 
         #region Commands

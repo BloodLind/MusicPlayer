@@ -1,4 +1,5 @@
-﻿using MusicPlayer.Core.Infrastructure.ViewModels;
+﻿using Microsoft.Extensions.Logging;
+using MusicPlayer.Core.Infrastructure.ViewModels;
 using MusicPlayer.Core.Models;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
@@ -13,9 +14,11 @@ using System.Timers;
 namespace MusicPlayer.Core.ViewModels
 {
 
-    public class NowPlayingViewModel : MvxViewModel
+    public class NowPlayingViewModel : MvxNavigationViewModel<Track>
     {
-        public NowPlayingViewModel()
+        private Track selectedTrack;
+
+        public NowPlayingViewModel(ILoggerFactory logFactory, IMvxNavigationService navigationService) : base(logFactory, navigationService)
         {
             InitCommands();
         }
@@ -24,17 +27,22 @@ namespace MusicPlayer.Core.ViewModels
         {
             ReturnCommand = new MvxCommand(() =>
             {
-                CoreApp.Navigation.MvxNavigationService.Close(this);
-            });
-            PlayPauseCommand = new MvxCommand(() =>
-            {
+                NavigationService.Close(this);
             });
         }
-     
+
+        public override void Prepare(Track parameter)
+        {
+            SelectedTrack = parameter;
+        }
+
 
         #region Commands
         public IMvxCommand ReturnCommand { get; private set; }
-        public IMvxCommand PlayPauseCommand { get; private set; }
+        #endregion
+
+        #region Properties
+        public Track SelectedTrack { get => selectedTrack; set { selectedTrack = value; RaisePropertyChanged(() => ReturnCommand); } }
         #endregion
 
     }

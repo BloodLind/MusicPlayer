@@ -1,6 +1,7 @@
 ﻿using MusicPlayer.Core;
 using MusicPlayer.Core.ViewModels;
 using MusicPlayer.WPF.Infrastructure;
+using MvvmCross.Platforms.Wpf.Presenters.Attributes;
 using MvvmCross.Platforms.Wpf.Views;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,8 @@ namespace MusicPlayer.WPF.Views
     /// <summary>
     /// Логика взаимодействия для NowPlayingView.xaml
     /// </summary>
+    ///
+    [MvxContentPresentation(StackNavigation = true, WindowIdentifier =  nameof(RootView))]
     public partial class NowPlayingView : MvxWpfView
     {
         NowPlayingViewModel viewModel;

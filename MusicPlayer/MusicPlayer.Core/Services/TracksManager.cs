@@ -45,7 +45,7 @@ namespace MusicPlayer.Core.Services
                     IEnumerable<Track> tracksToAdd = tracks.Where(x => x.Artist == artistName);
                     newArtist.Tracks = tracksToAdd.ToList();
                     newArtist.PlayTime = GetPlayTime(newArtist.Tracks);
-                    newArtist.TracksCount = newArtist.Tracks.Count;
+                    newArtist.TracksCount = newArtist.Tracks.Count();
                     artists.Add(newArtist);
                 }
 
@@ -77,7 +77,7 @@ namespace MusicPlayer.Core.Services
                     IEnumerable<Track> tracksToAdd = tracks.Where(x => x.Album == albumName);
                     newAlbum.Tracks = tracksToAdd.ToList();
                     newAlbum.PlayTime = GetPlayTime(newAlbum.Tracks);
-                    newAlbum.TracksCount = newAlbum.Tracks.Count;
+                    newAlbum.TracksCount = newAlbum.Tracks.Count();
                     albums.Add(newAlbum);
                 }
 

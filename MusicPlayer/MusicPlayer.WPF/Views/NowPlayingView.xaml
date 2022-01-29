@@ -33,6 +33,7 @@
             <Image.Source>
                 <MultiBinding Converter="{StaticResource imageConverter}">
                     <Binding Path="SelectedTrack" />
+                    <Binding Path="TrackCoverSize" Source="{x:Static properties:Settings.Default}" />
                 </MultiBinding>
 
             </Image.Source>
