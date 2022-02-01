@@ -6,19 +6,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Shapes;
 
 namespace MusicPlayer.WPF.Infrastructure
 {
-
     public class CustomWindow : MvxWindow
     {
-        
+
         protected void ClickMinimizeWindow(object sender, RoutedEventArgs e)
         {
             Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
-        
+
         protected void ClickMaximizeWindow(object sender, RoutedEventArgs e)
         {
             Application.Current.MainWindow.WindowState = (Application.Current.MainWindow.WindowState == WindowState.Normal) ? WindowState.Maximized : WindowState.Normal;

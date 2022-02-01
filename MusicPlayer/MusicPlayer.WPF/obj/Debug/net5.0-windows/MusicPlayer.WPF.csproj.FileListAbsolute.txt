@@ -1,0 +1,15 @@
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\MusicPlayer.WPF.csproj.AssemblyReference.cache
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Resources\ApplicationResources.baml
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Controls\Menu.g.cs
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Controls\RadialSlider.g.cs
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Controls\TrackControl.g.cs
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\MainWindow.g.cs
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Views\HomeView.g.cs
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Views\NowPlayingView.g.cs
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Views\RootView.g.cs
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Views\SubViews\ArtistsView.g.cs
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Views\SubViews\TracksView.g.cs
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\App.g.cs
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\GeneratedInternalTypeHelper.g.cs
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\MusicPlayer.WPF_MarkupCompile.cache
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\MusicPlayer.WPF_MarkupCompile.lref

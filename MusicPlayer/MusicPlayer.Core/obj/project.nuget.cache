@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "JTBmSU+VkCcF527zRhRKaX9Goj4SK4iSzs2LjkdaHeYfgeo77VzqkyS5PHa8vh/vnqoCFP9J5zcSJaTqqZFxPg==",
+  "success": true,
+  "projectFilePath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.Core\\MusicPlayer.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\BloodLind\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\5.0.0\\microsoft.extensions.logging.abstractions.5.0.0.nupkg.sha512",
+    "C:\\Users\\BloodLind\\.nuget\\packages\\mvvmcross\\8.0.2\\mvvmcross.8.0.2.nupkg.sha512",
+    "C:\\Users\\BloodLind\\.nuget\\packages\\taglib-sharp-netstandard2.0\\2.1.0\\taglib-sharp-netstandard2.0.2.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}

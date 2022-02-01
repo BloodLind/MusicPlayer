@@ -6,19 +6,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using MusicPlayer.Core.Models;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.IO;
 using System.Windows;
 using MusicPlayer.Core.Services;
+using MusicPlayer.PulseAudio.Base.Models;
+using MusicPlayer.PulseAudio.Tracks.Services;
 
 namespace MusicPlayer.WPF.Services
 {
 
     public class TrackImageConverter : IMultiValueConverter
     {
-        
+
         private int SCREEN_DPI;
         private double SCREEN_SIZE_COEFICIENT = System.Windows.SystemParameters.PrimaryScreenWidth / 1920;
         private TrackInfoGrabber trackInfoGrabber = new TrackInfoGrabber();
@@ -44,7 +45,7 @@ namespace MusicPlayer.WPF.Services
         {
             SetScreenDPI();
         }
-        
+
         public TrackImageConverter(bool isImagesCached)
         {
             this.IsImagesCached = isImagesCached;
@@ -55,13 +56,13 @@ namespace MusicPlayer.WPF.Services
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             int dpiSize = 0;
-            
+
             if (values.Length < 1)
             {
                 return null;
             }
             else if (values.Length != 1 && values.ElementAt(1) is int)
-                dpiSize = (int)(((int)values[1] + 10)  * SCREEN_SIZE_COEFICIENT) ;
+                dpiSize = (int)(((int)values[1] + 10) * SCREEN_SIZE_COEFICIENT);
 
             if (!(values[0] is Track) || values[0] == null)
             {
@@ -80,7 +81,7 @@ namespace MusicPlayer.WPF.Services
                 {
 
                     var byteImage = track.FilePath == null ? null : trackInfoGrabber.GetTrackImage(track.FilePath);
-                    if(byteImage == null)
+                    if (byteImage == null)
                         return Application.Current.Resources["Cover"];
                     else
                     {
@@ -94,7 +95,7 @@ namespace MusicPlayer.WPF.Services
                             ChangeDecodeOfImage(dpiSize, image);
                             image.EndInit();
 
-                            if(IsImagesCached)
+                            if (IsImagesCached)
                                 App.images.AddData(key, image);
 
                             return image;
@@ -129,7 +130,7 @@ namespace MusicPlayer.WPF.Services
             }
         }
 
-       
+
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {

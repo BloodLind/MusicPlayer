@@ -1,12 +1,8 @@
-﻿
-
-using MusicPlayer.Core.Infrastructure.Interfaces;
-using MusicPlayer.Core.Models;
-using MusicPlayer.Core.Services;
-using MusicPlayer.Core.ViewModels;
-using MvvmCross;
+﻿using MusicPlayer.Core.Services;
+using MusicPlayer.PulseAudio.Base;
+using MusicPlayer.PulseAudio.Base.Models;
+using MusicPlayer.PulseAudio.Tracks.Models;
 using MvvmCross.IoC;
-using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -21,7 +17,7 @@ namespace MusicPlayer.Core
     public class CoreApp : MvxApplication
     {
         private static bool isScanned = false;
-        
+
 
         public override void Initialize()
         {
@@ -31,9 +27,9 @@ namespace MusicPlayer.Core
                 .RegisterAsLazySingleton();
 
             RegisterCustomAppStart<CoreAppInitializer>();
-            
+
         }
-        
+
         static CoreApp()
         {
             WorkTimer.Elapsed += WorkTimer_Elapsed;
@@ -43,11 +39,8 @@ namespace MusicPlayer.Core
         #region Static Properties
         public static NavigationPresenter Navigation { get; set; }
         public static Timer WorkTimer { get; } = new Timer(1000);
-        public static IMusicPlayer Player { get; private set; }
-        public static bool IsScaned
-        {
-            get => isScanned;
-        }
+        public static IPulseAudioBase Player { get; private set; }
+        public static bool IsScaned { get => isScanned; }
         #endregion
 
         #region Static Methods
@@ -55,18 +48,22 @@ namespace MusicPlayer.Core
         {
             TimerElapsed?.Invoke();
         }
+
         public static void SetScanned()
         {
             isScanned = true;
         }
-        public static void InitializatePlayer(IEnumerable<Track> tracks) 
+
+        public static void InitializatePlayer(IEnumerable<Track> tracks)
         {
-            if (Player == null)
-            { 
-                Player = new Services.MusicPlayer(tracks);
+            if(Player?.Queue.Count > 1)
+            {
+                Player.SetQueue(tracks);
                 PlayerLoaded?.Invoke();
             }
-         }
+        }
+
+        //Remove this after remake file proccessing
         public static bool IsFileLocked(string file)
         {
             try

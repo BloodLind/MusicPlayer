@@ -33,13 +33,13 @@ namespace MusicPlayer.WPF.Controls
         #endregion
 
         #region Properties
-        public Visibility MenuExpanded 
-        { 
+        public Visibility MenuExpanded
+        {
             get => (Visibility)GetValue(MenuExpandedProperty);
-            set => SetCurrentValue(MenuExpandedProperty, value); 
+            set => SetCurrentValue(MenuExpandedProperty, value);
         }
 
-        public FrameworkElement InnerContent 
+        public FrameworkElement InnerContent
         {
             get => (FrameworkElement)GetValue(InnerContentProperty);
             set => SetCurrentValue(InnerContentProperty, value);
@@ -54,6 +54,12 @@ namespace MusicPlayer.WPF.Controls
         public Menu()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.MenuExpanded = this.MenuExpanded == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+
         }
     }
 }

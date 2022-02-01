@@ -11,7 +11,7 @@
             <ResourceDictionary.MergedDictionaries>
 
                 <ResourceDictionary x:Name="Theme" Source="pack://siteoforigin:,,,/themes/darkTheme050621.xaml" />
-                <ResourceDictionary x:Name="App" Source="Resources\AppResources.xaml" />
+                <ResourceDictionary x:Name="App" Source="Resourses/ApplicationResources.xaml" />
                 <materialDesign:CustomColorTheme
                     BaseTheme="Dark"
                     PrimaryColor="White"

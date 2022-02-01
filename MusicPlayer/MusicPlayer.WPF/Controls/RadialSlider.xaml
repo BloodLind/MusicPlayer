@@ -1,53 +1,50 @@
-﻿<UserControl x:Class="MusicPlayer.WPF.Controls.RadialSlider"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MusicPlayer.WPF.Controls"
-             xmlns:convert="clr-namespace:MusicPlayer.WPF.Controls.Converters"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+﻿<UserControl
+    x:Class="MusicPlayer.WPF.Controls.RadialSlider"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:convert="clr-namespace:MusicPlayer.WPF.Controls.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MusicPlayer.WPF.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
     <UserControl.Resources>
-        <convert:ThumbSizeConverter x:Key="thumbHeightConverter" ScaleCoficient="5"></convert:ThumbSizeConverter>
-        <convert:ThumbSizeConverter x:Key="thumbWidthConverter" ScaleCoficient="16"></convert:ThumbSizeConverter>
-        <convert:AngleConverter x:Key="angleConverter" Maximum="140" Minimum="-140" Step="2.8"></convert:AngleConverter>
+        <convert:ThumbSizeConverter x:Key="thumbHeightConverter" ScaleCoficient="5" />
+        <convert:ThumbSizeConverter x:Key="thumbWidthConverter" ScaleCoficient="16" />
+        <convert:AngleConverter
+            x:Key="angleConverter"
+            Maximum="140"
+            Minimum="-140"
+            Step="2.8" />
     </UserControl.Resources>
-    <Grid
-        MouseDown="Grid_MouseDown"
-        MouseWheel="Grid_MouseWheel">
-        <Ellipse 
-                x:Name="elipse"
-                Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl},
-                Path=SliderColor}"
-                Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Path=BroderColor}"
-                StrokeThickness="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Path=Border}">
-        </Ellipse>
-        <Grid RenderTransformOrigin="0.5,0.5" Margin="15">
+    <Grid MouseDown="Grid_MouseDown" MouseWheel="Grid_MouseWheel">
+        <Ellipse
+            x:Name="elipse"
+            Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Path=SliderColor}"
+            Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Path=BroderColor}"
+            StrokeThickness="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Path=Border}" />
+        <Grid Margin="15" RenderTransformOrigin="0.5,0.5">
             <Grid.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, 
-                        Path=Value, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource angleConverter}}"/>
-                    <TranslateTransform/>
+                    <ScaleTransform />
+                    <SkewTransform />
+                    <RotateTransform Angle="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Path=Value, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource angleConverter}}" />
+                    <TranslateTransform />
                 </TransformGroup>
             </Grid.RenderTransform>
             <Grid.RowDefinitions>
-                <RowDefinition Height="3*"></RowDefinition>
-                <RowDefinition Height="16*"></RowDefinition>
-                <RowDefinition Height="25*"></RowDefinition>
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="16*" />
+                <RowDefinition Height="25*" />
             </Grid.RowDefinitions>
-            <Border 
-                VerticalAlignment="Top"
+            <Border
                 Grid.Row="1"
-                Background="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl},
-                Path=ThumbColor}" 
-                    CornerRadius="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor},
-                Path=ThumbRadius}"
-                    Height="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor},
-                Path=ActualHeight, Converter={StaticResource thumbHeightConverter}}"
-                   Width="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor},
-                Path=ActualWidth, Converter={StaticResource thumbWidthConverter}}"></Border>
+                Width="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=ActualWidth, Converter={StaticResource thumbWidthConverter}}"
+                Height="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=ActualHeight, Converter={StaticResource thumbHeightConverter}}"
+                VerticalAlignment="Top"
+                Background="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Path=ThumbColor}"
+                CornerRadius="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=ThumbRadius}" />
         </Grid>
 
     </Grid>

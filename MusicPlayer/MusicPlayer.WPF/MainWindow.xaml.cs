@@ -27,12 +27,12 @@ namespace MusicPlayer.WPF
             AppIssueScan();
             FileInfo[] themes = new DirectoryInfo(System.IO.Path.Combine(Environment.CurrentDirectory, "themes")).GetFiles();
             Uri uri = new Uri(themes[0].FullName, UriKind.Absolute);
-            
-           //ResourceDictionary dictionary = Application.LoadComponent(uri) as ResourceDictionary;
-           // Application.Current.Resources.MergedDictionaries.Add(dictionary);
+
+            //ResourceDictionary dictionary = Application.LoadComponent(uri) as ResourceDictionary;
+            // Application.Current.Resources.MergedDictionaries.Add(dictionary);
             InitializeComponent();
             this.Close();
-            
+
         }
         private void AppIssueScan()
         {

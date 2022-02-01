@@ -1,4 +1,5 @@
-﻿using MusicPlayer.Core.Models;
+﻿using MusicPlayer.PulseAudio.Base.Models;
+using MusicPlayer.PulseAudio.Tracks.Models;
 using MvvmCross.Commands;
 using System;
 using System.Collections.Generic;

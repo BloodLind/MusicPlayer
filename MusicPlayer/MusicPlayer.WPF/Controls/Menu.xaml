@@ -20,10 +20,14 @@
             Margin="15"
             Padding="0"
             HorizontalAlignment="Left"
+            Click="Button_Click"
             DockPanel.Dock="Top"
             Foreground="{DynamicResource ForegroundLightColor}"
             Style="{DynamicResource MaterialDesignFlatButton}">
-            <Image Height="18" Source="{DynamicResource Other}" />
+            <Image
+                Height="18"
+                RenderOptions.BitmapScalingMode="HighQuality"
+                Source="{DynamicResource Other}" />
         </Button>
         <!--<Border
             Width="5"
@@ -37,7 +41,10 @@
                 Width="45"
                 Height="45"
                 Padding="5">
-                <Image Height="23" Source="{DynamicResource Waves}" />
+                <Image
+                    Height="23"
+                    RenderOptions.BitmapScalingMode="HighQuality"
+                    Source="{DynamicResource Waves}" />
             </Border>
             <Label
                 Height="Auto"
@@ -56,7 +63,10 @@
                 Width="45"
                 Height="45"
                 Padding="5">
-                <Image Height="23" Source="{DynamicResource Library}" />
+                <Image
+                    Height="23"
+                    RenderOptions.BitmapScalingMode="HighQuality"
+                    Source="{DynamicResource Library}" />
             </Border>
             <Label
                 Height="Auto"
@@ -75,7 +85,10 @@
                 Width="45"
                 Height="45"
                 Padding="5">
-                <Image Height="23" Source="{DynamicResource Queue}" />
+                <Image
+                    Height="23"
+                    RenderOptions.BitmapScalingMode="HighQuality"
+                    Source="{DynamicResource Queue}" />
             </Border>
             <Label
                 Height="Auto"
@@ -105,7 +118,10 @@
                 Width="45"
                 Height="45"
                 Padding="5">
-                <Image Height="23" Source="{DynamicResource Playlists}" />
+                <Image
+                    Height="23"
+                    RenderOptions.BitmapScalingMode="HighQuality"
+                    Source="{DynamicResource Playlists}" />
             </Border>
             <Label
                 Height="Auto"

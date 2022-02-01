@@ -1,0 +1,17 @@
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Core\bin\Debug\net5.0\MusicPlayer.Core.deps.json
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Core\bin\Debug\net5.0\MusicPlayer.Core.dll
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Core\bin\Debug\net5.0\ref\MusicPlayer.Core.dll
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Core\bin\Debug\net5.0\MusicPlayer.Core.pdb
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Core\bin\Debug\net5.0\MusicPlayer.PulseAudio.Base.dll
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Core\bin\Debug\net5.0\MusicPlayer.PulseAudio.Tracks.dll
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Core\bin\Debug\net5.0\MusicPlayer.PulseAudio.Tracks.pdb
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Core\bin\Debug\net5.0\MusicPlayer.PulseAudio.Base.pdb
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Core\obj\Debug\net5.0\MusicPlayer.Core.csproj.AssemblyReference.cache
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Core\obj\Debug\net5.0\MusicPlayer.Core.GeneratedMSBuildEditorConfig.editorconfig
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Core\obj\Debug\net5.0\MusicPlayer.Core.AssemblyInfoInputs.cache
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Core\obj\Debug\net5.0\MusicPlayer.Core.AssemblyInfo.cs
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Core\obj\Debug\net5.0\MusicPlayer.Core.csproj.CoreCompileInputs.cache
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Core\obj\Debug\net5.0\MusicPlayer.Core.csproj.CopyComplete
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Core\obj\Debug\net5.0\MusicPlayer.Core.dll
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Core\obj\Debug\net5.0\ref\MusicPlayer.Core.dll
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Core\obj\Debug\net5.0\MusicPlayer.Core.pdb

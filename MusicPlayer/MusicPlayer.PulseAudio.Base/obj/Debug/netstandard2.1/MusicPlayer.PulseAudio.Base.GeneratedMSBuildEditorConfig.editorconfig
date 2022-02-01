@@ -1,0 +1,3 @@
+is_global = true
+build_property.RootNamespace = MusicPlayer.PulseAudio.Base
+build_property.ProjectDir = S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.PulseAudio.Base\

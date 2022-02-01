@@ -1,0 +1,400 @@
+{
+  "format": 1,
+  "restore": {
+    "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.WPF\\MusicPlayer.WPF.csproj": {}
+  },
+  "projects": {
+    "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.Core\\MusicPlayer.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.Core\\MusicPlayer.Core.csproj",
+        "projectName": "MusicPlayer.Core",
+        "projectPath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.Core\\MusicPlayer.Core.csproj",
+        "packagesPath": "C:\\Users\\BloodLind\\.nuget\\packages\\",
+        "outputPath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\BloodLind\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Tracks\\MusicPlayer.PulseAudio.Tracks.csproj": {
+                "projectPath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Tracks\\MusicPlayer.PulseAudio.Tracks.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "MvvmCross": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Base\\MusicPlayer.PulseAudio.Base.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Base\\MusicPlayer.PulseAudio.Base.csproj",
+        "projectName": "MusicPlayer.PulseAudio.Base",
+        "projectPath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Base\\MusicPlayer.PulseAudio.Base.csproj",
+        "packagesPath": "C:\\Users\\BloodLind\\.nuget\\packages\\",
+        "outputPath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Base\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\BloodLind\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Tracks\\MusicPlayer.PulseAudio.Tracks.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Tracks\\MusicPlayer.PulseAudio.Tracks.csproj",
+        "projectName": "MusicPlayer.PulseAudio.Tracks",
+        "projectPath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Tracks\\MusicPlayer.PulseAudio.Tracks.csproj",
+        "packagesPath": "C:\\Users\\BloodLind\\.nuget\\packages\\",
+        "outputPath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Tracks\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\BloodLind\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Base\\MusicPlayer.PulseAudio.Base.csproj": {
+                "projectPath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Base\\MusicPlayer.PulseAudio.Base.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "taglib-sharp-netstandard2.0": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.WPF.PulseAudio\\MusicPlayer.WPF.PulseAudio.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.WPF.PulseAudio\\MusicPlayer.WPF.PulseAudio.csproj",
+        "projectName": "MusicPlayer.WPF.PulseAudio",
+        "projectPath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.WPF.PulseAudio\\MusicPlayer.WPF.PulseAudio.csproj",
+        "packagesPath": "C:\\Users\\BloodLind\\.nuget\\packages\\",
+        "outputPath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.WPF.PulseAudio\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\BloodLind\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Base\\MusicPlayer.PulseAudio.Base.csproj": {
+                "projectPath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Base\\MusicPlayer.PulseAudio.Base.csproj"
+              },
+              "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Tracks\\MusicPlayer.PulseAudio.Tracks.csproj": {
+                "projectPath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Tracks\\MusicPlayer.PulseAudio.Tracks.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "ManagedBass": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.WPF\\MusicPlayer.WPF.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.WPF\\MusicPlayer.WPF.csproj",
+        "projectName": "MusicPlayer.WPF",
+        "projectPath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.WPF\\MusicPlayer.WPF.csproj",
+        "packagesPath": "C:\\Users\\BloodLind\\.nuget\\packages\\",
+        "outputPath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.WPF\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\BloodLind\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0-windows7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0-windows7.0": {
+            "targetAlias": "net5.0-windows",
+            "projectReferences": {
+              "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.Core\\MusicPlayer.Core.csproj": {
+                "projectPath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.Core\\MusicPlayer.Core.csproj"
+              },
+              "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Base\\MusicPlayer.PulseAudio.Base.csproj": {
+                "projectPath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Base\\MusicPlayer.PulseAudio.Base.csproj"
+              },
+              "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Tracks\\MusicPlayer.PulseAudio.Tracks.csproj": {
+                "projectPath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Tracks\\MusicPlayer.PulseAudio.Tracks.csproj"
+              },
+              "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.WPF.PulseAudio\\MusicPlayer.WPF.PulseAudio.csproj": {
+                "projectPath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.WPF.PulseAudio\\MusicPlayer.WPF.PulseAudio.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0-windows7.0": {
+          "targetAlias": "net5.0-windows",
+          "dependencies": {
+            "ManagedBass": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "MaterialDesignThemes": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "Microsoft.Xaml.Behaviors.Wpf": {
+              "target": "Package",
+              "version": "[1.1.39, )"
+            },
+            "MvvmCross": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
+            "MvvmCross.Platforms.Wpf": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
+            "Serilog.Extensions.Logging": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "System.Configuration.ConfigurationManager": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "TagLibSharp": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "VirtualizingWrapPanel": {
+              "target": "Package",
+              "version": "[1.5.7, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

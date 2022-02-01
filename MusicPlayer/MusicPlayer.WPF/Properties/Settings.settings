@@ -8,7 +8,7 @@
     <Setting Name="AlbumCoverSize" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">285</Value>
     </Setting>
-    <Setting Name="TrackCoverSize" Type="System.Int32" Scope="User">
+    <Setting Name="TrackCoverSize" Type="System.String" Scope="User">
       <Value Profile="(Default)">80</Value>
     </Setting>
   </Settings>

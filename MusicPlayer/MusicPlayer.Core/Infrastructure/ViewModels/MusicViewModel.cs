@@ -1,9 +1,9 @@
-﻿using ManagedBass;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using MusicPlayer.Core.Infrastructure.Interfaces;
-using MusicPlayer.Core.Models;
+using MusicPlayer.PulseAudio.Base;
+using MusicPlayer.PulseAudio.Base.Models;
+using MusicPlayer.PulseAudio.Tracks.Models;
 using MvvmCross.Commands;
-using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System;
@@ -11,7 +11,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Timers;
 
 namespace MusicPlayer.Core.Infrastructure.ViewModels
 {
@@ -26,18 +25,18 @@ namespace MusicPlayer.Core.Infrastructure.ViewModels
         private Track selectedTrack = new Track();
 
         public MusicViewModel(ILoggerFactory mvxLog, IMvxNavigationService service)
-            :base(mvxLog, service)
+            : base(mvxLog, service)
         {
             InitCommands();
             CoreApp.TimerElapsed += CoreApp_TimerElapsed;
             CurrentPosition = CoreApp.Player == null ? 0 : CoreApp.Player.CurrentPosition;
-            IsPlaying = CoreApp.Player == null? false : CoreApp.Player.PlaybackState == PlaybackState.Playing;
+            IsPlaying = CoreApp.Player == null ? false : CoreApp.Player.State == PlaybackState.Playing;
             CoreApp.PlayerLoaded += PlayerLoaded;
         }
 
         protected virtual void Player_CurrentTrackChanged(Track obj)
         {
-            SelectedTrack = obj;
+            SelectedTrack = (Track)obj;
             ResetTimer();
         }
         private void Player_StateChanged(PlaybackState obj)
@@ -111,19 +110,19 @@ namespace MusicPlayer.Core.Infrastructure.ViewModels
             {
                 CoreApp.Player.CurrentTrackChanged += Player_CurrentTrackChanged;
                 CoreApp.Player.StateChanged += Player_StateChanged;
-                IsPlaying = CoreApp.Player.PlaybackState == ManagedBass.PlaybackState.Playing;
+                IsPlaying = CoreApp.Player.State == PlaybackState.Playing;
                 CurrentPosition = CoreApp.Player.CurrentPosition;
                 Volume = CoreApp.Player.Volume;
-                SelectedTrack = CoreApp.Player.CurrentTrack;
+                SelectedTrack = (Track)CoreApp.Player.CurrentTrack;
             }
         }
 
-       
+
 
         protected void ResetTimer()
         {
 
-            if (CoreApp.Player.PlaybackState == ManagedBass.PlaybackState.Stopped)
+            if (CoreApp.Player.State == PlaybackState.Stopped)
             {
                 if (isPlaying)
                 {
@@ -152,7 +151,7 @@ namespace MusicPlayer.Core.Infrastructure.ViewModels
                 RaisePropertyChanged(() => IsPlaying);
             }
         }
-        public  double CurrentPosition
+        public double CurrentPosition
         {
             get => currentPosition;
             set

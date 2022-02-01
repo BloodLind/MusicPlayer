@@ -193,7 +193,7 @@
                     DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=view:CustomWindow}, Path=DataContext}"
                     DockPanel.Dock="Bottom" />
 
-                <controls:Menu ExpandedWidth="210" MenuExpanded="Visible" />
+                <controls:Menu ExpandedWidth="225" MenuExpanded="Visible" />
 
                 <!--#region Content-->
                 <ContentPresenter

@@ -22,10 +22,10 @@ namespace MusicPlayer.WPF
     /// </summary>
     public partial class App : MvxApplication
     {
-        
-        
+
+
         public static FlyWeightFactory<string, BitmapImage> images = new ImagesFlyWeightFactory();
- 
+
         protected override void RegisterSetup()
         {
             this.RegisterSetupType<WpfSetup>();

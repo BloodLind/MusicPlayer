@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "l9V2LCkMhczYHqOYv7uyPK/bg+1SixMc13+DnqFMLerlOBHbtcvcG61AIgpn2xTopk1z3Yn+OqBuYN+oYLf1Kg==",
+  "success": true,
+  "projectFilePath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.WPF.PulseAudio\\MusicPlayer.WPF.PulseAudio.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\BloodLind\\.nuget\\packages\\managedbass\\3.1.0\\managedbass.3.1.0.nupkg.sha512",
+    "C:\\Users\\BloodLind\\.nuget\\packages\\taglib-sharp-netstandard2.0\\2.1.0\\taglib-sharp-netstandard2.0.2.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}

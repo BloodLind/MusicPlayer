@@ -1,5 +1,8 @@
-﻿using MusicPlayer.Core.Models;
-using MusicPlayer.Core.Services;
+﻿using Microsoft.Extensions.Logging;
+using MusicPlayer.Core.Infrastructure.ViewModels;
+using MusicPlayer.PulseAudio.Base.Models;
+using MusicPlayer.PulseAudio.Tracks.Models;
+using MusicPlayer.PulseAudio.Tracks.Services;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -7,11 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Timers;
 using System.Threading.Tasks;
-using MusicPlayer.Core.Infrastructure.ViewModels;
-using MvvmCross.Logging;
-using Microsoft.Extensions.Logging;
 
 namespace MusicPlayer.Core.ViewModels
 {
@@ -29,7 +28,6 @@ namespace MusicPlayer.Core.ViewModels
             InitCommands();
         }
 
-       
 
         #region Collections
         public MvxObservableCollection<Track> Tracks { get; set; } = new MvxObservableCollection<Track>();
@@ -47,7 +45,7 @@ namespace MusicPlayer.Core.ViewModels
                 UpdateCollections(files);
             });
         }
-        
+
         public void UpdateCollections(IEnumerable<string> files)
         {
             TracksManager tracksManager = new TracksManager();
@@ -56,7 +54,7 @@ namespace MusicPlayer.Core.ViewModels
             AddToCollection(Albums, tracksManager.GetAlbums(Tracks));
 
             CoreApp.InitializatePlayer(Tracks);
-            SelectedTrack = CoreApp.Player.CurrentTrack;
+            SelectedTrack = (Track)CoreApp.Player.CurrentTrack;
             CoreApp.Player.CurrentTrackChanged += Player_CurrentTrackChanged;
         }
 
@@ -69,7 +67,7 @@ namespace MusicPlayer.Core.ViewModels
                 CoreApp.Player.Play();
                 ResetTimer();
             });
-            
+
         }
         #endregion
 

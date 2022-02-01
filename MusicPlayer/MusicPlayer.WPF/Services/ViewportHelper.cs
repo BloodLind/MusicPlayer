@@ -42,8 +42,8 @@ namespace MusicPlayer.WPF.Services
             Rect bounds = element.TransformToAncestor(container).TransformBounds(new Rect(0.0, 0.0, element.RenderSize.Width, element.RenderSize.Height));
             Rect rect = new Rect(0.0, 0.0, container.ActualWidth, container.ActualHeight);
             return rect.IntersectsWith(bounds);
-        } 
+        }
     }
 
-    
+
 }

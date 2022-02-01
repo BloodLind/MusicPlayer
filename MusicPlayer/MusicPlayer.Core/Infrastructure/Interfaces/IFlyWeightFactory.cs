@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MusicPlayer.Core.Infrastructure.Interfaces
 {
-    public interface IFlyWeightFactory<TKey,TValue>
+    public interface IFlyWeightFactory<TKey, TValue>
     {
 
         TValue GetData(TValue value);

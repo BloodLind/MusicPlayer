@@ -24,7 +24,7 @@ namespace MusicPlayer.WPF.Views
     /// Логика взаимодействия для NowPlayingView.xaml
     /// </summary>
     ///
-    [MvxContentPresentation(StackNavigation = true, WindowIdentifier =  nameof(RootView))]
+    [MvxContentPresentation(StackNavigation = true, WindowIdentifier = nameof(RootView))]
     public partial class NowPlayingView : MvxWpfView
     {
         NowPlayingViewModel viewModel;
@@ -39,12 +39,13 @@ namespace MusicPlayer.WPF.Views
             viewModel = (NowPlayingViewModel)DataContext;
         }
 
-        
 
 
 
-        void Slider_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e) { //viewModel.IsPositionChanging = true;
-                                                                                        }
+
+        void Slider_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        { //viewModel.IsPositionChanging = true;
+        }
 
         void Slider_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -54,7 +55,7 @@ namespace MusicPlayer.WPF.Views
         }
 
         //private void Slider_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
-          //  => viewModel.IsPositionChanging = true;
+        //  => viewModel.IsPositionChanging = true;
 
         private void Slider_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
         {

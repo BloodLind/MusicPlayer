@@ -17,7 +17,7 @@ namespace MusicPlayer.Core.Services.Factories
         }
         public TValue GetData(TValue value)
         {
-           TKey key = GetKey(value);
+            TKey key = GetKey(value);
             if (IsKeyAvaible(key))
             {
                 CachedData.Add(key, value);

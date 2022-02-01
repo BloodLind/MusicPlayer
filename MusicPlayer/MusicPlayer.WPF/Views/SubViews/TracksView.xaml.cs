@@ -1,5 +1,6 @@
-﻿using MusicPlayer.Core.Models;
+﻿
 using MusicPlayer.Core.ViewModels;
+using MusicPlayer.PulseAudio.Base.Models;
 using MusicPlayer.WPF.Services;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace MusicPlayer.WPF.Views.SubViews
     /// </summary>
     public partial class TracksView : UserControl
     {
-        
+
         public TracksView()
         {
             InitializeComponent();
@@ -35,22 +36,22 @@ namespace MusicPlayer.WPF.Views.SubViews
         {
             Application.Current.Dispatcher.InvokeAsync(() =>
             {
-                if(ViewportHelper.IsItemInViewport(this))
-                foreach(Track track in TracksListView.ItemsSource)
-                {
-                    ListViewItem item = TracksListView.ItemContainerGenerator.ContainerFromItem(track) as ListViewItem;
-                    if (!ViewportHelper.IsContainerItemInViewport(item))
+                if (ViewportHelper.IsItemInViewport(this))
+                    foreach (Track track in TracksListView.ItemsSource)
                     {
-                        string key = String.Join("_", track.Artist, track.Album);
+                        ListViewItem item = TracksListView.ItemContainerGenerator.ContainerFromItem(track) as ListViewItem;
+                        if (!ViewportHelper.IsContainerItemInViewport(item))
+                        {
+                            string key = String.Join("_", track.Artist, track.Album);
                             if (!App.images.IsKeyAvaible(key))
                             {
                                 App.images.RemoveData(key);
                                 Console.WriteLine(key);
                             }
+                        }
                     }
-                 }
-                
-                
+
+
             });
         }
 
@@ -68,7 +69,7 @@ namespace MusicPlayer.WPF.Views.SubViews
             Console.WriteLine(e.Value.ToString() + "\t");
             Track track = e.Value as Track;
             string key = String.Join("_", track.Artist, track.Album);
-            if(App.images.IsKeyAvaible(key) == false)
+            if (App.images.IsKeyAvaible(key) == false)
                 App.images.RemoveData(key);
         }
     }

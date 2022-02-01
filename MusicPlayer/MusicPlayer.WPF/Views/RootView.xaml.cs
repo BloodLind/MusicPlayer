@@ -22,7 +22,7 @@ namespace MusicPlayer.WPF.Views
     /// Логика взаимодействия для MainView.xaml
     /// </summary>
     /// 
-    
+
     [MvxWindowPresentation(Identifier = nameof(RootView))]
     public partial class RootView : CustomWindow
     {

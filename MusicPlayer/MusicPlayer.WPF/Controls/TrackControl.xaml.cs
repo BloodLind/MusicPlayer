@@ -1,5 +1,6 @@
 ﻿using MusicPlayer.Core;
 using MusicPlayer.Core.Infrastructure.Interfaces;
+using MusicPlayer.Core.Infrastructure.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace MusicPlayer.WPF.Controls
     public partial class TrackControl : UserControl
     {
 
-        private ITrackController viewModel;
+        private MusicViewModel viewModel;
 
         public TrackControl()
         {
@@ -33,7 +34,7 @@ namespace MusicPlayer.WPF.Controls
 
         private void TrackManageView_Loaded(object sender, RoutedEventArgs e)
         {
-            viewModel = (ITrackController)this.DataContext;
+            viewModel = (MusicViewModel)this.DataContext;
         }
 
         public void PlayPauseClick(object sender, RoutedEventArgs e)
@@ -60,6 +61,6 @@ namespace MusicPlayer.WPF.Controls
             viewModel.IsPositionChanging = false;
             CoreApp.Player.CurrentPosition = viewModel.CurrentPosition;
         }
-        
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
-using MusicPlayer.Core.Infrastructure.ViewModels;
-using MusicPlayer.Core.Models;
+using MusicPlayer.PulseAudio.Base.Models;
+using MusicPlayer.PulseAudio.Tracks.Models;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -9,11 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Timers;
 
 namespace MusicPlayer.Core.ViewModels
 {
-
     public class NowPlayingViewModel : MvxNavigationViewModel<Track>
     {
         private Track selectedTrack;

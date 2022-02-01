@@ -1,6 +1,5 @@
 ﻿using MaterialDesignThemes.Wpf;
 using MusicPlayer.Core;
-using MusicPlayer.Core.Models;
 using MusicPlayer.Core.Services;
 using MusicPlayer.Core.ViewModels;
 using MusicPlayer.WPF.Infrastructure;
@@ -35,20 +34,19 @@ namespace MusicPlayer.WPF.Views
         private HomeViewModel viewModel;
         public HomeView()
         {
-            
             InitializeComponent();
             //this.DataContext = CoreApp.Navigation.HomeView;
             this.Loaded += HomeView_Loaded;
         }
-        
-       
 
-        
+
+
+
 
         private void HomeView_Loaded(object sender, RoutedEventArgs e)
         {
             viewModel = (HomeViewModel)this.DataContext;
-            if(Core.CoreApp.IsScaned)
+            if (Core.CoreApp.IsScaned)
                 return;
             CoreApp.SetScanned();
             ScanMusic();
@@ -58,15 +56,15 @@ namespace MusicPlayer.WPF.Views
         {
             CatalogScaner catalogScaner = new CatalogScaner();
             List<string> files = new List<string>();
-            if(File.Exists("catalogs.jar"))
+            if (File.Exists("catalogs.jar"))
             {
-                
+
             }
             else
             {
                 //catalogScaner.ScanFolder(Environment.GetFolderPath(Environment.SpecialFolder.MyMusic));
                 //Change when work on your computer!
-                catalogScaner.ScanFolder(@"A:\Music\");
+                catalogScaner.ScanFolder(@"S:\Music\");
             }
 
 

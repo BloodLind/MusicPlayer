@@ -1,10 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using MusicPlayer.Core.Infrastructure.ViewModels;
-using MusicPlayer.Core.Models;
+using MusicPlayer.PulseAudio.Base.Models;
+using MusicPlayer.PulseAudio.Tracks.Models;
 using MvvmCross.Commands;
-using MvvmCross.Logging;
 using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +15,6 @@ namespace MusicPlayer.Core.ViewModels
     public class RootViewModel : MusicViewModel, IMenuViewModel
     {
         #region Fields
-        private bool isMenuExpanded;
         #endregion
 
         public RootViewModel(ILoggerFactory mvxLog, IMvxNavigationService mvxNavigationService)
@@ -25,16 +23,16 @@ namespace MusicPlayer.Core.ViewModels
             InitializeCommands();
             ShowHome = new MvxCommand(() => this.NavigationService.Navigate<HomeViewModel>());
         }
-       
+
         private void InitializeCommands()
         {
             ShowHome = new MvxCommand(() => NavigationService.Navigate(CoreApp.Navigation.HomeView));
             TrackInfoCommand = new MvxCommand(() => NavigationService.Navigate<NowPlayingViewModel, Track>(SelectedTrack));
-            ChangeMenuStatement = new MvxCommand(() => IsMenuExpanded = !IsMenuExpanded);
+
         }
 
         #region Properties
-            public bool IsMenuExpanded { get => isMenuExpanded; set { isMenuExpanded = value; RaisePropertyChanged(() => IsMenuExpanded); } }
+
         #endregion
 
 
@@ -43,7 +41,6 @@ namespace MusicPlayer.Core.ViewModels
         public IMvxCommand ShowMenu { get; private set; }
         public IMvxCommand ShowHome { get; private set; }
         public IMvxCommand ShowPlaylists { get; private set; }
-        public IMvxCommand ChangeMenuStatement { get; private set; }
         #endregion
     }
 }

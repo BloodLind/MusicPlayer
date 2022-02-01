@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="DSP\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ManagedBass" Version="3.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MusicPlayer.PulseAudio.Base\MusicPlayer.PulseAudio.Base.csproj" />
+    <ProjectReference Include="..\MusicPlayer.PulseAudio.Tracks\MusicPlayer.PulseAudio.Tracks.csproj" />
+  </ItemGroup>
+
+</Project>
