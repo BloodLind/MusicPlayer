@@ -1,6 +1,7 @@
 ﻿using MusicPlayer.Core;
 using MusicPlayer.Core.ViewModels;
 using MusicPlayer.WPF.Infrastructure;
+using MusicPlayer.WPF.Services;
 using MvvmCross.Platforms.Wpf.Presenters.Attributes;
 using MvvmCross.Platforms.Wpf.Views;
 using System;
@@ -27,40 +28,39 @@ namespace MusicPlayer.WPF.Views
     [MvxContentPresentation(StackNavigation = true, WindowIdentifier = nameof(RootView))]
     public partial class NowPlayingView : MvxWpfView
     {
+        private bool resized = false;
         NowPlayingViewModel viewModel;
         public NowPlayingView()
         {
             InitializeComponent();
             this.Loaded += NowPlayingView_Loaded;
+            this.Unloaded += NowPlayingView_Unloaded;
+            this.SizeChanged += NowPlayingView_SizeChanged;
+        }
+
+        private void NowPlayingView_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+           if(this.ActualWidth <= 600)
+            {
+                this.RightSide.Visibility = Visibility.Collapsed;
+                this.LeftSide.HorizontalAlignment = HorizontalAlignment.Center;
+            }
+           else
+            {
+                this.RightSide.Visibility = Visibility.Visible;
+                this.LeftSide.HorizontalAlignment = HorizontalAlignment.Stretch;
+            }
+        }
+
+        private void NowPlayingView_Unloaded(object sender, RoutedEventArgs e)
+        {
+            (Application.Current.MainWindow as RootView).ChangeMenuVisibility(Visibility.Visible);
         }
 
         private void NowPlayingView_Loaded(object sender, RoutedEventArgs e)
         {
             viewModel = (NowPlayingViewModel)DataContext;
-        }
-
-
-
-
-
-        void Slider_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        { //viewModel.IsPositionChanging = true;
-        }
-
-        void Slider_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            //viewModel.IsPositionChanging = false;
-            //viewModel.CurrentPosition = ((Slider)sender).Value;
-            //CoreApp.Player.CurrentPosition = viewModel.CurrentPosition;
-        }
-
-        //private void Slider_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
-        //  => viewModel.IsPositionChanging = true;
-
-        private void Slider_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
-        {
-            //viewModel.IsPositionChanging = false;
-            //CoreApp.Player.CurrentPosition = viewModel.CurrentPosition;
+            (Parent as RootView).ChangeMenuVisibility(Visibility.Collapsed);
         }
 
     }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using MusicPlayer.Core.ViewModels.ModalViewModels;
 using MusicPlayer.PulseAudio.Base.Models;
 using MusicPlayer.PulseAudio.Tracks.Models;
 using MvvmCross.Commands;
@@ -27,6 +28,13 @@ namespace MusicPlayer.Core.ViewModels
             {
                 NavigationService.Close(this);
             });
+
+            MoreCommand = new MvxCommand(() =>
+            {
+               TrackManagerViewModel viewModel = new(selectedTrack, this.LoggerFactory, this.NavigationService);
+               viewModel.CurrentTrack = SelectedTrack;
+               NavigationService.Navigate<ModalViewModel, Action<IMvxNavigationService>>((service) => service.Navigate(viewModel));
+            });
         }
 
         public override void Prepare(Track parameter)
@@ -37,6 +45,7 @@ namespace MusicPlayer.Core.ViewModels
 
         #region Commands
         public IMvxCommand ReturnCommand { get; private set; }
+        public IMvxCommand MoreCommand { get; private set; }
         #endregion
 
         #region Properties

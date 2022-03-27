@@ -13,5 +13,6 @@ namespace MusicPlayer.PulseAudio.Tracks.Services.Interfaces
     {
         ITrackInfoEditor EditFile(Track track);
         Track TrackByPath(string path);
+        string GetExtension(string path);
     }
 }

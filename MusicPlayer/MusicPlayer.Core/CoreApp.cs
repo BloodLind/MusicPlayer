@@ -2,6 +2,9 @@
 using MusicPlayer.PulseAudio.Base;
 using MusicPlayer.PulseAudio.Base.Models;
 using MusicPlayer.PulseAudio.Tracks.Models;
+using MusicPlayer.PulseAudio.Tracks.Services;
+using MusicPlayer.PulseAudio.Tracks.Services.Interfaces;
+using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
 using System;
@@ -25,7 +28,7 @@ namespace MusicPlayer.Core
                 .EndingWith("Service")
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
-
+            Mvx.IoCProvider.RegisterType<ITrackInfoGrabber, TrackInfoGrabber>();
             RegisterCustomAppStart<CoreAppInitializer>();
 
         }
@@ -56,11 +59,12 @@ namespace MusicPlayer.Core
 
         public static void InitializatePlayer(IEnumerable<Track> tracks)
         {
-            if(Player?.Queue.Count > 1)
+            Player ??= Mvx.IoCProvider.Resolve<IPulseAudioBase>();
+            if(Player.Queue == null)
             {
                 Player.SetQueue(tracks);
                 PlayerLoaded?.Invoke();
-            }
+            } 
         }
 
         //Remove this after remake file proccessing

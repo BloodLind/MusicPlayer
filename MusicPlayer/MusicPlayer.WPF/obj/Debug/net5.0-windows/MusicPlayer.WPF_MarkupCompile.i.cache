@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\
+A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\
 MusicPlayer.WPF
 none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
-S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\App.xaml
-10705095131
+A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\App.xaml
+13-1652660556
 
-28-1306671089
-214-1686623673
-Controls\Menu.xaml;Controls\RadialSlider.xaml;Controls\TrackControl.xaml;MainWindow.xaml;Resources\ApplicationResources.xaml;Views\HomeView.xaml;Views\NowPlayingView.xaml;Views\RootView.xaml;Views\SubViews\ArtistsView.xaml;Views\SubViews\TracksView.xaml;
+321811687184
+214-1485211171
+Controls\Menu.xaml;Controls\RadialSlider.xaml;Controls\TrackControl.xaml;MainWindow.xaml;Resources\ApplicationResources.xaml;Views\HomeView.xaml;Views\ModalView.xaml;Views\ModalViews\AddToPlaylistView.xaml;Views\ModalViews\TrackManagerView.xaml;Views\NowPlayingView.xaml;Views\RootView.xaml;Views\SubViews\ArtistsView.xaml;Views\SubViews\TracksView.xaml;
 
-True
+False
 

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.Core\\MusicPlayer.Core.csproj": {}
+    "A:\\Projects\\MusicPlayer\\MusicPlayer\\MusicPlayer.Core\\MusicPlayer.Core.csproj": {}
   },
   "projects": {
-    "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.Core\\MusicPlayer.Core.csproj": {
+    "A:\\Projects\\MusicPlayer\\MusicPlayer\\MusicPlayer.Core\\MusicPlayer.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.Core\\MusicPlayer.Core.csproj",
+        "projectUniqueName": "A:\\Projects\\MusicPlayer\\MusicPlayer\\MusicPlayer.Core\\MusicPlayer.Core.csproj",
         "projectName": "MusicPlayer.Core",
-        "projectPath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.Core\\MusicPlayer.Core.csproj",
+        "projectPath": "A:\\Projects\\MusicPlayer\\MusicPlayer\\MusicPlayer.Core\\MusicPlayer.Core.csproj",
         "packagesPath": "C:\\Users\\BloodLind\\.nuget\\packages\\",
-        "outputPath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.Core\\obj\\",
+        "outputPath": "A:\\Projects\\MusicPlayer\\MusicPlayer\\MusicPlayer.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -28,15 +28,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Tracks\\MusicPlayer.PulseAudio.Tracks.csproj": {
-                "projectPath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Tracks\\MusicPlayer.PulseAudio.Tracks.csproj"
+              "A:\\Projects\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Tracks\\MusicPlayer.PulseAudio.Tracks.csproj": {
+                "projectPath": "A:\\Projects\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Tracks\\MusicPlayer.PulseAudio.Tracks.csproj"
               }
             }
           }
@@ -71,18 +70,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Base\\MusicPlayer.PulseAudio.Base.csproj": {
+    "A:\\Projects\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Base\\MusicPlayer.PulseAudio.Base.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Base\\MusicPlayer.PulseAudio.Base.csproj",
+        "projectUniqueName": "A:\\Projects\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Base\\MusicPlayer.PulseAudio.Base.csproj",
         "projectName": "MusicPlayer.PulseAudio.Base",
-        "projectPath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Base\\MusicPlayer.PulseAudio.Base.csproj",
+        "projectPath": "A:\\Projects\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Base\\MusicPlayer.PulseAudio.Base.csproj",
         "packagesPath": "C:\\Users\\BloodLind\\.nuget\\packages\\",
-        "outputPath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Base\\obj\\",
+        "outputPath": "A:\\Projects\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Base\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -99,7 +98,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -132,18 +130,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Tracks\\MusicPlayer.PulseAudio.Tracks.csproj": {
+    "A:\\Projects\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Tracks\\MusicPlayer.PulseAudio.Tracks.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Tracks\\MusicPlayer.PulseAudio.Tracks.csproj",
+        "projectUniqueName": "A:\\Projects\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Tracks\\MusicPlayer.PulseAudio.Tracks.csproj",
         "projectName": "MusicPlayer.PulseAudio.Tracks",
-        "projectPath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Tracks\\MusicPlayer.PulseAudio.Tracks.csproj",
+        "projectPath": "A:\\Projects\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Tracks\\MusicPlayer.PulseAudio.Tracks.csproj",
         "packagesPath": "C:\\Users\\BloodLind\\.nuget\\packages\\",
-        "outputPath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Tracks\\obj\\",
+        "outputPath": "A:\\Projects\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Tracks\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -160,15 +158,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Base\\MusicPlayer.PulseAudio.Base.csproj": {
-                "projectPath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Base\\MusicPlayer.PulseAudio.Base.csproj"
+              "A:\\Projects\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Base\\MusicPlayer.PulseAudio.Base.csproj": {
+                "projectPath": "A:\\Projects\\MusicPlayer\\MusicPlayer\\MusicPlayer.PulseAudio.Base\\MusicPlayer.PulseAudio.Base.csproj"
               }
             }
           }
@@ -203,7 +200,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

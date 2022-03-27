@@ -1,12 +1,14 @@
 ﻿
-FS:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\App.xaml;;
-FS:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Controls\Menu.xaml;;
-FS:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Controls\RadialSlider.xaml;;
-FS:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Controls\TrackControl.xaml;;
-FS:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\MainWindow.xaml;;
-FS:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Views\HomeView.xaml;;
-FS:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Views\NowPlayingView.xaml;;
-FS:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Views\RootView.xaml;;
-FS:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Views\SubViews\ArtistsView.xaml;;
-FS:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Views\SubViews\TracksView.xaml;;
+FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\App.xaml;;
+FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Controls\Menu.xaml;;
+FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Controls\RadialSlider.xaml;;
+FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Controls\TrackControl.xaml;;
+FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\MainWindow.xaml;;
+FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Views\HomeView.xaml;;
+FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Views\ModalView.xaml;;
+FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Views\ModalViews\TrackManagerView.xaml;;
+FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Views\NowPlayingView.xaml;;
+FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Views\RootView.xaml;;
+FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Views\SubViews\ArtistsView.xaml;;
+FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Views\SubViews\TracksView.xaml;;
 

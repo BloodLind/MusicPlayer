@@ -33,7 +33,7 @@
             <Image.Source>
                 <MultiBinding Converter="{StaticResource imageConverter}">
                     <Binding Path="SelectedTrack" />
-                    <Binding Path="TrackCoverSize" Source="{x:Static properties:Settings.Default}" />
+                    <Binding Path="TrackCoverSize" Source="{x:Static properties:GlobalSettings.Default}" />
                 </MultiBinding>
 
             </Image.Source>
@@ -42,28 +42,29 @@
             </Image.Effect>
         </Image>
 
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-            </Grid.RowDefinitions>
 
+        <Viewbox
+            MinHeight="400"
+            MaxWidth="1020"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
+            Stretch="Uniform"
+            StretchDirection="Both">
 
-
-            <Grid Grid.Row="1">
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-
-                <Rectangle
-                    Grid.Column="0"
-                    Margin="35"
+            <UniformGrid
+                MinHeight="350"
+                Margin="20"
+                HorizontalAlignment="Left"
+                Columns="2">
+                <materialDesign:Card
+                    Name="LeftSide"
+                    Height="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualWidth}"
+                    MinWidth="450"
+                    Margin="40,0,0,40"
+                    VerticalAlignment="Bottom"
                     materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                    RadiusX="5"
-                    RadiusY="5">
-
-                    <Rectangle.Fill>
+                    UniformCornerRadius="5">
+                    <materialDesign:Card.Background>
                         <ImageBrush>
                             <ImageBrush.ImageSource>
                                 <MultiBinding Converter="{StaticResource imageConverter}">
@@ -71,106 +72,27 @@
                                 </MultiBinding>
                             </ImageBrush.ImageSource>
                         </ImageBrush>
-                    </Rectangle.Fill>
+                    </materialDesign:Card.Background>
 
-                </Rectangle>
-
-
-                <materialDesign:Card
-                    Grid.Column="1"
-                    Margin="35"
-                    Background="{DynamicResource PrimaryDarkColor}"
-                    Opacity="0.4"
-                    UniformCornerRadius="5" />
-
-                <Grid Grid.Column="1" Margin="50">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="417*" />
-                        <RowDefinition Height="90*" />
-                    </Grid.RowDefinitions>
-
-                    <Grid Grid.Row="0" Margin="0,50,0,25">
+                    <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="41*" />
-                            <RowDefinition Height="18*" />
+                            <RowDefinition Height="10*" />
+                            <RowDefinition Height="2*" />
                         </Grid.RowDefinitions>
-                        <StackPanel Grid.RowSpan="1" VerticalAlignment="Center">
-
-                            <TextBlock
-                                Margin="75,15,25,5"
-                                FontSize="30"
-                                FontWeight="Medium"
-                                Foreground="{DynamicResource ForegroundLightColor}"
-                                Style="{StaticResource MaterialDesignCaptionTextBlock}"
-                                Text="{Binding SelectedTrack.Title, UpdateSourceTrigger=PropertyChanged}"
-                                TextWrapping="Wrap" />
-                            <TextBlock
-                                Margin="75,0,25,0"
-                                FontSize="26"
-                                Foreground="{DynamicResource ForegroundMidColor}"
-                                Style="{StaticResource MaterialDesignCaptionTextBlock}"
-                                TextWrapping="Wrap">
-                                <TextBlock.Text>
-                                    <MultiBinding Converter="{StaticResource trackMultiConverter}">
-                                        <Binding Path="SelectedTrack.Artist" />
-                                        <Binding Path="SelectedTrack.Album" />
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
-                        </StackPanel>
-
-                        <Grid
-                            Grid.Row="1"
-                            Margin="75,15,25,0"
-                            VerticalAlignment="Top">
-                            <Grid.ColumnDefinitions>
-
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock
-                                Grid.Column="0"
-                                FontSize="28"
-                                FontWeight="Medium"
-                                Foreground="{DynamicResource ForegroundLightColor}"
-                                Style="{StaticResource MaterialDesignCaptionTextBlock}"
-                                Text="{Binding SelectedTrack.Genre, UpdateSourceTrigger=PropertyChanged}"
-                                TextWrapping="Wrap" />
-                            <StackPanel
-                                Grid.Column="2"
-                                HorizontalAlignment="Center"
-                                Orientation="Horizontal">
-                                <Image
-                                    Width="35"
-                                    Height="35"
-                                    Margin="5"
-                                    RenderOptions.BitmapScalingMode="HighQuality"
-                                    Source="{DynamicResource SoundWave}" />
-                                <Rectangle
-                                    Width="3"
-                                    Height="35"
-                                    Margin="0,10,0,10"
-                                    Fill="{DynamicResource ForegroundLightColor}" />
-                                <TextBlock
-                                    Grid.Column="0"
-                                    Margin="5"
-                                    VerticalAlignment="Center"
-                                    FontSize="28"
-                                    FontWeight="Medium"
-                                    Foreground="{DynamicResource ForegroundLightColor}"
-                                    Style="{StaticResource MaterialDesignCaptionTextBlock}"
-                                    Text="{Binding SelectedTrack.PlayTime, Converter={StaticResource timeConverter}}" />
-                            </StackPanel>
-                        </Grid>
-                    </Grid>
-
-                    <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
                             <ColumnDefinition />
                             <ColumnDefinition />
+                            <ColumnDefinition />
                         </Grid.ColumnDefinitions>
+                        <materialDesign:Card
+                            Grid.Row="1"
+                            Grid.ColumnSpan="4"
+                            Background="{DynamicResource PrimaryDarkColor}"
+                            Opacity="0.85" />
+
                         <Button
+                            Grid.Row="1"
                             Grid.Column="0"
                             Width="55"
                             Height="50"
@@ -186,6 +108,7 @@
                                 Stretch="Fill" />
                         </Button>
                         <Button
+                            Grid.Row="1"
                             Grid.Column="1"
                             Width="55"
                             Height="50"
@@ -201,7 +124,24 @@
                                 Stretch="Uniform" />
                         </Button>
                         <Button
+                            Grid.Row="1"
                             Grid.Column="2"
+                            Width="55"
+                            Height="50"
+                            Padding="0"
+                            BorderBrush="Transparent"
+                            Command="{Binding MoreCommand}"
+                            Style="{DynamicResource MaterialDesignFlatButton}">
+                            <Image
+                                Width="40"
+                                Height="35"
+                                RenderOptions.BitmapScalingMode="HighQuality"
+                                Source="{DynamicResource Other}"
+                                Stretch="Fill" />
+                        </Button>
+                        <Button
+                            Grid.Row="1"
+                            Grid.Column="3"
                             Width="55"
                             Height="50"
                             Padding="0"
@@ -216,19 +156,32 @@
                                 Stretch="Fill" />
                         </Button>
                     </Grid>
+                </materialDesign:Card>
 
+                <Grid
+                    x:Name="RightSide"
+                    Grid.Column="1"
+                    Height="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualWidth}"
+                    MinWidth="350"
+                    Margin="40,0,0,40"
+                    VerticalAlignment="Bottom">
 
+                    <materialDesign:Card
+                        Height="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualWidth}"
+                        VerticalAlignment="Bottom"
+                        Background="{DynamicResource PrimaryDarkColor}"
+                        Opacity="0.85"
+                        UniformCornerRadius="5" />
+                    <TextBlock
+                        FontSize="18"
+                        FontWeight="Medium"
+                        Foreground="{DynamicResource ForegroundLightColor}"
+                        Style="{StaticResource MaterialDesignCaptionTextBlock}"
+                        Text="{Binding SelectedTrack.Title}"
+                        TextWrapping="Wrap" />
                 </Grid>
-
-
-
-            </Grid>
-
-
-
-
-
-        </Grid>
+            </UniformGrid>
+        </Viewbox>
 
     </Grid>
 </view:MvxWpfView>

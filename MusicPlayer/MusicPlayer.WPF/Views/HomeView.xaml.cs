@@ -2,6 +2,7 @@
 using MusicPlayer.Core;
 using MusicPlayer.Core.Services;
 using MusicPlayer.Core.ViewModels;
+using MusicPlayer.PulseAudio.Tracks.Services;
 using MusicPlayer.WPF.Infrastructure;
 using MvvmCross.Platforms.Wpf.Presenters.Attributes;
 using MvvmCross.Platforms.Wpf.Views;
@@ -46,7 +47,7 @@ namespace MusicPlayer.WPF.Views
         private void HomeView_Loaded(object sender, RoutedEventArgs e)
         {
             viewModel = (HomeViewModel)this.DataContext;
-            if (Core.CoreApp.IsScaned)
+            if (CoreApp.IsScaned)
                 return;
             CoreApp.SetScanned();
             ScanMusic();
@@ -64,7 +65,7 @@ namespace MusicPlayer.WPF.Views
             {
                 //catalogScaner.ScanFolder(Environment.GetFolderPath(Environment.SpecialFolder.MyMusic));
                 //Change when work on your computer!
-                catalogScaner.ScanFolder(@"S:\Music\");
+                catalogScaner.ScanFolder(@"A:\Music\");
             }
 
 

@@ -46,13 +46,13 @@
 
                     <Grid Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListView}, Path=ActualWidth}" Margin="5">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="{Binding Source={x:Static properties:Settings.Default}, Path=TrackCoverSize}" />
+                            <ColumnDefinition Width="{Binding Source={x:Static properties:GlobalSettings.Default}, Path=TrackCoverSize}" />
                             <ColumnDefinition Width="8*" />
                         </Grid.ColumnDefinitions>
                         <Rectangle
                             Grid.Column="0"
-                            Width="{Binding Source={x:Static properties:Settings.Default}, Path=TrackCoverSize}"
-                            Height="{Binding Source={x:Static properties:Settings.Default}, Path=TrackCoverSize}"
+                            Width="{Binding Source={x:Static properties:GlobalSettings.Default}, Path=TrackCoverSize}"
+                            Height="{Binding Source={x:Static properties:GlobalSettings.Default}, Path=TrackCoverSize}"
                             HorizontalAlignment="Center"
                             RadiusX="10"
                             RadiusY="10">
@@ -61,7 +61,7 @@
                                     <ImageBrush.ImageSource>
                                         <MultiBinding Converter="{StaticResource imageConverter}">
                                             <Binding Path="." />
-                                            <Binding Path="TrackCoverSize" Source="{x:Static properties:Settings.Default}" />
+                                            <Binding Path="TrackCoverSize" Source="{x:Static properties:GlobalSettings.Default}" />
                                         </MultiBinding>
                                     </ImageBrush.ImageSource>
                                 </ImageBrush>

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fJG34+v0VqZBxgMW8rHNkdBBnmbwnT4orIpJrGgYq4FFRpy5dGLw++8utu9V+vHvGvOzsRLBG7wOCmWTj7GYIA==",
+  "dgSpecHash": "UaynI90E+Ueqvk6d5faZfT/xKx56zfRczEi5w0rS4n1Vg8yLle7+QPzeHHQmiGnXJCf30dzkjfvAAbIbeETFPA==",
   "success": true,
-  "projectFilePath": "S:\\_WorkFiles\\StepThings\\MusicPlayer\\MusicPlayer\\MusicPlayer.WPF\\MusicPlayer.WPF.csproj",
+  "projectFilePath": "A:\\Projects\\MusicPlayer\\MusicPlayer\\MusicPlayer.WPF\\MusicPlayer.WPF.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\BloodLind\\.nuget\\packages\\managedbass\\3.1.0\\managedbass.3.1.0.nupkg.sha512",
     "C:\\Users\\BloodLind\\.nuget\\packages\\materialdesigncolors\\2.0.4\\materialdesigncolors.2.0.4.nupkg.sha512",

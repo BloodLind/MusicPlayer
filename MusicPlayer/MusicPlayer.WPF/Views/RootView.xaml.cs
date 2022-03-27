@@ -1,5 +1,6 @@
 ﻿using MusicPlayer.Core.ViewModels;
 using MusicPlayer.WPF.Infrastructure;
+using MusicPlayer.WPF.Services;
 using MvvmCross.Platforms.Wpf.Presenters.Attributes;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,11 @@ namespace MusicPlayer.WPF.Views
             viewModel.ShowHome.Execute();
         }
 
-
+        public void ChangeMenuVisibility(Visibility visibility)
+        {
+            ContentPresenter contentPresenter = ApplicationVisualTreeHelper.GetVisualChild<ContentPresenter, RootView>(this);
+            Controls.Menu menu = contentPresenter.ContentTemplate.FindName("Menu", contentPresenter) as Controls.Menu;
+            menu.Visibility = visibility;
+        }
     }
 }

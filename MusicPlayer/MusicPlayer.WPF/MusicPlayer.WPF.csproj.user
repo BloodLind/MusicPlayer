@@ -19,6 +19,12 @@
     <Compile Update="Views\HomeView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\ModalView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ModalViews\TrackManagerView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\NowPlayingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -49,6 +55,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\HomeView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ModalView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ModalViews\TrackManagerView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\NowPlayingView.xaml">

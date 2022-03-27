@@ -43,5 +43,11 @@ namespace MusicPlayer.PulseAudio.Tracks.Services
                 return tmp.Tag.Pictures.Length >= 1 ? tmp.Tag.Pictures.ElementAt(0).Data.ToArray() : null;
             }
         }
+
+        public string GetExtension(string path)
+        {
+            FileInfo fileInfo = new(path);
+            return fileInfo.Extension ?? "undefined";
+        }
     }
 }

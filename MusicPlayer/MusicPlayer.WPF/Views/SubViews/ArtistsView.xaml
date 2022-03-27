@@ -38,8 +38,8 @@
         <ListView.ItemsPanel>
             <ItemsPanelTemplate>
                 <wpfVirtulizingPanels:VirtualizingWrapPanel
-                    ItemSize="{Binding Source={x:Static properties:Settings.Default}, Path=ArtistCoverSize}"
-                    MouseWheelDelta="{Binding Source={x:Static properties:Settings.Default}, Path=ArtistCoverSize}"
+                    ItemSize="{Binding Source={x:Static properties:GlobalSettings.Default}, Path=ArtistCoverSize}"
+                    MouseWheelDelta="{Binding Source={x:Static properties:GlobalSettings.Default}, Path=ArtistCoverSize}"
                     Orientation="Vertical"
                     SpacingMode="BetweenItemsOnly"
                     StretchItems="False"
@@ -49,14 +49,14 @@
 
         <ListView.ItemTemplate>
             <DataTemplate>
-                <Grid Width="{Binding Source={x:Static properties:Settings.Default}, Path=ArtistCoverSize}">
+                <Grid Width="{Binding Source={x:Static properties:GlobalSettings.Default}, Path=ArtistCoverSize}">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="{Binding Source={x:Static properties:Settings.Default}, Path=ArtistCoverSize}" />
+                        <RowDefinition Height="{Binding Source={x:Static properties:GlobalSettings.Default}, Path=ArtistCoverSize}" />
                         <RowDefinition Height="60" />
                     </Grid.RowDefinitions>
                     <Rectangle
                         Grid.Row="0"
-                        Width="{Binding Source={x:Static properties:Settings.Default}, Path=ArtistCoverSize}"
+                        Width="{Binding Source={x:Static properties:GlobalSettings.Default}, Path=ArtistCoverSize}"
                         Margin="0"
                         HorizontalAlignment="Center"
                         RadiusX="15"
@@ -66,7 +66,7 @@
                                 <ImageBrush.ImageSource>
                                     <MultiBinding Converter="{StaticResource imageConverter}">
                                         <Binding Path="Tracks[0]" />
-                                        <Binding Path="ArtistCoverSize" Source="{x:Static properties:Settings.Default}" />
+                                        <Binding Path="ArtistCoverSize" Source="{x:Static properties:GlobalSettings.Default}" />
                                     </MultiBinding>
                                 </ImageBrush.ImageSource>
                             </ImageBrush>

@@ -40,13 +40,13 @@ namespace MusicPlayer.WPF.Services
             return children;
         }
 
-        public static T GetVisualChild<T, P>(P templatedParent)
-            where T : FrameworkElement
-            where P : FrameworkElement
+        public static Target GetVisualChild<Target, Parent>(Parent templatedParent)
+            where Target : FrameworkElement
+            where Parent : FrameworkElement
         {
-            Collection<T> children = ApplicationVisualTreeHelper.GetVisualChildren<T>(templatedParent);
+            Collection<Target> children = ApplicationVisualTreeHelper.GetVisualChildren<Target>(templatedParent);
 
-            foreach (T child in children)
+            foreach (Target child in children)
             {
                 if (child.TemplatedParent == templatedParent)
                 {
