@@ -36,74 +36,105 @@
             BorderThickness="0"
             CornerRadius="2"
             DockPanel.Dock="Left" />-->
-        <DockPanel Margin="15,0,5,0" DockPanel.Dock="Top">
-            <Border
-                Width="45"
-                Height="45"
-                Padding="5">
-                <Image
-                    Height="23"
-                    RenderOptions.BitmapScalingMode="HighQuality"
-                    Source="{DynamicResource Waves}" />
-            </Border>
-            <Label
-                Height="Auto"
-                Margin="20,0,0,0"
-                VerticalAlignment="Center"
-                FontSize="15"
-                FontWeight="Bold"
-                Foreground="{DynamicResource ForegroundMidColor}"
-                Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:Menu}, Path=MenuExpanded, UpdateSourceTrigger=PropertyChanged}">
-                My music
-            </Label>
-        </DockPanel>
 
-        <DockPanel Margin="15,0,5,0" DockPanel.Dock="Top">
-            <Border
-                Width="45"
-                Height="45"
-                Padding="5">
-                <Image
-                    Height="23"
-                    RenderOptions.BitmapScalingMode="HighQuality"
-                    Source="{DynamicResource Library}" />
-            </Border>
-            <Label
-                Height="Auto"
-                Margin="20,0,0,0"
-                VerticalAlignment="Center"
-                FontSize="15"
-                FontWeight="Bold"
-                Foreground="{DynamicResource ForegroundMidColor}"
-                Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:Menu}, Path=MenuExpanded, UpdateSourceTrigger=PropertyChanged}">
-                Browse
-            </Label>
-        </DockPanel>
+        <Button
+            Width="{Binding ElementName=line, Path=ActualWidth}"
+            Height="Auto"
+            Margin="5,0,5,0"
+            Padding="0"
+            HorizontalContentAlignment="Left"
+            Command="{Binding ShowHome}"
+            DockPanel.Dock="Top"
+            Style="{DynamicResource MaterialDesignFlatButton}">
+            <StackPanel Orientation="Horizontal">
+                <Border
+                    Width="45"
+                    Height="45"
+                    Padding="5">
+                    <Image
+                        Height="23"
+                        RenderOptions.BitmapScalingMode="HighQuality"
+                        Source="{DynamicResource Waves}" />
+                </Border>
+                <Label
+                    Height="Auto"
+                    Margin="20,0,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="15"
+                    FontWeight="Bold"
+                    Foreground="{DynamicResource ForegroundMidColor}"
+                    Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:Menu}, Path=MenuExpanded, UpdateSourceTrigger=PropertyChanged}">
+                    My music
+                </Label>
+            </StackPanel>
+        </Button>
 
-        <DockPanel Margin="15,0,5,0" DockPanel.Dock="Top">
-            <Border
-                Width="45"
-                Height="45"
-                Padding="5">
-                <Image
-                    Height="23"
-                    RenderOptions.BitmapScalingMode="HighQuality"
-                    Source="{DynamicResource Queue}" />
-            </Border>
-            <Label
-                Height="Auto"
-                Margin="20,0,0,0"
-                VerticalAlignment="Center"
-                FontSize="15"
-                FontWeight="Bold"
-                Foreground="{DynamicResource ForegroundMidColor}"
-                Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:Menu}, Path=MenuExpanded, UpdateSourceTrigger=PropertyChanged}">
-                Now Playing
-            </Label>
-        </DockPanel>
+        <Button
+            Width="{Binding ElementName=line, Path=ActualWidth}"
+            Height="Auto"
+            Margin="5,0,5,0"
+            Padding="0"
+            HorizontalContentAlignment="Left"
+            DockPanel.Dock="Top"
+            Style="{DynamicResource MaterialDesignFlatButton}">
+            <StackPanel Orientation="Horizontal">
+                <Border
+                    Width="45"
+                    Height="45"
+                    Padding="5">
+                    <Image
+                        Height="23"
+                        RenderOptions.BitmapScalingMode="HighQuality"
+                        Source="{DynamicResource Library}" />
+                </Border>
+                <Label
+                    Height="Auto"
+                    Margin="20,0,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="15"
+                    FontWeight="Bold"
+                    Foreground="{DynamicResource ForegroundMidColor}"
+                    Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:Menu}, Path=MenuExpanded, UpdateSourceTrigger=PropertyChanged}">
+                    Browse
+                </Label>
+            </StackPanel>
+        </Button>
+
+        <Button
+            Width="{Binding ElementName=line, Path=ActualWidth}"
+            Height="Auto"
+            Margin="5,0,5,0"
+            Padding="0"
+            HorizontalContentAlignment="Left"
+            Command="{Binding ShowQueue}"
+            DockPanel.Dock="Top"
+            Style="{DynamicResource MaterialDesignFlatButton}">
+            <StackPanel Orientation="Horizontal">
+                <Border
+                    Width="45"
+                    Height="45"
+                    Padding="5">
+                    <Image
+                        Height="23"
+                        RenderOptions.BitmapScalingMode="HighQuality"
+                        Source="{DynamicResource Queue}" />
+                </Border>
+                <Label
+                    Height="Auto"
+                    Margin="20,0,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="15"
+                    FontWeight="Bold"
+                    Foreground="{DynamicResource ForegroundMidColor}"
+                    Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:Menu}, Path=MenuExpanded, UpdateSourceTrigger=PropertyChanged}">
+                    Now Playing
+                </Label>
+            </StackPanel>
+        </Button>
 
 
         <Border
+            Name="line"
             Height="2"
             Margin="15,5,15,5"
             Background="{DynamicResource ForegroundDarkColor}"
@@ -113,27 +144,36 @@
 
 
 
-        <DockPanel Margin="15,0,5,0" DockPanel.Dock="Top">
-            <Border
-                Width="45"
-                Height="45"
-                Padding="5">
-                <Image
-                    Height="23"
-                    RenderOptions.BitmapScalingMode="HighQuality"
-                    Source="{DynamicResource Playlists}" />
-            </Border>
-            <Label
-                Height="Auto"
-                Margin="20,0,0,0"
-                VerticalAlignment="Center"
-                FontSize="15"
-                FontWeight="Bold"
-                Foreground="{DynamicResource ForegroundMidColor}"
-                Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:Menu}, Path=MenuExpanded, UpdateSourceTrigger=PropertyChanged}">
-                Playlists
-            </Label>
-        </DockPanel>
+        <Button
+            Width="{Binding ElementName=line, Path=ActualWidth}"
+            Height="Auto"
+            Margin="5,0,5,0"
+            Padding="0"
+            HorizontalContentAlignment="Left"
+            DockPanel.Dock="Top"
+            Style="{DynamicResource MaterialDesignFlatButton}">
+            <StackPanel Orientation="Horizontal">
+                <Border
+                    Width="45"
+                    Height="45"
+                    Padding="5">
+                    <Image
+                        Height="23"
+                        RenderOptions.BitmapScalingMode="HighQuality"
+                        Source="{DynamicResource Playlists}" />
+                </Border>
+                <Label
+                    Height="Auto"
+                    Margin="20,0,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="15"
+                    FontWeight="Bold"
+                    Foreground="{DynamicResource ForegroundMidColor}"
+                    Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:Menu}, Path=MenuExpanded, UpdateSourceTrigger=PropertyChanged}">
+                    Playlists
+                </Label>
+            </StackPanel>
+        </Button>
 
         <ScrollViewer
             Margin="15,0,5,0"

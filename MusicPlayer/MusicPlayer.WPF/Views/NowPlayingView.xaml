@@ -13,7 +13,7 @@
     d:DataContext="{d:DesignInstance Type=viewmodels:NowPlayingViewModel}"
     d:DesignHeight="720"
     d:DesignWidth="1280"
-    Background="{DynamicResource MaterialDesignPaper}"
+    Background="Transparent"
     FontFamily="{materialDesign:MaterialDesignFont}"
     TextElement.FontSize="14"
     TextElement.FontWeight="Medium"
@@ -29,18 +29,7 @@
 
     </view:MvxWpfView.Resources>
     <Grid>
-        <Image Opacity="0.9" Stretch="UniformToFill">
-            <Image.Source>
-                <MultiBinding Converter="{StaticResource imageConverter}">
-                    <Binding Path="SelectedTrack" />
-                    <Binding Path="TrackCoverSize" Source="{x:Static properties:GlobalSettings.Default}" />
-                </MultiBinding>
-
-            </Image.Source>
-            <Image.Effect>
-                <BlurEffect Radius="75" />
-            </Image.Effect>
-        </Image>
+        <Border Background="{DynamicResource PrimaryDarkColor}" Opacity="0.2" />
 
 
         <Viewbox
@@ -68,7 +57,7 @@
                         <ImageBrush>
                             <ImageBrush.ImageSource>
                                 <MultiBinding Converter="{StaticResource imageConverter}">
-                                    <Binding Path="SelectedTrack" />
+                                    <Binding Path="SelectedTrack" UpdateSourceTrigger="PropertyChanged" />
                                 </MultiBinding>
                             </ImageBrush.ImageSource>
                         </ImageBrush>
@@ -89,7 +78,7 @@
                             Grid.Row="1"
                             Grid.ColumnSpan="4"
                             Background="{DynamicResource PrimaryDarkColor}"
-                            Opacity="0.85" />
+                            Opacity="0.93" />
 
                         <Button
                             Grid.Row="1"
@@ -101,10 +90,10 @@
                             Command="{Binding ReturnCommand}"
                             Style="{DynamicResource MaterialDesignFlatButton}">
                             <Image
-                                Width="40"
-                                Height="35"
+                                Width="30"
+                                Height="30"
                                 RenderOptions.BitmapScalingMode="HighQuality"
-                                Source="{DynamicResource Library}"
+                                Source="{DynamicResource Equalizer}"
                                 Stretch="Fill" />
                         </Button>
                         <Button
@@ -117,10 +106,10 @@
                             Command="{Binding ReturnCommand}"
                             Style="{DynamicResource MaterialDesignFlatButton}">
                             <Image
-                                Width="40"
-                                Height="35"
+                                Width="35"
+                                Height="30"
                                 RenderOptions.BitmapScalingMode="HighQuality"
-                                Source="{DynamicResource Equalizer}"
+                                Source="{DynamicResource LyricsButton}"
                                 Stretch="Uniform" />
                         </Button>
                         <Button
@@ -133,10 +122,10 @@
                             Command="{Binding MoreCommand}"
                             Style="{DynamicResource MaterialDesignFlatButton}">
                             <Image
-                                Width="40"
-                                Height="35"
+                                Width="35"
+                                Height="30"
                                 RenderOptions.BitmapScalingMode="HighQuality"
-                                Source="{DynamicResource Other}"
+                                Source="{DynamicResource Queue}"
                                 Stretch="Fill" />
                         </Button>
                         <Button
@@ -146,13 +135,13 @@
                             Height="50"
                             Padding="0"
                             BorderBrush="Transparent"
-                            Command="{Binding ReturnCommand}"
+                            Command="{Binding MoreCommand}"
                             Style="{DynamicResource MaterialDesignFlatButton}">
                             <Image
-                                Width="40"
-                                Height="35"
+                                Width="35"
+                                Height="30"
                                 RenderOptions.BitmapScalingMode="HighQuality"
-                                Source="{DynamicResource Other}"
+                                Source="{DynamicResource More}"
                                 Stretch="Fill" />
                         </Button>
                     </Grid>
@@ -177,7 +166,7 @@
                         FontWeight="Medium"
                         Foreground="{DynamicResource ForegroundLightColor}"
                         Style="{StaticResource MaterialDesignCaptionTextBlock}"
-                        Text="{Binding SelectedTrack.Title}"
+                        Text="{Binding SelectedTrack.Title, UpdateSourceTrigger=PropertyChanged}"
                         TextWrapping="Wrap" />
                 </Grid>
             </UniformGrid>

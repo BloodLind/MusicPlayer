@@ -13,7 +13,7 @@ namespace MusicPlayer.PulseAudio.Tracks.Models
         public string Name { get; set; }
         public IEnumerable<Track> Tracks {get; set;}
         public double PlayTime { get; set; }
-        public int TracksCount { get; set; }
+        public int TracksCount { get => Tracks.Count();}
 
         public override string ToString()
         {

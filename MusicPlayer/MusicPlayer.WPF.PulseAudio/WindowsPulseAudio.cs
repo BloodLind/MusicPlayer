@@ -17,6 +17,9 @@ namespace MusicPlayer.WPF.PulseAudio
         private ManagedBass.MediaPlayer musicPlayer;
         private Track currentTrack;
         private List<Track> queue;
+        private List<int> playingQueue = new List<int>();
+        private double volume = 0.5;
+        private int currentIndex;
         #endregion
 
         public WindowsPulseAudio()
@@ -29,9 +32,9 @@ namespace MusicPlayer.WPF.PulseAudio
         {
             musicPlayer = new MediaPlayer();
             musicPlayer.MediaEnded += TrackPlayEnded;
-
             queue = new List<Track>(tracks);
-            CurrentTrack = Queue.Count >= 1 ? Queue[0] : null;
+            queue.OrderBy(x => x.Title);
+            CurrentTrack = Queue.Count >= 1 ? Queue.First() : null;
         }
 
 
@@ -39,6 +42,7 @@ namespace MusicPlayer.WPF.PulseAudio
 
         #region Properties
         public List<Track> Queue => queue;
+        public List<int> PlayingQueue => playingQueue;
         public Track CurrentTrack { get => currentTrack; private set { currentTrack = value; CurrentTrackChanged?.Invoke(CurrentTrack); } }
         public double CurrentPosition
         {
@@ -53,12 +57,14 @@ namespace MusicPlayer.WPF.PulseAudio
 
         public double Volume
         {
-            set => musicPlayer.Volume = value;
-            get => musicPlayer.Volume;
+            set => musicPlayer.Volume = volume = value;
+            get => volume;
         }
-        public bool IsQueueLooped { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool IsQueueLooped { get; set; } = false;
 
         public IAudioOutput AudioOutput => throw new NotImplementedException();
+
+        public int CurrentTrackIndex => currentIndex;
         #endregion
 
         #region Events
@@ -70,20 +76,20 @@ namespace MusicPlayer.WPF.PulseAudio
 
         #region Events Methods
         private void TrackPlayEnded(object sender, EventArgs e)
-        {
-
-            int index = Queue.IndexOf(CurrentTrack);
-            if (index < Queue.Count - 1)
+        { 
+            if (currentIndex < Queue.Count - 1)
             {
-                CurrentTrack = Queue[index + 1];
+                CurrentTrack = Queue.ElementAt(playingQueue[currentIndex++]);
             }
             else if (Queue.Count >= 1)
             {
-                CurrentTrack = Queue[0];
+                CurrentTrack = Queue.First();
+                currentIndex = 0;
             }
             else
             {
                 CurrentTrack = null;
+                currentIndex = -1;
             }
 
             if (musicPlayer.State == ManagedBass.PlaybackState.Stopped
@@ -101,14 +107,20 @@ namespace MusicPlayer.WPF.PulseAudio
         public void ShuffleQueue()
         {
             Random rng = new Random();
-            Track value = null;
             int n = Queue.Count;
             while (n-- > 1)
             {
                 int k = rng.Next(n + 1);
-                value = Queue[k];
-                Queue[k] = Queue[n];
-                Queue[n] = value;
+                int value = playingQueue[k];
+                playingQueue[k] = playingQueue[n];
+                playingQueue[n] = value;
+            }
+
+            if(CurrentTrack != null)
+            {
+                int tmp = playingQueue[currentIndex];
+                playingQueue[currentIndex] = playingQueue[0];
+                playingQueue[0] = tmp;
             }
         }
 
@@ -123,19 +135,21 @@ namespace MusicPlayer.WPF.PulseAudio
 
         public void Play()
         {
-
             if (musicPlayer.State == ManagedBass.PlaybackState.Paused)
             {
                 musicPlayer.Play();
+                this.StateChanged?.Invoke((MusicPlayer.PulseAudio.Base.PlaybackState)musicPlayer.State);
+                musicPlayer.Volume = this.Volume;
             }
             else if (Queue.Count >= 1)
             {
-                CurrentTrack = CurrentTrack == null ? Queue[0] : CurrentTrack;
+                CurrentTrack = CurrentTrack == null ? Queue.First() : CurrentTrack;
                     musicPlayer.LoadAsync(CurrentTrack.FilePath)
                         .ContinueWith((x) => {
                             musicPlayer.Play();
+                            this.StateChanged?.Invoke((MusicPlayer.PulseAudio.Base.PlaybackState)musicPlayer.State);
+                            musicPlayer.Volume = this.Volume;
                         });
-                
             }
         }
 
@@ -162,11 +176,21 @@ namespace MusicPlayer.WPF.PulseAudio
             Stop();
             CurrentTrack = track;
             CurrentPosition = 0;
+            currentIndex = playingQueue.IndexOf(queue.IndexOf(track));
 
-            if (isPlayed)
+            if (isPlayed && CurrentTrack != null)
                 Play();
         }
 
+        public void RemoveTrackFromQueue(Track track)
+        {
+            int index = Queue.IndexOf(track);
+            if (index < 0)
+                return;
+
+            playingQueue.Remove(playingQueue.ElementAt(index));
+            queue.Remove(track);
+        }
        
 
         public void ChangeOutputDevice(IAudioOutput output)
@@ -176,9 +200,31 @@ namespace MusicPlayer.WPF.PulseAudio
 
         public void SetQueue(IEnumerable<Track> tracks)
         {
-            queue = tracks.ToList();
+            queue = new List<Track>();
+            foreach (var track in tracks)
+                queue.Add(track);
+
             CurrentTrack = queue.First();
             CurrentPosition = 0;
+            currentIndex = 0;
+            UnshuffleQueue();
+            if (IsQueueLooped)
+                ShuffleQueue();
+        }
+
+        public void UnshuffleQueue()
+        {
+            playingQueue.Clear();
+            for(int i = 0; i < Queue.Count; i++)
+            {
+                playingQueue.Add(i);
+            }
+        }
+
+        public void AddTrackToQueue(Track track)
+        {
+            this.Queue.Add(track);
+            this.PlayingQueue.Add(playingQueue.Count);
         }
         #endregion
     }

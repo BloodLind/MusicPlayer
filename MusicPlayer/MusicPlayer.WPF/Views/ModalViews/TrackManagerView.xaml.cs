@@ -1,6 +1,11 @@
-﻿using MusicPlayer.Core.ViewModels.ModalViewModels;
+﻿using MusicPlayer.Core.Models;
+using MusicPlayer.Core.ViewModels.ModalViewModels;
+using MusicPlayer.WPF.Controls;
+using MvvmCross.Base;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Wpf.Presenters.Attributes;
 using MvvmCross.Platforms.Wpf.Views;
+using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,14 +30,48 @@ namespace MusicPlayer.WPF.Views.ModalViews
     [MvxContentPresentation (WindowIdentifier = nameof(ModalView))]
     public partial class TrackManagerView : MvxWpfView
     {
+        private IMvxInteraction<YesNoQuestion> interaction;
+
+        public IMvxInteraction<YesNoQuestion> Interaction
+        {
+            get => interaction;
+            set
+            {
+                if (interaction != null)
+                    interaction.Requested -= OnInteractionRequested;
+
+                interaction = value;
+                interaction.Requested += OnInteractionRequested;
+            }
+        }
+
+        private async void OnInteractionRequested(object sender, MvxValueEventArgs<YesNoQuestion> e)
+        {
+            var yesNoQuestion = e.Value;
+            DialogWindow dialogWindow = new DialogWindow(yesNoQuestion.Question);
+            bool status = dialogWindow.ShowDialog() ?? false;
+            yesNoQuestion.YesNoCallback(status);
+            if (status)
+                Close();
+        }
+
         public TrackManagerView()
         {
             InitializeComponent();
+            this.Loaded += TrackManagerView_Loaded;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void TrackManagerView_Loaded(object sender, RoutedEventArgs e)
+        {
+            var set = this.CreateBindingSet<TrackManagerView, TrackManagerViewModel>();
+            set.Bind(this).For(view => view.Interaction).To(viewModel => viewModel.ConfiramationInteraction).OneWay();
+            set.Apply();
+        }
+
+        private void Close()
         {
             Application.Current.Windows.OfType<ModalView>().FirstOrDefault()?.Close();
         }
+        private void Button_Click(object sender, RoutedEventArgs e) => Close();
     }
 }

@@ -42,6 +42,8 @@ namespace MusicPlayer.PulseAudio.Base
         #region Tracks Properties
         Track CurrentTrack { get; }
         List<Track> Queue { get; }
+        List<int> PlayingQueue { get; }
+        int CurrentTrackIndex { get; }
         #endregion
 
         #region Methods
@@ -55,11 +57,14 @@ namespace MusicPlayer.PulseAudio.Base
         /// </param>
         void SetQueue(IEnumerable<Track> tracks);
 
-
+        void RemoveTrackFromQueue(Track track);
+        void AddTrackToQueue(Track track);
         /// <summary>
         /// Shuffle queue list
         /// </summary>
         void ShuffleQueue();
+
+        void UnshuffleQueue();
 
         /// <summary>
         /// Changes Playback state to "Playing" and starts reproducing audio

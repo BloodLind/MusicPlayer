@@ -30,6 +30,18 @@ namespace MusicPlayer.WPF.Controls
         {
             Loaded += TrackManageView_Loaded;
             InitializeComponent();
+            this.AddHandler
+            (
+                Slider.PreviewMouseDownEvent,
+                new MouseButtonEventHandler(Slider_PreviewMouseLeftButtonDown),
+                true
+            );
+            this.AddHandler
+            (
+                Slider.PreviewMouseUpEvent,
+                new MouseButtonEventHandler(Slider_PreviewMouseLeftButtonUp),
+                true
+            );
         }
 
         private void TrackManageView_Loaded(object sender, RoutedEventArgs e)
@@ -44,23 +56,47 @@ namespace MusicPlayer.WPF.Controls
             else
                 viewModel.PlayCommand.Execute();
         }
-        public void Slider_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e) => viewModel.IsPositionChanging = true;
-
-        public void Slider_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void Button_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            viewModel.IsPositionChanging = false;
-            viewModel.CurrentPosition = ((Slider)sender).Value;
-            CoreApp.Player.CurrentPosition = viewModel.CurrentPosition;
+            this.TrackCover.Visibility = this.TrackCover.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
         }
 
-        public void Slider_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
-            => viewModel.IsPositionChanging = true;
-
-        public void Slider_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+        public void Slider_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e) 
         {
-            viewModel.IsPositionChanging = false;
-            CoreApp.Player.CurrentPosition = viewModel.CurrentPosition;
+            if (CheckIsNotTrackSlider(e.GetPosition(this.TrackSlider)))
+                return;
+            viewModel.IsPositionChanging = true;
         }
 
+        public void Slider_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (CheckIsNotTrackSlider(e.GetPosition(this.TrackSlider)) || !viewModel.IsPositionChanging)
+                return;
+            SetTimeFromSlider();
+        }
+
+
+        private void TrackSlider_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (CheckIsNotTrackSlider(e.GetPosition(this.TrackSlider)) || !viewModel.IsPositionChanging)
+                return;
+            SetTimeFromSlider();
+        }
+        private void SetTimeFromSlider()
+        {
+            viewModel.IsPositionChanging = false;
+            viewModel.CurrentPosition = this.TrackSlider.Value;
+            if (viewModel.CurrentPosition >= viewModel.SelectedTrack.PlayTime)
+                viewModel.CurrentPosition = viewModel.SelectedTrack.PlayTime - 1;
+            CoreApp.Player.CurrentPosition = viewModel.CurrentPosition;
+        }
+        private bool CheckIsNotTrackSlider(Point mousePosition)
+        {
+            return
+                mousePosition.X <= 0 ||
+                mousePosition.X >= this.TrackSlider.ActualWidth ||
+                mousePosition.Y <= 0 ||
+                mousePosition.Y >= this.ActualHeight;
+        }
     }
 }

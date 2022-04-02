@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using MusicPlayer.Core.Infrastructure.Interfaces;
+using MusicPlayer.Core.Models;
 using MusicPlayer.PulseAudio.Base.Models;
 using MusicPlayer.PulseAudio.Tracks.Services;
 using MusicPlayer.PulseAudio.Tracks.Services.Interfaces;
@@ -20,6 +21,15 @@ namespace MusicPlayer.Core.ViewModels.ModalViewModels
     public class TrackManagerViewModel : MvxNavigationViewModel
     {
         private IUserInteractionService interactionService;
+        private MvxInteraction<YesNoQuestion> interaction = new();
+        private void DeleteTrack()
+        {
+            CoreApp.Player.Stop();
+            File.Delete(this.CurrentTrack.FilePath);
+            if(CoreApp.Player.Queue.Count > 0)
+                CoreApp.Player.Play();
+            NavigationService.Close(this);
+        }
         private void InitializeCommands()
         {
             ToFolderCommand = new MvxCommand(() =>
@@ -33,7 +43,13 @@ namespace MusicPlayer.Core.ViewModels.ModalViewModels
 
             DeleteCommand = new MvxCommand(() =>
             {
-
+                var request = new YesNoQuestion
+                {
+                    YesNoCallback = (x) => { if (x) DeleteTrack(); },
+                    Question = $"Are realy want to delete {this.CurrentTrack.Title}?"
+                };
+                interaction.Raise(request);
+                
             });
             InfoTrackCommand = new MvxCommand(() =>
             {
@@ -61,6 +77,8 @@ namespace MusicPlayer.Core.ViewModels.ModalViewModels
         }
 
         #region Properties
+        public IMvxInteraction<YesNoQuestion> ConfiramationInteraction => interaction;
+
         public Track CurrentTrack { get; set; }
         public string TrackExtension { get; set; }
         #endregion

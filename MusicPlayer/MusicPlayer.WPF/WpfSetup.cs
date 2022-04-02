@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
+using MusicPlayer.Core.Infrastructure;
 using MusicPlayer.Core.Infrastructure.Interfaces;
 using MusicPlayer.PulseAudio.Base;
+using MusicPlayer.WPF.Infrastructure;
 using MusicPlayer.WPF.PulseAudio;
 using MusicPlayer.WPF.Services.OSServices;
 using MvvmCross.IoC;
@@ -18,6 +20,8 @@ namespace MusicPlayer.WPF
             var ioc = base.InitializeIoC();
             ioc.RegisterType<IPulseAudioBase, WindowsPulseAudio>();
             ioc.RegisterType<IUserInteractionService, WindowsUserInteractionService>();
+            ioc.RegisterType<IFolderScanner, FolderScanner>();
+            ioc.RegisterType<AppSettings, WindowsSettings>();
             return ioc;
         }
         protected override ILoggerFactory CreateLogFactory()

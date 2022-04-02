@@ -16,10 +16,17 @@ namespace MusicPlayer.Core.ViewModels
     public class NowPlayingViewModel : MvxNavigationViewModel<Track>
     {
         private Track selectedTrack;
+        private string lyrics;
 
         public NowPlayingViewModel(ILoggerFactory logFactory, IMvxNavigationService navigationService) : base(logFactory, navigationService)
         {
             InitCommands();
+            CoreApp.Player.CurrentTrackChanged += Player_CurrentTrackChanged;
+        }
+
+        private void Player_CurrentTrackChanged(Track obj)
+        {
+            this.SelectedTrack = obj;
         }
 
         private void InitCommands()
@@ -49,7 +56,8 @@ namespace MusicPlayer.Core.ViewModels
         #endregion
 
         #region Properties
-        public Track SelectedTrack { get => selectedTrack; set { selectedTrack = value; RaisePropertyChanged(() => ReturnCommand); } }
+        public string TrackLyrics { get => lyrics; set { lyrics = value; RaisePropertyChanged(() => TrackLyrics); } }
+        public Track SelectedTrack { get => selectedTrack; set { selectedTrack = value; RaisePropertyChanged(() => SelectedTrack); } }
         #endregion
 
     }

@@ -54,7 +54,7 @@ namespace MusicPlayer.WPF.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/MusicPlayer.WPF;V1.0.0.0;component/views/modalview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MusicPlayer.WPF;component/views/modalview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\ModalView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

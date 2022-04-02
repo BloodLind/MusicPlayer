@@ -24,7 +24,7 @@
         x:Name="TracksListView"
         Margin="0,5,0,5"
         Background="Transparent"
-        ItemsSource="{Binding Tracks, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        ItemsSource="{Binding Tracks, UpdateSourceTrigger=PropertyChanged, Mode=OneTime}"
         PreviewMouseDown="Grid_PreviewMouseDown"
         SelectedItem="{Binding SelectedTrack, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
         Style="{DynamicResource MaterialDesignListView}"

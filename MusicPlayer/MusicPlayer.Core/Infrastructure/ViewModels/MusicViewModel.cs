@@ -23,7 +23,6 @@ namespace MusicPlayer.Core.Infrastructure.ViewModels
         #endregion
 
         private Track selectedTrack = new Track();
-
         public MusicViewModel(ILoggerFactory mvxLog, IMvxNavigationService service)
             : base(mvxLog, service)
         {
@@ -39,6 +38,7 @@ namespace MusicPlayer.Core.Infrastructure.ViewModels
             SelectedTrack = (Track)obj;
             ResetTimer();
         }
+
         private void Player_StateChanged(PlaybackState obj)
         {
             IsPlaying = obj == PlaybackState.Playing;
@@ -67,22 +67,21 @@ namespace MusicPlayer.Core.Infrastructure.ViewModels
             });
             PreviousCommand = new MvxCommand(() =>
             {
-                if ((CoreApp.Player.Queue.IndexOf(CoreApp.Player.CurrentTrack) - 1) >= 0)
+                if (CoreApp.Player.CurrentTrackIndex > 0)
                 {
-                    CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[CoreApp.Player.Queue.IndexOf(CoreApp.Player.CurrentTrack) - 1]);
+                    CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[CoreApp.Player.PlayingQueue[CoreApp.Player.CurrentTrackIndex - 1]]);
                 }
-                else
+                else if(CoreApp.Player.IsQueueLooped)
                 {
-                    CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[CoreApp.Player.Queue.Count - 1]);
+                    CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[CoreApp.Player.PlayingQueue[CoreApp.Player.PlayingQueue.Count - 1]]);
                 }
                 ResetTimer();
-
             });
             NextCommand = new MvxCommand(() =>
             {
-                if ((CoreApp.Player.Queue.IndexOf(CoreApp.Player.CurrentTrack) + 1) < CoreApp.Player.Queue.Count())
+                if (CoreApp.Player.CurrentTrackIndex < CoreApp.Player.PlayingQueue.Count - 1)
                 {
-                    CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[CoreApp.Player.Queue.IndexOf(CoreApp.Player.CurrentTrack) + 1]);
+                    CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[CoreApp.Player.PlayingQueue[CoreApp.Player.CurrentTrackIndex + 1]]);
                 }
                 else
                 {
@@ -100,10 +99,11 @@ namespace MusicPlayer.Core.Infrastructure.ViewModels
             PlayCommand = new MvxCommand(() =>
             {
                 IsPlaying = true;
-                ResetTimer();
                 CoreApp.Player.Play();
+                ResetTimer();
             });
         }
+
         private void PlayerLoaded()
         {
             if (CoreApp.Player != null)
@@ -117,11 +117,8 @@ namespace MusicPlayer.Core.Infrastructure.ViewModels
             }
         }
 
-
-
         protected void ResetTimer()
         {
-
             if (CoreApp.Player.State == PlaybackState.Stopped)
             {
                 if (isPlaying)
@@ -167,7 +164,6 @@ namespace MusicPlayer.Core.Infrastructure.ViewModels
             {
                 volume = value;
                 CoreApp.Player.Volume = value;
-
                 RaisePropertyChanged(() => Volume);
             }
         }

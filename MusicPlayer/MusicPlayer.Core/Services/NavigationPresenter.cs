@@ -15,10 +15,14 @@ namespace MusicPlayer.Core.Services
         {
             MvxNavigationService = mvxNavigationService;
             Logger = logger;
-            HomeView = new HomeViewModel(MvxNavigationService, Logger);
+            HomeView = new (MvxNavigationService, Logger);
+            PlaylistsViewModel = new(Logger, MvxNavigationService);
+            QueueViewModel = new(Logger, MvxNavigationService);
         }
         public IMvxNavigationService MvxNavigationService { get; }
         public ILoggerFactory Logger { get; }
         public HomeViewModel HomeView { get; private set; }
+        public PlaylistsViewModel PlaylistsViewModel { get; private set; }
+        public QueueViewModel QueueViewModel { get; private set; }
     }
 }

@@ -32,50 +32,11 @@ namespace MusicPlayer.WPF.Views
     [MvxContentPresentation(WindowIdentifier = nameof(RootView))]
     public partial class HomeView : MvxWpfView
     {
-        private HomeViewModel viewModel;
         public HomeView()
         {
             InitializeComponent();
-            //this.DataContext = CoreApp.Navigation.HomeView;
-            this.Loaded += HomeView_Loaded;
         }
 
-
-
-
-
-        private void HomeView_Loaded(object sender, RoutedEventArgs e)
-        {
-            viewModel = (HomeViewModel)this.DataContext;
-            if (CoreApp.IsScaned)
-                return;
-            CoreApp.SetScanned();
-            ScanMusic();
-        }
-
-        private void ScanMusic()
-        {
-            CatalogScaner catalogScaner = new CatalogScaner();
-            List<string> files = new List<string>();
-            if (File.Exists("catalogs.jar"))
-            {
-
-            }
-            else
-            {
-                //catalogScaner.ScanFolder(Environment.GetFolderPath(Environment.SpecialFolder.MyMusic));
-                //Change when work on your computer!
-                catalogScaner.ScanFolder(@"A:\Music\");
-            }
-
-
-            foreach (var a in catalogScaner.ScannedFiles)
-            {
-                files.Add(a);
-            }
-
-            viewModel.UpdateCollections(files);
-        }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

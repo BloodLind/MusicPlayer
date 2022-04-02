@@ -84,3 +84,11 @@ A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Vie
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Views\ModalView.baml
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Views\ModalViews\TrackManagerView.g.cs
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Views\ModalViews\TrackManagerView.baml
+A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Views\ModalViews\AddToPlaylistView.g.cs
+A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Controls\DialogWindow.g.cs
+A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Controls\DialogWindow.baml
+A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Views\ModalViews\AddToPlaylistView.baml
+A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Views\QueueView.g.cs
+A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Views\SubViews\TracksTable.g.cs
+A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Views\QueueView.baml
+A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Views\SubViews\TracksTable.baml

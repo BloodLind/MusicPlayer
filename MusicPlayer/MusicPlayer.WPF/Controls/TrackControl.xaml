@@ -16,6 +16,7 @@
         <z:TimeConverter x:Key="timeConverter" />
         <z:PlayIconConverter x:Key="iconConverter" />
         <z:TrackImageConverter x:Key="imageConverter" />
+        <z:TrackMultiConverter x:Key="trackMultiConverter" />
     </UserControl.Resources>
 
     <!--#region PlayZone-->
@@ -31,40 +32,41 @@
 
         <Grid>
             <!--  Just to make normal acrylic back  -->
-            <Border
-                Background="{DynamicResource PrimaryMidColor}"
-                CornerRadius="7,7,0,0"
-                Opacity="0.65" />
+            <Border Background="{DynamicResource PrimaryMidColor}" Opacity="0.90" />
 
 
             <Grid Background="Transparent">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="3*" />
                     <RowDefinition Height="2*" />
+                    <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="4*" />
+                </Grid.ColumnDefinitions>
 
-                <Grid
+                <Button
                     Grid.Row="0"
-                    Grid.RowSpan="2"
-                    Width="340"
-                    HorizontalAlignment="Left">
-
-                    <Grid.InputBindings>
-                        <MouseBinding Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TrackControl}, Path=DataContext.TrackInfoCommand}" Gesture="LeftClick" />
-                    </Grid.InputBindings>
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="3*" />
-                    </Grid.ColumnDefinitions>
-
-                    <materialDesign:Card Margin="15,3,3,5" Background="transparent">
+                    Height="Auto"
+                    Margin="0"
+                    Padding="5"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TrackControl}, Path=DataContext.TrackNavigationCommand}"
+                    PreviewMouseLeftButtonDown="Button_MouseLeftButtonDown"
+                    Style="{DynamicResource MaterialDesignFlatButton}">
+                    <StackPanel
+                        Width="375"
+                        VerticalAlignment="Top"
+                        Orientation="Horizontal">
                         <Rectangle
-                            Width="65"
-                            Height="65"
+                            x:Name="TrackCover"
+                            MinWidth="65"
+                            MinHeight="65"
+                            Margin="15,0,0,0"
                             HorizontalAlignment="left"
-                            RadiusX="10"
-                            RadiusY="10">
+                            RadiusX="5"
+                            RadiusY="5">
 
                             <Rectangle.Fill>
                                 <ImageBrush>
@@ -77,35 +79,44 @@
                                 </ImageBrush>
                             </Rectangle.Fill>
                         </Rectangle>
-                    </materialDesign:Card>
 
-                    <StackPanel
-                        Grid.Column="1"
-                        Margin="10,22,0,0"
-                        VerticalAlignment="Top"
-                        Orientation="Vertical">
+                        <StackPanel
+                            Margin="15,0,0,0"
+                            VerticalAlignment="Center"
+                            Orientation="Vertical">
 
-                        <TextBlock
-                            FontSize="16"
-                            Foreground="{DynamicResource ForegroundLightColor}"
-                            Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
-                            Text="{Binding SelectedTrack.Title, UpdateSourceTrigger=PropertyChanged}"
-                            TextTrimming="CharacterEllipsis" />
-                        <TextBlock
-                            FontSize="13"
-                            Foreground="{DynamicResource ForegroundMidColor}"
-                            Style="{StaticResource MaterialDesignCaptionTextBlock}"
-                            Text="{Binding SelectedTrack.Album, UpdateSourceTrigger=PropertyChanged}"
-                            TextTrimming="CharacterEllipsis" />
+                            <TextBlock
+                                FontSize="16"
+                                Foreground="{DynamicResource ForegroundLightColor}"
+                                Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
+                                Text="{Binding SelectedTrack.Title, UpdateSourceTrigger=PropertyChanged}"
+                                TextTrimming="CharacterEllipsis" />
+                            <TextBlock
+                                FontSize="13"
+                                Foreground="{DynamicResource ForegroundMidColor}"
+                                Style="{StaticResource MaterialDesignCaptionTextBlock}"
+                                TextTrimming="CharacterEllipsis">
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource trackMultiConverter}">
+                                        <Binding Path="SelectedTrack.Artist" />
+                                        <Binding Path="SelectedTrack.Album" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
 
+                        </StackPanel>
                     </StackPanel>
-                </Grid>
+                </Button>
 
                 <Grid
                     Grid.Row="0"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
+                    Grid.Column="1"
                     DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TrackControl}, Path=DataContext}">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
 
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                         <Button
@@ -176,53 +187,58 @@
 
 
                     </StackPanel>
+                    <Grid
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Width="200"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center">
+
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="5*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Button
+                            Name="muteButton"
+                            Width="25"
+                            Height="25"
+                            Margin="0"
+                            Padding="0"
+                            VerticalAlignment="Center"
+                            Style="{StaticResource MaterialDesignIconButton}">
+
+                            <Image
+                                Grid.Column="0"
+                                Width="20"
+                                Height="20"
+                                RenderOptions.BitmapScalingMode="HighQuality"
+                                Source="{DynamicResource SoundWave}" />
+                        </Button>
+
+                        <Slider
+                            Grid.Column="1"
+                            Margin="0,0,15,0"
+                            VerticalAlignment="Center"
+                            Foreground="{DynamicResource ForegroundLightColor}"
+                            IsMoveToPointEnabled="True"
+                            Maximum="1"
+                            Minimum="0"
+                            Style="{DynamicResource CustomSlider}"
+                            Value="{Binding Volume}" />
+
+
+                    </Grid>
                 </Grid>
+
 
 
                 <Grid
-                    Grid.Row="0"
-                    Width="200"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Center">
-
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="5*" />
-                    </Grid.ColumnDefinitions>
-
-                    <Button
-                        Name="muteButton"
-                        Width="25"
-                        Height="25"
-                        Margin="0"
-                        Padding="0"
-                        VerticalAlignment="Center"
-                        Style="{StaticResource MaterialDesignIconButton}">
-
-                        <Image
-                            Grid.Column="0"
-                            Width="20"
-                            Height="20"
-                            RenderOptions.BitmapScalingMode="HighQuality"
-                            Source="{DynamicResource SoundWave}" />
-                    </Button>
-
-                    <Slider
-                        Grid.Column="1"
-                        Margin="0,0,15,0"
-                        VerticalAlignment="Center"
-                        Foreground="{DynamicResource ForegroundLightColor}"
-                        IsMoveToPointEnabled="True"
-                        Maximum="1"
-                        Minimum="0"
-                        Style="{DynamicResource CustomSlider}"
-                        Value="{Binding Volume}" />
-
-
-                </Grid>
-
-                <Grid Grid.Row="1" Margin="300,0">
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Stretch">
 
                     <Grid VerticalAlignment="Top">
                         <Grid.ColumnDefinitions>
@@ -232,16 +248,15 @@
                         </Grid.ColumnDefinitions>
 
                         <Slider
+                            x:Name="TrackSlider"
                             Grid.Column="1"
                             Margin="5,5,5,0"
                             VerticalAlignment="Top"
                             Foreground="{DynamicResource ForegroundLightColor}"
                             IsMoveToPointEnabled="True"
                             Maximum="{Binding SelectedTrack.PlayTime, Mode=OneWay}"
-                            MouseLeftButtonUp="Slider_MouseLeftButtonUp"
-                            PreviewMouseLeftButtonDown="Slider_PreviewMouseLeftButtonDown"
+                            MouseLeave="TrackSlider_MouseLeave"
                             Style="{DynamicResource CustomSlider}"
-                            Thumb.DragCompleted="Slider_DragCompleted"
                             Value="{Binding CurrentPosition}" />
 
 

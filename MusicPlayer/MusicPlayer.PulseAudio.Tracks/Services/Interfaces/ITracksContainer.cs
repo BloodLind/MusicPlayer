@@ -11,7 +11,7 @@ namespace MusicPlayer.PulseAudio.Tracks.Services.Interfaces
     public interface ITracksContainer
     {
         double PlayTime { get; set; }
-        int TracksCount { get; set; }
+        int TracksCount { get; }
         IEnumerable<Track> Tracks { get; set; }
     }
 }

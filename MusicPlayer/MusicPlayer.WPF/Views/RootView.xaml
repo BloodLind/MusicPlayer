@@ -13,7 +13,6 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     AllowsTransparency="True"
-    Background="Transparent"
     ResizeMode="CanResize"
     Style="{DynamicResource Font}"
     WindowStyle="None"
@@ -22,6 +21,7 @@
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0" ResizeBorderThickness="5" />
     </WindowChrome.WindowChrome>
+
 
     <view:CustomWindow.Resources>
 
@@ -129,86 +129,94 @@
 
     <view:CustomWindow.ContentTemplate>
         <DataTemplate>
-            <DockPanel
-                Height="auto"
-                Background="{DynamicResource Background}"
-                LastChildFill="True">
+            <Grid>
+                <Border
+                    x:Name="Background"
+                    Margin="-25"
+                    Background="{DynamicResource Background}" />
+                <DockPanel Height="auto" LastChildFill="True">
 
-                <!--#region TopPart-->
-                <Grid VerticalAlignment="Top" DockPanel.Dock="Top">
-                    <materialDesign:Card
-                        Height="24"
-                        MaxHeight="40"
-                        materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                        Background="{DynamicResource PrimaryMidColor}"
-                        MouseDown="Card_MouseDown"
-                        Opacity="0.75">
+                    <!--#region TopPart-->
+                    <Grid
+                        VerticalAlignment="Top"
+                        Panel.ZIndex="9999"
+                        DockPanel.Dock="Top">
+                        <materialDesign:Card
+                            Height="24"
+                            MaxHeight="40"
+                            materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                            Background="{DynamicResource PrimaryMidColor}"
+                            MouseDown="Card_MouseDown"
+                            Opacity="0.95"
+                            UniformCornerRadius="0">
 
-                        <StackPanel
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Center"
-                            Orientation="Horizontal">
+                            <StackPanel
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
 
-                            <Button
-                                Width="50"
-                                Height="25"
-                                Click="ClickMinimizeWindow"
-                                Style="{DynamicResource MaterialDesignFlatButton}">
-                                <materialDesign:PackIcon
-                                    Width="17"
-                                    Height="17"
-                                    Foreground="{DynamicResource ForegroundLightColor}"
-                                    Kind="WindowMinimize" />
+                                <Button
+                                    Width="50"
+                                    Height="25"
+                                    Click="ClickMinimizeWindow"
+                                    Style="{DynamicResource MaterialDesignFlatButton}">
+                                    <materialDesign:PackIcon
+                                        Width="17"
+                                        Height="17"
+                                        Foreground="{DynamicResource ForegroundLightColor}"
+                                        Kind="WindowMinimize" />
 
-                            </Button>
+                                </Button>
 
-                            <Button
-                                Width="50"
-                                Height="25"
-                                Click="ClickMaximizeWindow"
-                                Style="{DynamicResource MaterialDesignFlatButton}">
-                                <materialDesign:PackIcon
-                                    Width="17"
-                                    Height="17"
-                                    Foreground="{DynamicResource ForegroundLightColor}"
-                                    Kind="WindowMaximize" />
-                            </Button>
+                                <Button
+                                    Width="50"
+                                    Height="25"
+                                    Click="ClickMaximizeWindow"
+                                    Style="{DynamicResource MaterialDesignFlatButton}">
+                                    <materialDesign:PackIcon
+                                        Width="17"
+                                        Height="17"
+                                        Foreground="{DynamicResource ForegroundLightColor}"
+                                        Kind="WindowMaximize" />
+                                </Button>
 
-                            <Button
-                                Width="50"
-                                Height="25"
-                                Click="ClickClose"
-                                Style="{DynamicResource MaterialDesignFlatButton}">
-                                <materialDesign:PackIcon
-                                    Width="17"
-                                    Height="17"
-                                    Foreground="{DynamicResource ForegroundLightColor}"
-                                    Kind="WindowClose" />
-                            </Button>
+                                <Button
+                                    Width="50"
+                                    Height="25"
+                                    Click="ClickClose"
+                                    Style="{DynamicResource MaterialDesignFlatButton}">
+                                    <materialDesign:PackIcon
+                                        Width="17"
+                                        Height="17"
+                                        Foreground="{DynamicResource ForegroundLightColor}"
+                                        Kind="WindowClose" />
+                                </Button>
 
-                        </StackPanel>
-                    </materialDesign:Card>
-                </Grid>
-                <!--#endregion-->
+                            </StackPanel>
+                        </materialDesign:Card>
+                    </Grid>
+                    <!--#endregion-->
 
-                <controls:TrackControl
-                    x:Name="TrackControl"
-                    Height="90"
-                    DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=view:CustomWindow}, Path=DataContext}"
-                    DockPanel.Dock="Bottom" />
+                    <controls:TrackControl
+                        x:Name="TrackControl"
+                        Height="110"
+                        DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=view:CustomWindow}, Path=DataContext}"
+                        DockPanel.Dock="Bottom" />
 
-                <controls:Menu
-                    x:Name="Menu"
-                    ExpandedWidth="225"
-                    MenuExpanded="Visible" />
+                    <controls:Menu
+                        x:Name="Menu"
+                        DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:RootView}, Path=DataContext}"
+                        ExpandedWidth="225"
+                        MenuExpanded="Visible" />
 
-                <!--#region Content-->
-                <ContentPresenter
-                    x:Name="ContentPage"
-                    Content="{Binding}"
-                    DockPanel.Dock="Right" />
-                <!--#endregion-->
-            </DockPanel>
+                    <!--#region Content-->
+                    <ContentPresenter
+                        x:Name="ContentPage"
+                        Content="{Binding}"
+                        DockPanel.Dock="Right" />
+                    <!--#endregion-->
+                </DockPanel>
+            </Grid>
         </DataTemplate>
     </view:CustomWindow.ContentTemplate>
 </view:CustomWindow>

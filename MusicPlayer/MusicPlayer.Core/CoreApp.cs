@@ -1,4 +1,5 @@
-﻿using MusicPlayer.Core.Services;
+﻿using MusicPlayer.Core.Infrastructure.Interfaces;
+using MusicPlayer.Core.Services;
 using MusicPlayer.PulseAudio.Base;
 using MusicPlayer.PulseAudio.Base.Models;
 using MusicPlayer.PulseAudio.Tracks.Models;
@@ -29,6 +30,7 @@ namespace MusicPlayer.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
             Mvx.IoCProvider.RegisterType<ITrackInfoGrabber, TrackInfoGrabber>();
+            Mvx.IoCProvider.RegisterType<IFileWatcher, FileWatcher>();
             RegisterCustomAppStart<CoreAppInitializer>();
 
         }
@@ -40,21 +42,16 @@ namespace MusicPlayer.Core
         }
 
         #region Static Properties
+        public static IFileWatcher FileWatcher { get; set; } = new FileWatcher();
         public static NavigationPresenter Navigation { get; set; }
         public static Timer WorkTimer { get; } = new Timer(1000);
         public static IPulseAudioBase Player { get; private set; }
-        public static bool IsScaned { get => isScanned; }
         #endregion
 
         #region Static Methods
         private static void WorkTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             TimerElapsed?.Invoke();
-        }
-
-        public static void SetScanned()
-        {
-            isScanned = true;
         }
 
         public static void InitializatePlayer(IEnumerable<Track> tracks)
@@ -92,7 +89,6 @@ namespace MusicPlayer.Core
         }
 
         #endregion
-
 
         #region Static Events
         public static event Action PlayerLoaded;

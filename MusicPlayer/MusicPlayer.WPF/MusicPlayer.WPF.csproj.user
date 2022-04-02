@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Controls\DialogWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\Menu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -22,10 +25,16 @@
     <Compile Update="Views\ModalView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\ModalViews\AddToPlaylistView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\ModalViews\TrackManagerView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\NowPlayingView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\QueueView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\RootView.xaml.cs">
@@ -34,11 +43,17 @@
     <Compile Update="Views\SubViews\ArtistsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\SubViews\TracksTable.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\SubViews\TracksView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Controls\DialogWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Controls\Menu.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -60,16 +75,25 @@
     <Page Update="Views\ModalView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\ModalViews\AddToPlaylistView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\ModalViews\TrackManagerView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\NowPlayingView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\QueueView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\RootView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\SubViews\ArtistsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\SubViews\TracksTable.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\SubViews\TracksView.xaml">

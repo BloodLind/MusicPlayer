@@ -60,7 +60,7 @@ namespace MusicPlayer.WPF.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/MusicPlayer.WPF;V1.0.0.0;component/views/homeview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MusicPlayer.WPF;component/views/homeview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\HomeView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -35,8 +35,8 @@ namespace MusicPlayer.PulseAudio.Tracks.Services
                 Name = x.Key,
                 PlayTime = GetPlayTime(x),
                 Tracks = x.ToList(),
-                TracksCount = x.Count()
             }).OrderBy(x => x.Name);
+
         }
 
         public IEnumerable<Album> GetAlbums(IEnumerable<Track> tracks)
@@ -49,10 +49,9 @@ namespace MusicPlayer.PulseAudio.Tracks.Services
                 Name = x.Key,
                 PlayTime = GetPlayTime(x),
                 Tracks = x.ToList(),
-                TracksCount = x.Count()
             }).OrderBy(x => x.Name);
         }
-
+     
         private double GetPlayTime(IEnumerable<Track> tracks) => tracks.Select(x => x.PlayTime).Sum();
 
     }
