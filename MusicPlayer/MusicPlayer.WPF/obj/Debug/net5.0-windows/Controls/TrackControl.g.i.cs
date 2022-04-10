@@ -90,7 +90,7 @@ namespace MusicPlayer.WPF.Controls {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/MusicPlayer.WPF;component/controls/trackcontrol.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MusicPlayer.WPF;V1.0.0.0;component/controls/trackcontrol.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Controls\TrackControl.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

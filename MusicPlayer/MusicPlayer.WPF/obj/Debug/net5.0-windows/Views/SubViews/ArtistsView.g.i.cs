@@ -67,7 +67,7 @@ namespace MusicPlayer.WPF.Views.SubViews {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/MusicPlayer.WPF;component/views/subviews/artistsview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MusicPlayer.WPF;V1.0.0.0;component/views/subviews/artistsview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Views\SubViews\ArtistsView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -2,6 +2,7 @@
     x:Class="MusicPlayer.WPF.Views.HomeView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:MusicPlayer.WPF.Controls"
     xmlns:customView="clr-namespace:MusicPlayer.WPF.Infrastructure"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:MusicPlayer.WPF.Views"
@@ -40,6 +41,20 @@
         UniformCornerRadius="0">
 
         <Grid>
+            <StackPanel
+                Margin="15,15,45,15"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Orientation="Horizontal">
+                <controls:SearchBox />
+                <Button
+                    Background="{DynamicResource PrimaryMidColor}"
+                    Foreground="{DynamicResource ForegroundMidColor}"
+                    Style="{DynamicResource MaterialDesignFlatButton}">
+                    Play All
+                </Button>
+            </StackPanel>
+
             <TabControl
                 HorizontalContentAlignment="Right"
                 Background="Transparent"

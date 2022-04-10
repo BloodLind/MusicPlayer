@@ -58,7 +58,7 @@ namespace MusicPlayer.WPF.Views.ModalViews {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/MusicPlayer.WPF;component/views/modalviews/trackmanagerview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MusicPlayer.WPF;V1.0.0.0;component/views/modalviews/trackmanagerview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Views\ModalViews\TrackManagerView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

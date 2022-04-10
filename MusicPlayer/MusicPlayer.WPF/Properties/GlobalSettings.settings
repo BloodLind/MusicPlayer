@@ -5,11 +5,14 @@
     <Setting Name="AlbumCoverSize" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">285</Value>
     </Setting>
-    <Setting Name="TrackCoverSize" Type="System.String" Scope="User">
+    <Setting Name="TrackCoverSize" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">80</Value>
     </Setting>
-    <Setting Name="ArtistCoverSize" Type="System.String" Scope="User">
+    <Setting Name="ArtistCoverSize" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">285</Value>
+    </Setting>
+    <Setting Name="TableTrackCoverSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">50</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -12,111 +12,202 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
+
+
     <view:MvxWpfView.Resources>
         <converters:TrackImageConverter x:Key="imageConverter" />
         <converters:TrackMultiConverter x:Key="trackMultiConverter" />
     </view:MvxWpfView.Resources>
-    <StackPanel>
 
-        <Grid Height="220" VerticalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="6*" />
-            </Grid.ColumnDefinitions>
+    <DockPanel VirtualizingPanel.IsContainerVirtualizable="True" VirtualizingPanel.IsVirtualizing="True">
 
-            <Border Grid.ColumnSpan="2" Margin="10,-25,0,10">
-                <Border.Background>
-                    <ImageBrush Stretch="UniformToFill">
-                        <ImageBrush.ImageSource>
-                            <MultiBinding Converter="{StaticResource imageConverter}">
-                                <Binding Path="SelectedTrack" UpdateSourceTrigger="PropertyChanged" />
-                                <Binding Path="TrackCoverSize" Source="{x:Static properties:GlobalSettings.Default}" />
+        <Grid DockPanel.Dock="Top">
+            <Grid
+                x:Name="BigTopBar"
+                VerticalAlignment="Center"
+                Visibility="Visible">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="185" />
+                    <ColumnDefinition Width="10*" />
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.ColumnSpan="2" Margin="10,-20,0,10">
+                    <Border.Background>
+                        <ImageBrush Stretch="UniformToFill">
+                            <ImageBrush.ImageSource>
+                                <MultiBinding Converter="{StaticResource imageConverter}">
+                                    <Binding Path="SelectedTrack" UpdateSourceTrigger="PropertyChanged" />
+                                    <Binding Path="AlbumCoverSize" Source="{x:Static properties:GlobalSettings.Default}" />
+                                </MultiBinding>
+                            </ImageBrush.ImageSource>
+                        </ImageBrush>
+                    </Border.Background>
+                    <Border.Effect>
+                        <BlurEffect Radius="20" />
+                    </Border.Effect>
+                </Border>
+
+                <Border
+                    Grid.ColumnSpan="2"
+                    Margin="0,-35,0,0"
+                    Background="{DynamicResource PrimaryDarkColor}"
+                    Opacity="0.55" />
+
+                <Rectangle
+                    Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}"
+                    Margin="20"
+                    RadiusX="10"
+                    RadiusY="10">
+                    <Rectangle.Fill>
+                        <ImageBrush Stretch="UniformToFill">
+                            <ImageBrush.ImageSource>
+                                <MultiBinding Converter="{StaticResource imageConverter}">
+                                    <Binding Path="SelectedTrack" UpdateSourceTrigger="PropertyChanged" />
+                                    <Binding Path="TrackCoverSize" Source="{x:Static properties:GlobalSettings.Default}" />
+                                </MultiBinding>
+                            </ImageBrush.ImageSource>
+                        </ImageBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <StackPanel
+                    Grid.Column="1"
+                    Margin="25,0,0,0"
+                    VerticalAlignment="Center">
+                    <TextBlock
+                        Margin="5,15,5,0"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource ForegroundLightColor}">
+                        Now Playing
+                    </TextBlock>
+                    <TextBlock
+                        Margin="5"
+                        FontSize="26"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource ForegroundLightColor}"
+                        Text="{Binding SelectedTrack.Title}" />
+                    <TextBlock
+                        Margin="5"
+                        FontSize="16"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource ForegroundMidColor}">
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource trackMultiConverter}">
+                                <Binding Path="SelectedTrack.Artist" />
+                                <Binding Path="SelectedTrack.Album" />
                             </MultiBinding>
-                        </ImageBrush.ImageSource>
-                    </ImageBrush>
-                </Border.Background>
-                <Border.Effect>
-                    <BlurEffect Radius="20" />
-                </Border.Effect>
-            </Border>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <Button
+                            Width="125"
+                            Height="35"
+                            Margin="0,15,15,15"
+                            Background="{DynamicResource PrimaryDarkColor}"
+                            BorderBrush="Transparent"
+                            Command="{Binding ClearQueueCommand}"
+                            FontSize="18"
+                            Foreground="{DynamicResource ForegroundLightColor}"
+                            Style="{DynamicResource MaterialDesignRaisedButton}">
+                            Clear
+                        </Button>
+                        <Button
+                            Width="50"
+                            Height="50"
+                            Margin="10,0,15,0"
+                            Padding="0"
+                            Style="{DynamicResource MaterialDesignFlatButton}">
+                            <Image
+                                Width="30"
+                                Height="30"
+                                Source="{DynamicResource Add}" />
+                        </Button>
+                        <Button
+                            Width="50"
+                            Height="50"
+                            Margin="10,0,15,0"
+                            Padding="0"
+                            Style="{DynamicResource MaterialDesignFlatButton}">
+                            <Image
+                                Width="30"
+                                Height="30"
+                                Source="{DynamicResource MoreHorizontal}" />
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
 
-            <Border
-                Grid.ColumnSpan="2"
-                Background="{DynamicResource PrimaryDarkColor}"
-                Opacity="0.55" />
+            <Grid
+                x:Name="SmallTopBar"
+                Height="75"
+                Visibility="Hidden">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Border Grid.ColumnSpan="2" Margin="10,-25,0,10">
+                    <Border.Background>
+                        <ImageBrush Stretch="UniformToFill">
+                            <ImageBrush.ImageSource>
+                                <MultiBinding Converter="{StaticResource imageConverter}">
+                                    <Binding Path="SelectedTrack" UpdateSourceTrigger="PropertyChanged" />
+                                    <Binding Path="AlbumCoverSize" Source="{x:Static properties:GlobalSettings.Default}" />
+                                </MultiBinding>
+                            </ImageBrush.ImageSource>
+                        </ImageBrush>
+                    </Border.Background>
+                    <Border.Effect>
+                        <BlurEffect Radius="20" />
+                    </Border.Effect>
+                </Border>
 
-            <Rectangle
-                Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}"
-                Margin="25"
-                RadiusX="10"
-                RadiusY="10">
-                <Rectangle.Fill>
-                    <ImageBrush Stretch="UniformToFill">
-                        <ImageBrush.ImageSource>
-                            <MultiBinding Converter="{StaticResource imageConverter}">
-                                <Binding Path="SelectedTrack" UpdateSourceTrigger="PropertyChanged" />
-                                <Binding Path="TrackCoverSize" Source="{x:Static properties:GlobalSettings.Default}" />
-                            </MultiBinding>
-                        </ImageBrush.ImageSource>
-                    </ImageBrush>
-                </Rectangle.Fill>
-            </Rectangle>
-            <StackPanel
-                Grid.Column="1"
-                Margin="25,0,0,0"
-                VerticalAlignment="Center">
+                <Border
+                    Grid.ColumnSpan="2"
+                    Margin="0,-35,0,0"
+                    Background="{DynamicResource PrimaryDarkColor}"
+                    Opacity="0.55" />
+
+
+
                 <TextBlock
-                    Margin="5,15,5,0"
-                    FontSize="14"
-                    FontWeight="SemiBold"
-                    Foreground="{DynamicResource ForegroundLightColor}">
-                    Now Playing
-                </TextBlock>
-                <TextBlock
-                    Margin="5"
-                    FontSize="32"
-                    FontWeight="SemiBold"
-                    Foreground="{DynamicResource ForegroundLightColor}"
-                    Text="{Binding SelectedTrack.Title}" />
-                <TextBlock
-                    Margin="5"
+                    Grid.Column="0"
+                    Margin="50,0,0,0"
+                    VerticalAlignment="Center"
                     FontSize="18"
                     FontWeight="SemiBold"
-                    Foreground="{DynamicResource ForegroundMidColor}">
-                    <TextBlock.Text>
-                        <MultiBinding Converter="{StaticResource trackMultiConverter}">
-                            <Binding Path="SelectedTrack.Artist" />
-                            <Binding Path="SelectedTrack.Album" />
-                        </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
-                <StackPanel Orientation="Horizontal">
+                    Foreground="{DynamicResource ForegroundLightColor}"
+                    Text="Now Playing" />
+
+                <StackPanel
+                    Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
                     <Button
-                        Width="125"
+                        Width="95"
                         Height="35"
                         Margin="0,15,15,15"
                         Background="{DynamicResource PrimaryDarkColor}"
                         BorderBrush="Transparent"
                         Command="{Binding ClearQueueCommand}"
-                        FontSize="18"
+                        FontSize="16"
                         Foreground="{DynamicResource ForegroundLightColor}"
                         Style="{DynamicResource MaterialDesignRaisedButton}">
                         Clear
                     </Button>
                     <Button
-                        Width="50"
-                        Height="50"
+                        Width="45"
+                        Height="45"
                         Margin="10,0,15,0"
                         Padding="0"
                         Style="{DynamicResource MaterialDesignFlatButton}">
                         <Image
-                            Width="30"
-                            Height="30"
+                            Width="25"
+                            Height="25"
                             Source="{DynamicResource Add}" />
                     </Button>
                     <Button
-                        Width="50"
-                        Height="50"
+                        Width="45"
+                        Height="45"
                         Margin="10,0,15,0"
                         Padding="0"
                         Style="{DynamicResource MaterialDesignFlatButton}">
@@ -126,8 +217,15 @@
                             Source="{DynamicResource MoreHorizontal}" />
                     </Button>
                 </StackPanel>
-            </StackPanel>
+            </Grid>
         </Grid>
-        <subviews:TracksTable Grid.Row="1" DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=view:MvxWpfView}, Path=DataContext}" />
-    </StackPanel>
+
+        <subviews:TracksTable
+            Grid.Row="1"
+            ContentScrolled="TracksTable_ContentScrolled"
+            DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=view:MvxWpfView}, Path=DataContext}"
+            PreviewMouseWheel="DockPanel_PreviewMouseWheel" />
+    </DockPanel>
+
+
 </view:MvxWpfView>

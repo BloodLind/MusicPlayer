@@ -64,7 +64,7 @@ namespace MusicPlayer.WPF.Controls {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/MusicPlayer.WPF;component/controls/menu.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MusicPlayer.WPF;V1.0.0.0;component/controls/menu.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Controls\Menu.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

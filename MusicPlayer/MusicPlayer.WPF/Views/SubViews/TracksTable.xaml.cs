@@ -22,33 +22,13 @@ namespace MusicPlayer.WPF.Views.SubViews
     /// </summary>
     public partial class TracksTable : UserControl
     {
+
         public TracksTable()
         {
             InitializeComponent();
         }
 
-        private void CacheCollectorTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-        {
-            Application.Current.Dispatcher.InvokeAsync(() =>
-            {
-                if (ViewportHelper.IsItemInViewport(this))
-                    foreach (Track track in TracksListView.ItemsSource)
-                    {
-                        ListViewItem item = TracksListView.ItemContainerGenerator.ContainerFromItem(track) as ListViewItem;
-                        if (!ViewportHelper.IsContainerItemInViewport(item))
-                        {
-                            string key = String.Join("_", track.Artist, track.Album);
-                            if (!App.images.IsKeyAvaible(key))
-                            {
-                                App.images.RemoveData(key);
-                                Console.WriteLine(key);
-                            }
-                        }
-                    }
-
-
-            });
-        }
+        public event Action<double> ContentScrolled;
 
         private void Grid_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -66,6 +46,23 @@ namespace MusicPlayer.WPF.Views.SubViews
             string key = String.Join("_", track.Artist, track.Album);
             if (App.images.IsKeyAvaible(key) == false)
                 App.images.RemoveData(key);
+        }
+
+        private void Grid_MouseEnter(object sender, MouseEventArgs e)
+        {
+            var parent = sender as Grid;
+            (parent.FindName("More") as Button).Visibility = Visibility.Visible;
+        }
+
+        private void Grid_MouseLeave(object sender, MouseEventArgs e)
+        {
+            var parent = sender as Grid;
+            (parent.FindName("More") as Button).Visibility = Visibility.Hidden;
+        }
+
+        private void TracksListView_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        {
+            ContentScrolled?.Invoke(e.NewValue);
         }
     }
 }

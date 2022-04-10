@@ -165,8 +165,9 @@ namespace MusicPlayer.WPF.PulseAudio
 
         public void CleanupPlayback()
         {
-            musicPlayer.Dispose();
+            PlayingQueue.Clear();
             Queue.Clear();
+            QueueChanged?.Invoke();
         }
 
         public void ChangeCurrentTrack(Track track)

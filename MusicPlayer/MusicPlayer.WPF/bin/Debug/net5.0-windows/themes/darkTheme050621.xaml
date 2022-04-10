@@ -5,6 +5,7 @@
 
 
     <ImageSource x:Key="Add">../themes/drawable/dark/add.png</ImageSource>
+    <ImageSource x:Key="Clock">../themes/drawable/dark/clock.png</ImageSource>
     <ImageSource x:Key="Play">../themes/drawable/dark/playbutton.png</ImageSource>
     <ImageSource x:Key="Pause">../themes/drawable/dark/pausebutton.png</ImageSource>
     <ImageSource x:Key="Next">../themes/drawable/dark/nextbutton.png</ImageSource>

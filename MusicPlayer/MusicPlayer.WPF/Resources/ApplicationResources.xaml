@@ -566,6 +566,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+    <DynamicResource x:Key="CustomDataGrid" ResourceKey="MaterialDesignDataGrid"/>
 
 
 </ResourceDictionary>

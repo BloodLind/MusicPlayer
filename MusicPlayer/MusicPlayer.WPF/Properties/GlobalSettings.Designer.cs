@@ -38,9 +38,9 @@ namespace MusicPlayer.WPF.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("80")]
-        public string TrackCoverSize {
+        public int TrackCoverSize {
             get {
-                return ((string)(this["TrackCoverSize"]));
+                return ((int)(this["TrackCoverSize"]));
             }
             set {
                 this["TrackCoverSize"] = value;
@@ -50,12 +50,24 @@ namespace MusicPlayer.WPF.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("285")]
-        public string ArtistCoverSize {
+        public int ArtistCoverSize {
             get {
-                return ((string)(this["ArtistCoverSize"]));
+                return ((int)(this["ArtistCoverSize"]));
             }
             set {
                 this["ArtistCoverSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public int TableTrackCoverSize {
+            get {
+                return ((int)(this["TableTrackCoverSize"]));
+            }
+            set {
+                this["TableTrackCoverSize"] = value;
             }
         }
     }

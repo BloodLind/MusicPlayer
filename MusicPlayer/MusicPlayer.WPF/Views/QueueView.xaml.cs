@@ -24,11 +24,35 @@ namespace MusicPlayer.WPF.Views
     [MvxContentPresentation(WindowIdentifier = nameof(RootView))]
     public partial class QueueView : MvxWpfView
     {
+        private long lastDelta = 0;
         public QueueView()
         {
             InitializeComponent();
         }
 
 
+        private void DockPanel_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if(e.Delta > 0)
+            {
+                BigTopBar.Visibility = Visibility.Visible;
+                SmallTopBar.Visibility = Visibility.Collapsed;
+            }
+            else 
+            { 
+                BigTopBar.Visibility = Visibility.Collapsed;
+                SmallTopBar.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void TracksTable_ContentScrolled(double value)
+        {
+            if (value == 0)
+            {
+                BigTopBar.Visibility = Visibility.Visible;
+                SmallTopBar.Visibility = Visibility.Collapsed;
+                lastDelta = 0;
+            }
+        }
     }
 }
