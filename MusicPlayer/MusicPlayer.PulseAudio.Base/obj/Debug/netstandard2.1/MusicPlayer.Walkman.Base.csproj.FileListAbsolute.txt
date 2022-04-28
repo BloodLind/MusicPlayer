@@ -1,0 +1,10 @@
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Walkman.Base\bin\Debug\netstandard2.1\MusicPlayer.Walkman.Base.deps.json
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Walkman.Base\bin\Debug\netstandard2.1\MusicPlayer.Walkman.Base.dll
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Walkman.Base\bin\Debug\netstandard2.1\MusicPlayer.Walkman.Base.pdb
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Walkman.Base\obj\Debug\netstandard2.1\MusicPlayer.Walkman.Base.csproj.AssemblyReference.cache
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Walkman.Base\obj\Debug\netstandard2.1\MusicPlayer.Walkman.Base.GeneratedMSBuildEditorConfig.editorconfig
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Walkman.Base\obj\Debug\netstandard2.1\MusicPlayer.Walkman.Base.AssemblyInfoInputs.cache
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Walkman.Base\obj\Debug\netstandard2.1\MusicPlayer.Walkman.Base.AssemblyInfo.cs
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Walkman.Base\obj\Debug\netstandard2.1\MusicPlayer.Walkman.Base.csproj.CoreCompileInputs.cache
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Walkman.Base\obj\Debug\netstandard2.1\MusicPlayer.Walkman.Base.dll
+S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Walkman.Base\obj\Debug\netstandard2.1\MusicPlayer.Walkman.Base.pdb

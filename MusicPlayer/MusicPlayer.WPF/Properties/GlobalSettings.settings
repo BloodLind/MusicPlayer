@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MusicPlayer.WPF.Properties" GeneratedClassName="GlobalSettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="AlbumCoverSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">285</Value>
+    </Setting>
+    <Setting Name="TrackCoverSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">80</Value>
+    </Setting>
+    <Setting Name="ArtistCoverSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">285</Value>
+    </Setting>
+    <Setting Name="TableTrackCoverSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="HighResolution" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">512</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

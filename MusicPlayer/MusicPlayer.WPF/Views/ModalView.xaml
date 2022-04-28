@@ -1,0 +1,32 @@
+﻿<view:MvxWindow
+    x:Class="MusicPlayer.WPF.Views.ModalView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MusicPlayer.WPF.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:view="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
+    Title="ModalView"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    AllowsTransparency="True"
+    PreviewMouseLeftButtonDown="Window_PreviewMouseLeftButtonDown"
+    ResizeMode="NoResize"
+    ShowInTaskbar="False"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Window.Background>
+        <SolidColorBrush Opacity="0.5" Color="#0A0A0A" />
+    </Window.Background>
+
+    <view:MvxWindow.ContentTemplate>
+        <DataTemplate>
+
+            <Grid>
+                <!--#region Content-->
+                <ContentPresenter x:Name="ContentPage" Content="{Binding}" />
+                <!--#endregion-->
+            </Grid>
+        </DataTemplate>
+    </view:MvxWindow.ContentTemplate>
+</view:MvxWindow>

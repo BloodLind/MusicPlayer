@@ -8,6 +8,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using MvvmCross.Core;
+using System.IO;
+using MusicPlayer.Core.Services.Factories;
+using System.Windows.Media.Imaging;
+using MusicPlayer.WPF.Services.Factories;
+using System.Timers;
+using System.Windows.Media;
 
 namespace MusicPlayer.WPF
 {
@@ -16,9 +22,13 @@ namespace MusicPlayer.WPF
     /// </summary>
     public partial class App : MvxApplication
     {
-        public App()
+
+
+        public static FlyWeightFactory<string, BitmapImage> images = new ImagesFlyWeightFactory();
+
+        protected override void RegisterSetup()
         {
-            this.RegisterSetupType<MvxWpfSetup<Core.CoreApp>>();
+            this.RegisterSetupType<WpfSetup>();
         }
     }
 }

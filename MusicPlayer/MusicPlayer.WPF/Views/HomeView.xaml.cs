@@ -1,9 +1,11 @@
 ﻿using MaterialDesignThemes.Wpf;
 using MusicPlayer.Core;
-using MusicPlayer.Core.Models;
 using MusicPlayer.Core.Services;
 using MusicPlayer.Core.ViewModels;
+using MusicPlayer.PulseAudio.Tracks.Services;
 using MusicPlayer.WPF.Infrastructure;
+using MvvmCross.Platforms.Wpf.Presenters.Attributes;
+using MvvmCross.Platforms.Wpf.Views;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,70 +27,20 @@ namespace MusicPlayer.WPF.Views
     /// <summary>
     /// Логика взаимодействия для HomeView.xaml
     /// </summary>
-    public partial class HomeView : CustomView
-    {
-        
+    /// 
 
+    [MvxContentPresentation(WindowIdentifier = nameof(RootView))]
+    public partial class HomeView : MvxWpfView
+    {
         public HomeView()
         {
-            
             InitializeComponent();
-            this.Loaded += HomeView_Loaded; ;
         }
 
-        private void HomeView_Loaded(object sender, RoutedEventArgs e)
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ScanMusic();
-        }
-
-        private void ScanMusic()
-        {
-            CatalogScaner catalogScaner = new CatalogScaner();
-            List<string> files = new List<string>();
-            if(File.Exists("catalogs.jar"))
-            {
-                
-            }
-            else
-            {
-                catalogScaner.ScanFolder(Environment.GetFolderPath(Environment.SpecialFolder.MyMusic));
-            }
-
-
-            foreach (var a in catalogScaner.ScannedFiles)
-            {
-                files.Add(a);
-            }
-
-            var vm = (HomeViewModel)this.DataContext;
-
-            vm.UpdateCollections(files);
-        }
-
-        protected void ArtistItemDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            var artistItem = ((FrameworkElement)e.OriginalSource).DataContext as Artist;
-        }
-
-        protected void CurrentTrackListDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            var trackItem = ((FrameworkElement)e.OriginalSource).DataContext as Track;
-
-            ((HomeViewModel)DataContext).SelectedTrack = trackItem;
-
-            ((HomeViewModel)DataContext).PlaySelectedCommand.Execute(this);
-        }
-
-        private void PlayPauseClick(object sender, RoutedEventArgs e)
-        {
-            if(CoreApp.Player.PlaybackState == ManagedBass.PlaybackState.Playing)
-            {
-                CoreApp.Player.Pause();
-            }
-            else
-            {
-                CoreApp.Player.Play();
-            }
+            App.images.ReleaseData();
         }
     }
 }

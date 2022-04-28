@@ -1,0 +1,88 @@
+﻿<UserControl
+    x:Class="MusicPlayer.WPF.Views.SubViews.ArtistsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MusicPlayer.WPF.Views.SubViews"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:properties="clr-namespace:MusicPlayer.WPF.Properties"
+    xmlns:wpfVirtulizingPanels="clr-namespace:WpfToolkit.Controls;assembly=VirtualizingWrapPanel"
+    xmlns:z="clr-namespace:MusicPlayer.WPF.Services"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <z:TrackMultiConverter x:Key="trackMultiConverter" />
+        <z:TimeConverter x:Key="timeConverter" />
+        <z:TrackImageConverter x:Key="imageConverter" IsImagesCached="False" />
+        <z:InverseBoolValueConverter x:Key="boolConverter" />
+    </UserControl.Resources>
+
+    <ListView
+        x:Name="TracksListView"
+        Margin="0,5,0,5"
+        Background="Transparent"
+        ItemsSource="{Binding Artists, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
+        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+        SelectedItem="{Binding SelectedArtist, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        Style="{DynamicResource MaterialDesignListView}"
+        VirtualizingPanel.IsContainerVirtualizable="True"
+        VirtualizingPanel.IsVirtualizing="True"
+        VirtualizingPanel.IsVirtualizingWhenGrouping="True"
+        VirtualizingPanel.ScrollUnit="Pixel"
+        VirtualizingPanel.VirtualizationMode="Recycling"
+        Visibility="{Binding IsArtistSelected, Converter={StaticResource boolConverter}}">
+
+
+        <ListView.ItemsPanel>
+            <ItemsPanelTemplate>
+                <wpfVirtulizingPanels:VirtualizingWrapPanel
+                    ItemSize="{Binding Source={x:Static properties:GlobalSettings.Default}, Path=ArtistCoverSize}"
+                    MouseWheelDelta="{Binding Source={x:Static properties:GlobalSettings.Default}, Path=ArtistCoverSize}"
+                    Orientation="Vertical"
+                    SpacingMode="BetweenItemsOnly"
+                    StretchItems="False"
+                    VirtualizingStackPanel.CleanUpVirtualizedItem="WrapPanel_CleanUpVirtualizedItem" />
+            </ItemsPanelTemplate>
+        </ListView.ItemsPanel>
+
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <Grid Width="{Binding Source={x:Static properties:GlobalSettings.Default}, Path=ArtistCoverSize}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={x:Static properties:GlobalSettings.Default}, Path=ArtistCoverSize}" />
+                        <RowDefinition Height="60" />
+                    </Grid.RowDefinitions>
+                    <Rectangle
+                        Grid.Row="0"
+                        Width="{Binding Source={x:Static properties:GlobalSettings.Default}, Path=ArtistCoverSize}"
+                        Margin="0"
+                        HorizontalAlignment="Center"
+                        RadiusX="15"
+                        RadiusY="15">
+                        <Rectangle.Fill>
+                            <ImageBrush x:Name="myImage">
+                                <ImageBrush.ImageSource>
+                                    <MultiBinding Converter="{StaticResource imageConverter}">
+                                        <Binding Path="Tracks[0]" />
+                                        <Binding Path="ArtistCoverSize" Source="{x:Static properties:GlobalSettings.Default}" />
+                                    </MultiBinding>
+                                </ImageBrush.ImageSource>
+                            </ImageBrush>
+
+                        </Rectangle.Fill>
+                    </Rectangle>
+
+                    <TextBlock
+                        Grid.Row="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Foreground="{DynamicResource ForegroundLightColor}"
+                        Text="{Binding Name}"
+                        TextAlignment="Center" />
+                </Grid>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</UserControl>
