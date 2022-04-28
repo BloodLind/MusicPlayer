@@ -23,6 +23,10 @@ namespace MusicPlayer.Core.Infrastructure.ViewModels
         #endregion
 
         private Track selectedTrack = new Track();
+        private bool isShuffled = false;
+        private LoopState loopState = LoopState.Looped;
+        private bool isMuted;
+
         public MusicViewModel(ILoggerFactory mvxLog, IMvxNavigationService service)
             : base(mvxLog, service)
         {
@@ -37,11 +41,19 @@ namespace MusicPlayer.Core.Infrastructure.ViewModels
         {
             SelectedTrack = (Track)obj;
             ResetTimer();
+            if(selectedTrack == null)
+                isPlaying = false;
         }
 
         private void Player_StateChanged(PlaybackState obj)
         {
             IsPlaying = obj == PlaybackState.Playing;
+            if (obj == PlaybackState.Stopped)
+            {
+                isPlaying = false;
+                CurrentPosition = 0;
+                ResetTimer();
+            }
         }
 
         private void CoreApp_TimerElapsed()
@@ -56,37 +68,28 @@ namespace MusicPlayer.Core.Infrastructure.ViewModels
         {
             ShuffleCommand = new MvxCommand(() =>
             {
-                CoreApp.Player.ShuffleQueue();
+                IsShuffled = !IsShuffled;
+                CoreApp.Player.IsQueueShuffled = isShuffled;
+
+                if (isShuffled)
+                    CoreApp.Player.ShuffleQueue();
+                else
+                    CoreApp.Player.UnshuffleQueue();
             });
-            RandomCommand = new MvxCommand(() =>
+           ChangeLoopStateCommand = new MvxCommand(() =>
             {
-                IsPlaying = true;
-                Random rnd = new Random();
-                CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[rnd.Next(0, CoreApp.Player.Queue.Count())]);
-                ResetTimer();
+                var state = (int)LoopState + 1;
+                LoopState = state > (int)LoopState.LoopedTrack ? LoopState.NoLoop : (LoopState)state;
+                CoreApp.Player.ChangeLoopState(loopState);
             });
             PreviousCommand = new MvxCommand(() =>
             {
-                if (CoreApp.Player.CurrentTrackIndex > 0)
-                {
-                    CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[CoreApp.Player.PlayingQueue[CoreApp.Player.CurrentTrackIndex - 1]]);
-                }
-                else if(CoreApp.Player.IsQueueLooped)
-                {
-                    CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[CoreApp.Player.PlayingQueue[CoreApp.Player.PlayingQueue.Count - 1]]);
-                }
+                CoreApp.Player.Previous();
                 ResetTimer();
             });
             NextCommand = new MvxCommand(() =>
             {
-                if (CoreApp.Player.CurrentTrackIndex < CoreApp.Player.PlayingQueue.Count - 1)
-                {
-                    CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[CoreApp.Player.PlayingQueue[CoreApp.Player.CurrentTrackIndex + 1]]);
-                }
-                else
-                {
-                    CoreApp.Player.ChangeCurrentTrack(CoreApp.Player.Queue[0]);
-                }
+                CoreApp.Player.Next();
                 ResetTimer();
             });
             PauseCommand = new MvxCommand(() =>
@@ -98,9 +101,28 @@ namespace MusicPlayer.Core.Infrastructure.ViewModels
 
             PlayCommand = new MvxCommand(() =>
             {
+                if (SelectedTrack == null)
+                    return;
+
                 IsPlaying = true;
                 CoreApp.Player.Play();
                 ResetTimer();
+            });
+
+            ChangeLoopStateCommand = new MvxCommand(() =>
+            {
+                var state = (int)LoopState + 1;
+                LoopState = state <= (int)LoopState.LoopedTrack ? (LoopState)state : LoopState.NoLoop;
+                CoreApp.Player.ChangeLoopState(LoopState);
+            });
+
+            MuteAudioCommand = new MvxCommand(() =>
+            {
+                IsMuted = !isMuted;
+                if (isMuted)
+                    CoreApp.Player.Volume = 0;
+                else
+                    CoreApp.Player.Volume = Volume;
             });
         }
 
@@ -110,6 +132,8 @@ namespace MusicPlayer.Core.Infrastructure.ViewModels
             {
                 CoreApp.Player.CurrentTrackChanged += Player_CurrentTrackChanged;
                 CoreApp.Player.StateChanged += Player_StateChanged;
+                CoreApp.Player.IsQueueShuffled = IsShuffled;
+                CoreApp.Player.ChangeLoopState(LoopState);
                 IsPlaying = CoreApp.Player.State == PlaybackState.Playing;
                 CurrentPosition = CoreApp.Player.CurrentPosition;
                 Volume = CoreApp.Player.Volume;
@@ -162,21 +186,33 @@ namespace MusicPlayer.Core.Infrastructure.ViewModels
             get => volume;
             set
             {
+                IsMuted = false;
                 volume = value;
                 CoreApp.Player.Volume = value;
                 RaisePropertyChanged(() => Volume);
             }
         }
         public bool IsPositionChanging { get; set; } = false;
+        public bool IsMuted { get => isMuted; set 
+            { 
+                isMuted = value;
+                if (!isMuted)
+                    CoreApp.Player.Volume = Volume;
+                RaisePropertyChanged(() => IsMuted); 
+            } }
+        public LoopState LoopState { get => loopState; set { loopState = value; RaisePropertyChanged(() => LoopState); } } 
+        public bool IsShuffled { get => isShuffled; set { isShuffled = value; RaisePropertyChanged(() => IsShuffled); } }
         #endregion
 
         #region Commands
+        public IMvxCommand MuteAudioCommand { get; private set;}
         public IMvxCommand ShuffleCommand { get; private set; }
         public IMvxCommand RandomCommand { get; private set; }
         public IMvxCommand PreviousCommand { get; private set; }
         public IMvxCommand NextCommand { get; private set; }
         public IMvxCommand PauseCommand { get; private set; }
         public IMvxCommand PlayCommand { get; private set; }
+        public IMvxCommand ChangeLoopStateCommand { get; private set; }
         #endregion
     }
 }

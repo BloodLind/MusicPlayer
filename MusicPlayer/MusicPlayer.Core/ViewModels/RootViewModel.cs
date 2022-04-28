@@ -12,9 +12,11 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace MusicPlayer.Core.ViewModels
 {
@@ -35,7 +37,6 @@ namespace MusicPlayer.Core.ViewModels
             CoreApp.FileWatcher.FolderFileRemoved += FileWatcher_FolderFileRemoved;
             settings = Mvx.IoCProvider.Resolve<AppSettings>();
             CoreApp.FileWatcher.AddFolderToWatch(settings.DefaultScanningFolder);
-            
         }
 
         private void FileWatcher_FolderFileRemoved(string filePath)
@@ -59,36 +60,36 @@ namespace MusicPlayer.Core.ViewModels
 
         private void InitializeCommands()
         {
-            ShowHome = new MvxCommand(() => 
+            ShowHome = new MvxAsyncCommand(() => 
             {
                 if (!(currentViewModel is HomeViewModel))
                     NavigationService.Close(currentViewModel);
 
                 CoreApp.Navigation.HomeView.Prepare(Tracks);
-                NavigationService.Navigate(CoreApp.Navigation.HomeView);
                 currentViewModel = CoreApp.Navigation.HomeView;
+                return NavigationService.Navigate(CoreApp.Navigation.HomeView);
             });
-            ShowPlaylists = new MvxCommand(() => NavigationService.Navigate(CoreApp.Navigation.PlaylistsViewModel));
+            ShowPlaylists = new MvxAsyncCommand(() => NavigationService.Navigate(CoreApp.Navigation.PlaylistsViewModel));
 
-            ShowQueue = new MvxCommand(() =>
+            ShowQueue = new MvxAsyncCommand(() =>
             {
                 currentViewModel = CoreApp.Navigation.QueueViewModel;
-                NavigationService.Navigate(currentViewModel);
+                return NavigationService.Navigate(currentViewModel);
             });
 
-            TrackNavigationCommand = new MvxCommand(() => 
+            TrackNavigationCommand = new MvxAsyncCommand(() => 
             {
                 nowPlayingView ??= new NowPlayingViewModel(this.LoggerFactory, this.NavigationService);
                 if (isNavigated)
                 { 
-                    this.NavigationService.Close(nowPlayingView);
                     isNavigated = !isNavigated;
+                    return this.NavigationService.Close(nowPlayingView);
                 }
                 else
                 {
                     isNavigated = !isNavigated;
                     nowPlayingView.SelectedTrack = this.SelectedTrack;
-                    NavigationService.Navigate(nowPlayingView);
+                    return NavigationService.Navigate(nowPlayingView);
                 }
             });
         }
@@ -103,7 +104,8 @@ namespace MusicPlayer.Core.ViewModels
         {
             TracksManager tracksManager = new TracksManager();
             CollectionsManager.AddToCollection(Tracks, tracksManager.GetTracksList(files));
-
+            CollectionsManager.AddToCollection(Playlists,
+                tracksManager.GetPlaylistsList(Directory.GetFiles(settings.DefaultPlaylistPath),Tracks));
             CoreApp.InitializatePlayer(Tracks);
             SelectedTrack = (Track)CoreApp.Player.CurrentTrack;
         }
@@ -121,11 +123,11 @@ namespace MusicPlayer.Core.ViewModels
         #endregion
 
         #region Commands
-        public IMvxCommand TrackNavigationCommand { get; private set; }
-        public IMvxCommand ShowMenu { get; private set; }
-        public IMvxCommand ShowHome { get; private set; }
-        public IMvxCommand ShowPlaylists { get; private set; }
-        public IMvxCommand ShowQueue { get; private set; }
+        public IMvxAsyncCommand TrackNavigationCommand { get; private set; }
+        public IMvxAsyncCommand ShowMenu { get; private set; }
+        public IMvxAsyncCommand ShowHome { get; private set; }
+        public IMvxAsyncCommand ShowPlaylists { get; private set; }
+        public IMvxAsyncCommand ShowQueue { get; private set; }
         #endregion
 
         #region Collections

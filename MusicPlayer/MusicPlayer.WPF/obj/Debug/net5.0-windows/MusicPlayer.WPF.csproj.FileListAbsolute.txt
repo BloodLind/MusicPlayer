@@ -34,7 +34,6 @@ A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\bin\Debug\net5.0-windows\Mus
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\bin\Debug\net5.0-windows\MusicPlayer.WPF.runtimeconfig.json
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\bin\Debug\net5.0-windows\MusicPlayer.WPF.runtimeconfig.dev.json
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\bin\Debug\net5.0-windows\MusicPlayer.WPF.dll
-A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\bin\Debug\net5.0-windows\ref\MusicPlayer.WPF.dll
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\bin\Debug\net5.0-windows\MusicPlayer.WPF.pdb
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\bin\Debug\net5.0-windows\ManagedBass.dll
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\bin\Debug\net5.0-windows\MaterialDesignColors.dll
@@ -92,3 +91,10 @@ A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Vie
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Views\SubViews\TracksTable.g.cs
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Views\QueueView.baml
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Views\SubViews\TracksTable.baml
+A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Controls\SearchBox.g.cs
+A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Controls\SearchBox.baml
+A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Views\ModalViews\TrackInfoView.g.cs
+A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Views\ModalViews\TrackInfoView.baml
+A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\refint\MusicPlayer.WPF.dll
+A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Controls\PlaylistMenuList.g.cs
+A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\Controls\PlaylistMenuList.baml

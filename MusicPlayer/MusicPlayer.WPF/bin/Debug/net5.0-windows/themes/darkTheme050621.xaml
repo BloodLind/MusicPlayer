@@ -5,6 +5,7 @@
 
 
     <ImageSource x:Key="Add">../themes/drawable/dark/add.png</ImageSource>
+    <ImageSource x:Key="Search">../themes/drawable/dark/search.png</ImageSource>
     <ImageSource x:Key="Clock">../themes/drawable/dark/clock.png</ImageSource>
     <ImageSource x:Key="Play">../themes/drawable/dark/playbutton.png</ImageSource>
     <ImageSource x:Key="Pause">../themes/drawable/dark/pausebutton.png</ImageSource>
@@ -12,9 +13,10 @@
     <ImageSource x:Key="Previous">../themes/drawable/dark/previousbutton.png</ImageSource>
     <ImageSource x:Key="Shuffle">../themes/drawable/dark/shuffle.png</ImageSource>
     <ImageSource x:Key="SoundWave">../themes/drawable/dark/soundwave.png</ImageSource>
+    <ImageSource x:Key="Muted">../themes/drawable/dark/muted.png</ImageSource>
     <ImageSource x:Key="Waves">../themes/drawable/dark/waves.png</ImageSource>
     <ImageSource x:Key="Cancel">../themes/drawable/dark/cancel.png</ImageSource>
-    <ImageSource x:Key="Other">../themes/drawable/dark/othersbutton.png</ImageSource>
+    <ImageSource x:Key="Menu">../themes/drawable/dark/menu.png</ImageSource>
     <ImageSource x:Key="Equalizer">../themes/drawable/dark/equalizer.png</ImageSource>
     <ImageSource x:Key="Library">../themes/drawable/dark/librarybutton.png</ImageSource>
     <ImageSource x:Key="More">../themes/drawable/dark/more.png</ImageSource>
@@ -27,8 +29,11 @@
     <ImageSource x:Key="SoundBars">../themes/drawable/dark/soundbars.png</ImageSource>
     <ImageSource x:Key="Delete">../themes/drawable/dark/delete.png</ImageSource>
     <ImageSource x:Key="Speaker">../themes/drawable/dark/speaker.png</ImageSource>
-    <ImageSource x:Key="Loop">../themes/drawable/dark/loopIcon.png</ImageSource>
+    <ImageSource x:Key="Loop">../themes/drawable/dark/loop.png</ImageSource>
+    <ImageSource x:Key="NoLoop">../themes/drawable/dark/unlooped.png</ImageSource>
+    <ImageSource x:Key="LoopTrack">../themes/drawable/dark/looptrack.png</ImageSource>
     <ImageSource x:Key="Back">../themes/drawable/dark/previous.png</ImageSource>
+    <ImageSource x:Key="Unshuffle">../themes/drawable/dark/unshuffle.png</ImageSource>
     <ImageSource x:Key="Cover">../themes/drawable/dark/defaultcover.png</ImageSource>
     <ImageSource x:Key="Playlists">../themes/drawable/dark/playlist.png</ImageSource>
     <ImageSource x:Key="Queue">../themes/drawable/dark/queue.png</ImageSource>
@@ -57,6 +62,7 @@
     <SolidColorBrush x:Key="PreampFullColor" Color="#00D3FF" />
     <SolidColorBrush x:Key="EqualizerFullColor" Color="#009A1F" />
     <SolidColorBrush x:Key="EqualizerEmptyColor" Color="#928E8E" />
+    <SolidColorBrush x:Key="TableTrackBackground" Color="#12121A" />
 
 
     <SolidColorBrush x:Key="RadialSliderBroderColor" Color="Transparent" />

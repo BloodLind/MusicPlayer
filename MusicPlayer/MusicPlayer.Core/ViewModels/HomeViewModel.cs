@@ -97,7 +97,6 @@ namespace MusicPlayer.Core.ViewModels
         public MvxObservableCollection<Track> Tracks { get; set; }
         public MvxObservableCollection<Artist> Artists { get; set; } = new MvxObservableCollection<Artist>();
         public MvxObservableCollection<Album> Albums { get; set; } = new MvxObservableCollection<Album>();
-        public MvxObservableCollection<Track> Queue { get; set; } = new MvxObservableCollection<Track>();
         #endregion
 
         #region Methods
@@ -146,6 +145,7 @@ namespace MusicPlayer.Core.ViewModels
                 CoreApp.Player.Play();
             });
 
+            PlayAllCommand = new MvxCommand(() => { CoreApp.Player.SetQueue(Tracks); CoreApp.Player.Play(); });
         }
         #endregion
 
@@ -170,6 +170,7 @@ namespace MusicPlayer.Core.ViewModels
         public IMvxCommand ShowSelectedPlaylist { get; private set; }
         public IMvxCommand ShowSelectedAlbum { get; private set; }
         public IMvxCommand ShowSelectedArtist { get; private set; }
+        public IMvxCommand PlayAllCommand { get; private set; }
         #endregion
 
 

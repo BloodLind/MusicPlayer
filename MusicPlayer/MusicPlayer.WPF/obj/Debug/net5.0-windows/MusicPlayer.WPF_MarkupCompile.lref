@@ -1,13 +1,16 @@
-﻿A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\obj\Debug\net5.0-windows\GeneratedInternalTypeHelper.g.cs
+﻿
 FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\App.xaml;;
 FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Controls\DialogWindow.xaml;;
 FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Controls\Menu.xaml;;
+FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Controls\PlaylistMenuList.xaml;;
 FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Controls\RadialSlider.xaml;;
+FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Controls\SearchBox.xaml;;
 FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Controls\TrackControl.xaml;;
 FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\MainWindow.xaml;;
 FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Views\HomeView.xaml;;
 FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Views\ModalView.xaml;;
 FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Views\ModalViews\AddToPlaylistView.xaml;;
+FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Views\ModalViews\TrackInfoView.xaml;;
 FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Views\ModalViews\TrackManagerView.xaml;;
 FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Views\NowPlayingView.xaml;;
 FA:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\Views\QueueView.xaml;;

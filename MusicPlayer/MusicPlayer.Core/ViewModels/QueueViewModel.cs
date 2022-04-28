@@ -30,6 +30,12 @@ namespace MusicPlayer.Core.ViewModels
         private void InitializeCommands()
         {
             ClearQueueCommand = new MvxCommand(() => CoreApp.Player.CleanupPlayback());
+            PlaySelectedCommand = new MvxCommand(() =>
+            {
+                CoreApp.Player.Stop();
+                CoreApp.Player.ChangeCurrentTrack(SelectedTrack);
+                CoreApp.Player.Play();
+            });
         }
 
         public override void ViewAppearing()
@@ -41,10 +47,6 @@ namespace MusicPlayer.Core.ViewModels
             SelectedTrack = CoreApp.Player.CurrentTrack;
         }
 
-        private void Player_CurrentTrackChanged(Track obj)
-        {
-            this.SelectedTrack = obj;   
-        }
 
         public override void ViewDisappearing()
         {
@@ -55,20 +57,26 @@ namespace MusicPlayer.Core.ViewModels
         #endregion
         
         #region Events Handlers
+        private void Player_CurrentTrackChanged(Track obj)
+        {
+            this.SelectedTrack = obj;   
+        }
         
         private void Player_QueueChanged()
         {
             this.Tracks.Clear();
             CoreApp.Player.PlayingQueue.ForEach(i => Tracks.Add(CoreApp.Player.Queue[i]));
+            SelectedTrack = CoreApp.Player.CurrentTrack;
         }
 
         #endregion
         #region Properties
         public Track SelectedTrack { get => selectedTrack; set { selectedTrack = value; RaisePropertyChanged(() => SelectedTrack); } }
-        public MvxObservableCollection<Track> Tracks { get; set; } = new MvxObservableCollection<Track>();        
+        public MvxObservableCollection<Track> Tracks { get; set; } = new MvxObservableCollection<Track>();
         #endregion
 
         #region Commands
+        public IMvxCommand PlaySelectedCommand { get; private set; }
         public IMvxCommand ClearQueueCommand { get; private set; }
         public IMvxCommand AddToQueueCommand { get; private set; }
         public IMvxCommand MoreActionCommand { get; private set; }

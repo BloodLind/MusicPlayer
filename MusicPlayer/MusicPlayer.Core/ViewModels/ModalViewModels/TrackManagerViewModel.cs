@@ -53,7 +53,7 @@ namespace MusicPlayer.Core.ViewModels.ModalViewModels
             });
             InfoTrackCommand = new MvxCommand(() =>
             {
-
+                NavigationService.Navigate<TrackInfoViewModel, Track>(CurrentTrack);
             });
             EditTrackCommand = new MvxCommand(() =>
             {

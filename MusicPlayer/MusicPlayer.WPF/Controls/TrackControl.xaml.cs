@@ -47,6 +47,7 @@ namespace MusicPlayer.WPF.Controls
         private void TrackManageView_Loaded(object sender, RoutedEventArgs e)
         {
             viewModel = (MusicViewModel)this.DataContext;
+
         }
 
         public void PlayPauseClick(object sender, RoutedEventArgs e)

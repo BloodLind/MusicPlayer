@@ -2,6 +2,7 @@
     x:Class="MusicPlayer.WPF.Controls.TrackControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:MusicPlayer.WPF.Controls.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:MusicPlayer.WPF.Controls"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -17,6 +18,9 @@
         <z:PlayIconConverter x:Key="iconConverter" />
         <z:TrackImageConverter x:Key="imageConverter" />
         <z:TrackMultiConverter x:Key="trackMultiConverter" />
+        <converters:ShuffleImageConverter x:Key="shuffleConverter" />
+        <converters:LoopImageConverter x:Key="loopConverter" />
+        <converters:AudioIconConverter x:Key="audioConverter" />
     </UserControl.Resources>
 
     <!--#region PlayZone-->
@@ -125,10 +129,10 @@
                             Style="{DynamicResource MaterialDesignIconButton}">
 
                             <Image
-                                Width="20"
-                                Height="20"
+                                Width="23"
+                                Height="23"
                                 RenderOptions.BitmapScalingMode="HighQuality"
-                                Source="{DynamicResource Shuffle}"
+                                Source="{Binding IsShuffled, Converter={StaticResource shuffleConverter}}"
                                 Stretch="UniformToFill" />
                         </Button>
 
@@ -175,14 +179,15 @@
 
                         <Button
                             Background="Transparent"
-                            Command="{Binding RandomCommand}"
+                            Command="{Binding ChangeLoopStateCommand}"
                             Style="{DynamicResource MaterialDesignIconButton}">
 
-                            <materialDesign:PackIcon
-                                Width="20"
-                                Height="20"
-                                Foreground="{DynamicResource ForegroundLightColor}"
-                                Kind="Help" />
+                            <Image
+                                Width="23"
+                                Height="23"
+                                RenderOptions.BitmapScalingMode="HighQuality"
+                                Source="{Binding LoopState, Converter={StaticResource loopConverter}, UpdateSourceTrigger=PropertyChanged}"
+                                Stretch="UniformToFill" />
                         </Button>
 
 
@@ -207,6 +212,7 @@
                             Margin="0"
                             Padding="0"
                             VerticalAlignment="Center"
+                            Command="{Binding MuteAudioCommand}"
                             Style="{StaticResource MaterialDesignIconButton}">
 
                             <Image
@@ -214,7 +220,7 @@
                                 Width="20"
                                 Height="20"
                                 RenderOptions.BitmapScalingMode="HighQuality"
-                                Source="{DynamicResource SoundWave}" />
+                                Source="{Binding IsMuted, Converter={StaticResource audioConverter}, UpdateSourceTrigger=PropertyChanged}" />
                         </Button>
 
                         <Slider

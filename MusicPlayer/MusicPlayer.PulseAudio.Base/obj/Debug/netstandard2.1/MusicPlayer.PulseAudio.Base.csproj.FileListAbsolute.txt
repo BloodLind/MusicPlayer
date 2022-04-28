@@ -27,3 +27,4 @@ A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.PulseAudio.Base\obj\Debug\netsta
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.PulseAudio.Base\obj\Debug\netstandard2.1\MusicPlayer.PulseAudio.Base.csproj.CoreCompileInputs.cache
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.PulseAudio.Base\obj\Debug\netstandard2.1\MusicPlayer.PulseAudio.Base.dll
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.PulseAudio.Base\obj\Debug\netstandard2.1\MusicPlayer.PulseAudio.Base.pdb
+A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.PulseAudio.Base\obj\Debug\netstandard2.1\MusicPlayer.PulseAudio.Base.GeneratedMSBuildEditorConfig.editorconfig

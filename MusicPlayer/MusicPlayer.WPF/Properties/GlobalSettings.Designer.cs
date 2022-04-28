@@ -70,5 +70,17 @@ namespace MusicPlayer.WPF.Properties {
                 this["TableTrackCoverSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("512")]
+        public int HighResolution {
+            get {
+                return ((int)(this["HighResolution"]));
+            }
+            set {
+                this["HighResolution"] = value;
+            }
+        }
     }
 }

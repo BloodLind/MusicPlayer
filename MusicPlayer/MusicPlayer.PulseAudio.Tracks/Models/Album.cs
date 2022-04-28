@@ -11,10 +11,10 @@ namespace MusicPlayer.PulseAudio.Tracks.Models
 {
     public class Album : ITracksContainer
     {
-        public double PlayTime { get; set; }
+        public double PlayTime { get => Tracks.Sum(x => x.PlayTime); }
         public int TracksCount { get => Tracks.Count(); }
         public string Name { get; set; }
-        public IEnumerable<Track> Tracks { get; set; }
+        public List<Track> Tracks { get; set; }
 
         public override string ToString()
         {

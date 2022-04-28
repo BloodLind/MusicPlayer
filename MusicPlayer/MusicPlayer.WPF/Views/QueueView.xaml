@@ -63,7 +63,7 @@
                             <ImageBrush.ImageSource>
                                 <MultiBinding Converter="{StaticResource imageConverter}">
                                     <Binding Path="SelectedTrack" UpdateSourceTrigger="PropertyChanged" />
-                                    <Binding Path="TrackCoverSize" Source="{x:Static properties:GlobalSettings.Default}" />
+                                    <Binding Path="HighResolution" Source="{x:Static properties:GlobalSettings.Default}" />
                                 </MultiBinding>
                             </ImageBrush.ImageSource>
                         </ImageBrush>

@@ -49,5 +49,29 @@ namespace MusicPlayer.PulseAudio.Tracks.Services
             FileInfo fileInfo = new(path);
             return fileInfo.Extension ?? "undefined";
         }
+
+        public TrackAditionalInfo GetTrackAditionalInfo(string path)
+        {
+            using(var tags = TagLib.File.Create(path))
+            {
+
+                return new()
+                {
+                    Title = tags.Tag.Title ?? "Undefined",
+                    Artist = tags.Tag.FirstPerformer ?? "Undefined",
+                    Album = tags.Tag.Album ?? "Undefined",
+                    Singer = tags.Tag.FirstPerformer ?? "Undefined",
+                    Disk = (int)tags.Tag.Disc,
+                    Year = (int)tags.Tag.Year,
+                    TrackNumber = (int)tags.Tag.Track,
+                    Genre = tags.Tag.FirstGenre,
+                    Frequency = tags.Properties.AudioSampleRate.ToString() + " Hz",
+                    Bitrate = tags.Properties.AudioBitrate.ToString() + " Bit",
+                    Time = ((int)tags.Properties.Duration.TotalSeconds).ToString(),
+                    Codec = GetExtension(path),
+                    Bandwith = tags.Properties.AudioBitrate.ToString() + " kBit/S",
+                };
+            }
+        }
     }
 }

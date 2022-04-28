@@ -31,16 +31,16 @@ namespace MusicPlayer.Core.ViewModels
 
         private void InitCommands()
         {
-            ReturnCommand = new MvxCommand(() =>
+            ReturnCommand = new MvxAsyncCommand(() =>
             {
-                NavigationService.Close(this);
+                return NavigationService.Close(this);
             });
 
-            MoreCommand = new MvxCommand(() =>
+            MoreCommand = new MvxAsyncCommand(() =>
             {
                TrackManagerViewModel viewModel = new(selectedTrack, this.LoggerFactory, this.NavigationService);
                viewModel.CurrentTrack = SelectedTrack;
-               NavigationService.Navigate<ModalViewModel, Action<IMvxNavigationService>>((service) => service.Navigate(viewModel));
+               return NavigationService.Navigate<ModalViewModel, Action<IMvxNavigationService>>((service) => service.Navigate(viewModel));
             });
         }
 
@@ -51,8 +51,8 @@ namespace MusicPlayer.Core.ViewModels
 
 
         #region Commands
-        public IMvxCommand ReturnCommand { get; private set; }
-        public IMvxCommand MoreCommand { get; private set; }
+        public IMvxAsyncCommand ReturnCommand { get; private set; }
+        public IMvxAsyncCommand MoreCommand { get; private set; }
         #endregion
 
         #region Properties

@@ -58,6 +58,7 @@
                             <ImageBrush.ImageSource>
                                 <MultiBinding Converter="{StaticResource imageConverter}">
                                     <Binding Path="SelectedTrack" UpdateSourceTrigger="PropertyChanged" />
+                                    <Binding Path="HighResolution" Source="{x:Static properties:GlobalSettings.Default}" />
                                 </MultiBinding>
                             </ImageBrush.ImageSource>
                         </ImageBrush>
@@ -153,7 +154,8 @@
                     Height="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualWidth}"
                     MinWidth="350"
                     Margin="40,0,0,40"
-                    VerticalAlignment="Bottom">
+                    VerticalAlignment="Bottom"
+                    Visibility="Hidden">
 
                     <materialDesign:Card
                         Height="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualWidth}"
@@ -167,7 +169,8 @@
                         Foreground="{DynamicResource ForegroundLightColor}"
                         Style="{StaticResource MaterialDesignCaptionTextBlock}"
                         Text="{Binding SelectedTrack.Title, UpdateSourceTrigger=PropertyChanged}"
-                        TextWrapping="Wrap" />
+                        TextWrapping="Wrap"
+                        Visibility="Hidden" />
                 </Grid>
             </UniformGrid>
         </Viewbox>

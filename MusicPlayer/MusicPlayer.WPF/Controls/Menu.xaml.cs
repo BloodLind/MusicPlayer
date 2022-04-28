@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -18,6 +19,8 @@ namespace MusicPlayer.WPF.Controls
     /// <summary>
     /// Логика взаимодействия для Menu.xaml
     /// </summary>
+    /// 
+    [ContentProperty("InnerContent")]
     public partial class Menu : UserControl
     {
 
@@ -26,7 +29,7 @@ namespace MusicPlayer.WPF.Controls
             nameof(MenuExpanded), typeof(Visibility), typeof(Menu));
 
         public static DependencyProperty InnerContentProperty = DependencyProperty.Register(
-            nameof(InnerContent), typeof(FrameworkElement), typeof(Menu));
+            nameof(InnerContent), typeof(FrameworkElement), typeof(Menu), new UIPropertyMetadata(null));
 
         public static DependencyProperty ExpandedWidthProperty = DependencyProperty.Register(
             nameof(ExpandedWidth), typeof(double), typeof(Menu));

@@ -15,7 +15,6 @@ S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.PulseAudio.Tracks\o
 S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.PulseAudio.Tracks\obj\Debug\net5.0\MusicPlayer.PulseAudio.Tracks.pdb
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.PulseAudio.Tracks\bin\Debug\net5.0\MusicPlayer.PulseAudio.Tracks.deps.json
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.PulseAudio.Tracks\bin\Debug\net5.0\MusicPlayer.PulseAudio.Tracks.dll
-A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.PulseAudio.Tracks\bin\Debug\net5.0\ref\MusicPlayer.PulseAudio.Tracks.dll
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.PulseAudio.Tracks\bin\Debug\net5.0\MusicPlayer.PulseAudio.Tracks.pdb
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.PulseAudio.Tracks\bin\Debug\net5.0\MusicPlayer.PulseAudio.Base.dll
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.PulseAudio.Tracks\bin\Debug\net5.0\MusicPlayer.PulseAudio.Base.pdb
@@ -28,3 +27,4 @@ A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.PulseAudio.Tracks\obj\Debug\net5
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.PulseAudio.Tracks\obj\Debug\net5.0\MusicPlayer.PulseAudio.Tracks.dll
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.PulseAudio.Tracks\obj\Debug\net5.0\ref\MusicPlayer.PulseAudio.Tracks.dll
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.PulseAudio.Tracks\obj\Debug\net5.0\MusicPlayer.PulseAudio.Tracks.pdb
+A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.PulseAudio.Tracks\obj\Debug\net5.0\refint\MusicPlayer.PulseAudio.Tracks.dll

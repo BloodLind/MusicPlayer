@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.WPF\App.xaml
-16-2010246060
+19-156270109
 
-36-1380495442
+43-717664043
 214-1485211171
-Controls\DialogWindow.xaml;Controls\Menu.xaml;Controls\RadialSlider.xaml;Controls\TrackControl.xaml;MainWindow.xaml;Resources\ApplicationResources.xaml;Views\HomeView.xaml;Views\ModalView.xaml;Views\ModalViews\AddToPlaylistView.xaml;Views\ModalViews\TrackManagerView.xaml;Views\NowPlayingView.xaml;Views\QueueView.xaml;Views\RootView.xaml;Views\SubViews\ArtistsView.xaml;Views\SubViews\TracksTable.xaml;Views\SubViews\TracksView.xaml;
+Controls\DialogWindow.xaml;Controls\Menu.xaml;Controls\PlaylistMenuList.xaml;Controls\RadialSlider.xaml;Controls\SearchBox.xaml;Controls\TrackControl.xaml;MainWindow.xaml;Resources\ApplicationResources.xaml;Views\HomeView.xaml;Views\ModalView.xaml;Views\ModalViews\AddToPlaylistView.xaml;Views\ModalViews\TrackInfoView.xaml;Views\ModalViews\TrackManagerView.xaml;Views\NowPlayingView.xaml;Views\QueueView.xaml;Views\RootView.xaml;Views\SubViews\ArtistsView.xaml;Views\SubViews\TracksTable.xaml;Views\SubViews\TracksView.xaml;
 
 False
 

@@ -9,5 +9,6 @@ namespace MusicPlayer.Core.Infrastructure
     public abstract class AppSettings
     {
         public string DefaultScanningFolder { get; set; }
+        public string DefaultPlaylistPath { get; set; }
     }
 }

@@ -18,167 +18,170 @@
         <z:TrackImageConverter x:Key="imageConverter" />
         <z:IndexConverter x:Key="indexConverter" />
     </UserControl.Resources>
+    <Grid>
+        <Rectangle Fill="{DynamicResource TableTrackBackground}" Opacity="0.3" />
+        <DockPanel Margin="5">
+            <Grid DockPanel.Dock="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="7*" />
+                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                    Grid.Column="0"
+                    Margin="25,0,0,0"
+                    HorizontalAlignment="Center"
+                    FontSize="16"
+                    FontWeight="SemiBold"
+                    Foreground="{DynamicResource ForegroundLightColor}"
+                    Text="#" />
+                <TextBlock
+                    Grid.Column="1"
+                    Margin="90,0,0,0"
+                    HorizontalAlignment="Left"
+                    FontSize="16"
+                    FontWeight="SemiBold"
+                    Foreground="{DynamicResource ForegroundLightColor}"
+                    Text="Track" />
+                <TextBlock
+                    Grid.Column="2"
+                    Margin="50,0,0,0"
+                    HorizontalAlignment="Left"
+                    FontSize="16"
+                    FontWeight="SemiBold"
+                    Foreground="{DynamicResource ForegroundLightColor}"
+                    Text="Album" />
+                <Image
+                    Grid.Column="3"
+                    Width="25"
+                    Height="25"
+                    Margin="40,0,0,0"
+                    HorizontalAlignment="Center"
+                    Source="{DynamicResource Clock}" />
+            </Grid>
+            <Rectangle
+                Height="1"
+                Margin="5"
+                VerticalAlignment="Bottom"
+                DockPanel.Dock="Top"
+                Fill="{DynamicResource ForegroundDarkColor}"
+                Opacity="0.7"
+                RadiusX="5"
+                RadiusY="5"
+                ScrollViewer.IsDeferredScrollingEnabled="True" />
+            <ListView
+                x:Name="TracksListView"
+                Width="Auto"
+                Background="Transparent"
+                ItemsSource="{Binding Tracks, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
+                PreviewMouseDown="Grid_PreviewMouseDown"
+                ScrollBar.Scroll="TracksListView_Scroll"
+                SelectedItem="{Binding SelectedTrack, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                SelectionMode="Single"
+                VirtualizingPanel.IsVirtualizing="True"
+                VirtualizingPanel.VirtualizationMode="Standard">
 
-    <DockPanel Margin="5">
-        <Grid DockPanel.Dock="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="10*" />
-                <ColumnDefinition Width="7*" />
-                <ColumnDefinition Width="4*" />
-                <ColumnDefinition Width="3*" />
-            </Grid.ColumnDefinitions>
-            <TextBlock
-                Grid.Column="0"
-                Margin="25,0,0,0"
-                HorizontalAlignment="Center"
-                FontSize="16"
-                FontWeight="SemiBold"
-                Foreground="{DynamicResource ForegroundLightColor}"
-                Text="#" />
-            <TextBlock
-                Grid.Column="1"
-                Margin="90,0,0,0"
-                HorizontalAlignment="Left"
-                FontSize="16"
-                FontWeight="SemiBold"
-                Foreground="{DynamicResource ForegroundLightColor}"
-                Text="Track" />
-            <TextBlock
-                Grid.Column="2"
-                Margin="50,0,0,0"
-                HorizontalAlignment="Left"
-                FontSize="16"
-                FontWeight="SemiBold"
-                Foreground="{DynamicResource ForegroundLightColor}"
-                Text="Album" />
-            <Image
-                Grid.Column="3"
-                Width="25"
-                Height="25"
-                Margin="40,0,0,0"
-                HorizontalAlignment="Center"
-                Source="{DynamicResource Clock}" />
-        </Grid>
-        <Rectangle
-            Height="1"
-            Margin="5"
-            VerticalAlignment="Bottom"
-            DockPanel.Dock="Top"
-            Fill="{DynamicResource ForegroundDarkColor}"
-            Opacity="0.7"
-            RadiusX="5"
-            RadiusY="5"
-            ScrollViewer.IsDeferredScrollingEnabled="True" />
-        <ListView
-            x:Name="TracksListView"
-            Width="Auto"
-            Background="Transparent"
-            ItemsSource="{Binding Tracks, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
-            PreviewMouseDown="Grid_PreviewMouseDown"
-            ScrollBar.Scroll="TracksListView_Scroll"
-            SelectedItem="{Binding SelectedTrack, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-            SelectionMode="Single"
-            VirtualizingPanel.IsVirtualizing="True"
-            VirtualizingPanel.VirtualizationMode="Standard">
-
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="MouseDoubleClick">
-                    <i:InvokeCommandAction Command="{Binding PlaySelectedCommand}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <i:InvokeCommandAction Command="{Binding PlaySelectedCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
 
 
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid
-                        Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListView}, Path=ActualWidth}"
-                        Background="Transparent"
-                        MouseEnter="Grid_MouseEnter"
-                        MouseLeave="Grid_MouseLeave">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*" />
-                            <ColumnDefinition Width="10*" />
-                            <ColumnDefinition Width="7*" />
-                            <ColumnDefinition Width="4*" />
-                            <ColumnDefinition Width="3*" />
-                        </Grid.ColumnDefinitions>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid
+                            Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListView}, Path=ActualWidth}"
+                            Background="Transparent"
+                            MouseEnter="Grid_MouseEnter"
+                            MouseLeave="Grid_MouseLeave">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="10*" />
+                                <ColumnDefinition Width="7*" />
+                                <ColumnDefinition Width="4*" />
+                                <ColumnDefinition Width="3*" />
+                            </Grid.ColumnDefinitions>
 
-                        <TextBlock
-                            Grid.Column="0"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="16"
-                            FontWeight="SemiBold"
-                            Foreground="{DynamicResource ForegroundLightColor}"
-                            Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListViewItem}, Converter={StaticResource indexConverter}}" />
-
-                        <StackPanel Grid.Column="1" Orientation="Horizontal">
-                            <Rectangle
-                                Width="{Binding Source={x:Static properties:GlobalSettings.Default}, Path=TableTrackCoverSize}"
-                                Height="{Binding Source={x:Static properties:GlobalSettings.Default}, Path=TableTrackCoverSize}"
+                            <TextBlock
+                                Grid.Column="0"
                                 HorizontalAlignment="Center"
-                                RadiusX="2"
-                                RadiusY="2">
-                                <Rectangle.Fill>
-                                    <ImageBrush x:Name="myImage">
-                                        <ImageBrush.ImageSource>
-                                            <MultiBinding Converter="{StaticResource imageConverter}">
-                                                <Binding Path="." />
-                                                <Binding Path="TableTrackCoverSize" Source="{x:Static properties:GlobalSettings.Default}" />
-                                            </MultiBinding>
-                                        </ImageBrush.ImageSource>
-                                    </ImageBrush>
-                                </Rectangle.Fill>
-                            </Rectangle>
+                                VerticalAlignment="Center"
+                                FontSize="16"
+                                FontWeight="SemiBold"
+                                Foreground="{DynamicResource ForegroundLightColor}"
+                                Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListViewItem}, Converter={StaticResource indexConverter}}" />
 
-                            <StackPanel Margin="25,0,0,0" VerticalAlignment="Center">
-                                <TextBlock
-                                    FontSize="16"
-                                    FontWeight="SemiBold"
-                                    Foreground="{DynamicResource ForegroundLightColor}"
-                                    Text="{Binding Title}" />
-                                <TextBlock
-                                    Margin="0,2,0,0"
-                                    FontSize="14"
-                                    FontWeight="SemiBold"
-                                    Foreground="{DynamicResource ForegroundMidColor}"
-                                    Text="{Binding Artist}" />
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <Rectangle
+                                    Width="{Binding Source={x:Static properties:GlobalSettings.Default}, Path=TableTrackCoverSize}"
+                                    Height="{Binding Source={x:Static properties:GlobalSettings.Default}, Path=TableTrackCoverSize}"
+                                    HorizontalAlignment="Center"
+                                    RadiusX="2"
+                                    RadiusY="2">
+                                    <Rectangle.Fill>
+                                        <ImageBrush x:Name="myImage">
+                                            <ImageBrush.ImageSource>
+                                                <MultiBinding Converter="{StaticResource imageConverter}">
+                                                    <Binding Path="." />
+                                                    <Binding Path="TableTrackCoverSize" Source="{x:Static properties:GlobalSettings.Default}" />
+                                                </MultiBinding>
+                                            </ImageBrush.ImageSource>
+                                        </ImageBrush>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+
+                                <StackPanel Margin="25,0,0,0" VerticalAlignment="Center">
+                                    <TextBlock
+                                        FontSize="16"
+                                        FontWeight="SemiBold"
+                                        Foreground="{DynamicResource ForegroundLightColor}"
+                                        Text="{Binding Title}" />
+                                    <TextBlock
+                                        Margin="0,2,0,0"
+                                        FontSize="14"
+                                        FontWeight="SemiBold"
+                                        Foreground="{DynamicResource ForegroundMidColor}"
+                                        Text="{Binding Artist}" />
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
 
-                        <TextBlock
-                            Grid.Column="2"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            FontSize="16"
-                            Foreground="{DynamicResource ForegroundLightColor}"
-                            Text="{Binding Album}" />
+                            <TextBlock
+                                Grid.Column="2"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                FontSize="16"
+                                Foreground="{DynamicResource ForegroundLightColor}"
+                                Text="{Binding Album}" />
 
-                        <TextBlock
-                            Grid.Column="3"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="16"
-                            Foreground="{DynamicResource ForegroundLightColor}"
-                            Text="{Binding PlayTime, Converter={StaticResource timeConverter}}" />
+                            <TextBlock
+                                Grid.Column="3"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="16"
+                                Foreground="{DynamicResource ForegroundLightColor}"
+                                Text="{Binding PlayTime, Converter={StaticResource timeConverter}}" />
 
-                        <Button
-                            Name="More"
-                            Grid.Column="4"
-                            Width="50"
-                            Margin="0,0,50,0"
-                            HorizontalAlignment="Right"
-                            Style="{DynamicResource MaterialDesignFlatButton}"
-                            Visibility="Hidden">
-                            <Image CacheMode="BitmapCache" Source="{DynamicResource MoreHorizontal}" />
-                        </Button>
+                            <Button
+                                Name="More"
+                                Grid.Column="4"
+                                Width="50"
+                                Margin="0,0,50,0"
+                                HorizontalAlignment="Right"
+                                Style="{DynamicResource MaterialDesignFlatButton}"
+                                Visibility="Hidden">
+                                <Image CacheMode="BitmapCache" Source="{DynamicResource MoreHorizontal}" />
+                            </Button>
 
-                    </Grid>
+                        </Grid>
 
-                </DataTemplate>
+                    </DataTemplate>
 
-            </ListView.ItemTemplate>
-        </ListView>
-    </DockPanel>
+                </ListView.ItemTemplate>
+            </ListView>
+        </DockPanel>
+
+    </Grid>
 </UserControl>

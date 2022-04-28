@@ -38,22 +38,9 @@ namespace MusicPlayer.WPF.Views
             InitializeComponent();
             this.Loaded += NowPlayingView_Loaded;
             this.Unloaded += NowPlayingView_Unloaded;
-            this.SizeChanged += NowPlayingView_SizeChanged;
         }
 
-        private void NowPlayingView_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-           if(this.ActualWidth <= 600)
-            {
-                this.RightSide.Visibility = Visibility.Collapsed;
-                this.LeftSide.HorizontalAlignment = HorizontalAlignment.Center;
-            }
-           else
-            {
-                this.RightSide.Visibility = Visibility.Visible;
-                this.LeftSide.HorizontalAlignment = HorizontalAlignment.Stretch;
-            }
-        }
+       
 
         private void NowPlayingView_Unloaded(object sender, RoutedEventArgs e)
         { 

@@ -9,7 +9,6 @@ namespace MusicPlayer.PulseAudio.Tracks.Services.Interfaces
     public interface ICatalogScaner
     {
         void ScanFolder(string path);
-        void RemoveFolderFromScan(string path);
         IEnumerable<string> ScannedFiles { get; set; }
     }
 }

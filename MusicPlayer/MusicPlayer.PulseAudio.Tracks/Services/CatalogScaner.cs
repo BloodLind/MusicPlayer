@@ -12,12 +12,16 @@ namespace MusicPlayer.PulseAudio.Tracks.Services
     public class CatalogScaner : ICatalogScaner
     {
         private string[] extensions = { "*.mp3", "*.wav", "*.wma", "*.aac", "*.m4a", "*.flac" };
+        private string[] playlistsExtensions = { ".xspf" };
         
         public IEnumerable<string> ScannedFiles { get; set; }
 
-        public void RemoveFolderFromScan(string path)
+        public string ScanPlaylistFile(string path)
         {
-            throw new NotImplementedException();
+            FileInfo info = new FileInfo(path);
+            if (playlistsExtensions.Contains(info.Extension))
+                return File.ReadAllText(path).Trim(new char[] {' ', '\n', '\r'});
+            return null;
         }
 
         public void ScanFolder(string path)

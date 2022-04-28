@@ -9,8 +9,8 @@ namespace MusicPlayer.Core.Infrastructure.ViewModels
 {
     public interface IMenuViewModel
     {
-        IMvxCommand ShowMenu { get; }
-        IMvxCommand ShowHome { get; }
-        IMvxCommand ShowPlaylists { get; }
+        IMvxAsyncCommand ShowMenu { get; }
+        IMvxAsyncCommand ShowHome { get; }
+        IMvxAsyncCommand ShowPlaylists { get; }
     }
 }

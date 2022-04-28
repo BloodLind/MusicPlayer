@@ -2,6 +2,7 @@
 using MusicPlayer.PulseAudio.Tracks.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,7 +34,6 @@ namespace MusicPlayer.PulseAudio.Tracks.Services
             return artists.Select(x => new Artist
             {
                 Name = x.Key,
-                PlayTime = GetPlayTime(x),
                 Tracks = x.ToList(),
             }).OrderBy(x => x.Name);
 
@@ -47,12 +47,24 @@ namespace MusicPlayer.PulseAudio.Tracks.Services
             return albums.Select(x => new Album
             {
                 Name = x.Key,
-                PlayTime = GetPlayTime(x),
                 Tracks = x.ToList(),
             }).OrderBy(x => x.Name);
         }
-     
-        private double GetPlayTime(IEnumerable<Track> tracks) => tracks.Select(x => x.PlayTime).Sum();
 
+        
+
+        public IEnumerable<Playlist> GetPlaylistsList(IEnumerable<string> paths,IEnumerable<Track> tracks)
+        {
+            CatalogScaner scaner = new CatalogScaner();
+            List<string> xmlContent = new List<string>();
+            foreach (var path in paths)
+            {
+                var content = scaner.ScanPlaylistFile(path);
+                if(content != null)
+                    xmlContent.Add(content);   
+            }
+            
+            return xmlContent.Select(x => Playlist.DeserializeXML(x, tracks));
+        }
     }
 }

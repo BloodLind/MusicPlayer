@@ -14,7 +14,7 @@ namespace MusicPlayer.PulseAudio.Base
         /// <summary>
         /// Indicates show is queue looped in default may be set false
         /// </summary>
-        bool IsQueueLooped { get; set; }
+        bool IsQueueShuffled { get; set; }
         
         /// <summary>
         /// Volume of tracks reprodusing
@@ -64,6 +64,8 @@ namespace MusicPlayer.PulseAudio.Base
         /// </summary>
         void ShuffleQueue();
 
+        void Previous();
+        void Next();
         void UnshuffleQueue();
 
         /// <summary>
@@ -96,6 +98,8 @@ namespace MusicPlayer.PulseAudio.Base
         /// Before change will stop audio reproducing and resume playback after the new output has been correctly set.
         /// </summary>
         void ChangeOutputDevice(IAudioOutput output);
+
+        void ChangeLoopState(LoopState state);
         #endregion
 
         #region Events

@@ -13,7 +13,13 @@
     <Compile Update="Controls\Menu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\PlaylistMenuList.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\RadialSlider.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\SearchBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Controls\TrackControl.xaml.cs">
@@ -26,6 +32,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\ModalViews\AddToPlaylistView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ModalViews\TrackInfoView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\ModalViews\TrackManagerView.xaml.cs">
@@ -57,7 +66,13 @@
     <Page Update="Controls\Menu.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Controls\PlaylistMenuList.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Controls\RadialSlider.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\SearchBox.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\TrackControl.xaml">
@@ -76,6 +91,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\ModalViews\AddToPlaylistView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ModalViews\TrackInfoView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\ModalViews\TrackManagerView.xaml">

@@ -71,62 +71,28 @@ namespace MusicPlayer.WPF.Services
             else
             {
                 Track track = values[0] as Track;
-                string key = String.Join("_", track.Artist, track.Album);
-                BitmapImage image = App.images.GetData(key);
-                if (image != null)
-                {
-                    return image;
-                }
+                var byteImage = track.FilePath == null ? null : trackInfoGrabber.GetTrackImage(track.FilePath);
+                if (byteImage == null)
+                    return Application.Current.Resources["Cover"];
                 else
                 {
-
-                    var byteImage = track.FilePath == null ? null : trackInfoGrabber.GetTrackImage(track.FilePath);
-                    if (byteImage == null)
-                        return Application.Current.Resources["Cover"];
-                    else
+                    try
                     {
-                        try
-                        {
-                            image = new BitmapImage();
-                            image.BeginInit();
-                            image.CacheOption = BitmapCacheOption.OnLoad;
-                            MemoryStream memoryStream = new MemoryStream(byteImage);
-                            image.StreamSource = memoryStream;
-                            ChangeDecodeOfImage(dpiSize, image);
-                            image.EndInit();
-
-                            if (IsImagesCached)
-                                App.images.AddData(key, image);
-
-                            return image;
-                        }
-                        catch
-                        {
-                            return Application.Current.Resources["Cover"];
-                        }
+                        BitmapImage image = new BitmapImage();
+                        image.BeginInit();
+                        image.CacheOption = BitmapCacheOption.OnLoad;
+                        MemoryStream memoryStream = new MemoryStream(byteImage);
+                        image.StreamSource = memoryStream;
+                        ChangeDecodeOfImage(dpiSize, image);
+                        image.EndInit();
+                    
+                        return image;
+                    }
+                    catch
+                    {
+                        return Application.Current.Resources["Cover"];
                     }
                 }
-                //else
-                //{
-                //    try
-                //    {
-                //        image = new BitmapImage();
-                //        image.BeginInit();
-                //        image.CacheOption = BitmapCacheOption.OnLoad;
-
-                //        MemoryStream memoryStream = new MemoryStream(track.Image);
-                //        image.StreamSource = memoryStream;
-                //        ChangeDecodeOfImage(dpiSize, image);
-                //        image.EndInit();
-
-                //        App.images.AddData(key, image);
-                //        return image;
-                //    }
-                //    catch
-                //    {
-                //        return Application.Current.Resources["Cover"];
-                //    }
-                //}
             }
         }
 

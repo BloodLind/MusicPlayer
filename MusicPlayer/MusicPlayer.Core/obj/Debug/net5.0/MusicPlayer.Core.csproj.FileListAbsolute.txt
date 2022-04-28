@@ -17,7 +17,6 @@ S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Core\obj\Debug\net5
 S:\_WorkFiles\StepThings\MusicPlayer\MusicPlayer\MusicPlayer.Core\obj\Debug\net5.0\MusicPlayer.Core.pdb
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.Core\bin\Debug\net5.0\MusicPlayer.Core.deps.json
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.Core\bin\Debug\net5.0\MusicPlayer.Core.dll
-A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.Core\bin\Debug\net5.0\ref\MusicPlayer.Core.dll
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.Core\bin\Debug\net5.0\MusicPlayer.Core.pdb
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.Core\bin\Debug\net5.0\MusicPlayer.PulseAudio.Base.dll
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.Core\bin\Debug\net5.0\MusicPlayer.PulseAudio.Tracks.dll
@@ -32,3 +31,4 @@ A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.Core\obj\Debug\net5.0\MusicPlaye
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.Core\obj\Debug\net5.0\MusicPlayer.Core.dll
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.Core\obj\Debug\net5.0\ref\MusicPlayer.Core.dll
 A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.Core\obj\Debug\net5.0\MusicPlayer.Core.pdb
+A:\Projects\MusicPlayer\MusicPlayer\MusicPlayer.Core\obj\Debug\net5.0\refint\MusicPlayer.Core.dll

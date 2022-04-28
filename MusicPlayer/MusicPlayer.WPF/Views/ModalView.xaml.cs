@@ -70,6 +70,7 @@ namespace MusicPlayer.WPF.Views
             this.Top = App.Current.MainWindow.Top;
             this.Width = App.Current.MainWindow.ActualWidth;
             this.Height = App.Current.MainWindow.ActualHeight;
+            this.Owner = App.Current.MainWindow;
         }
         private double ContentWidth { get; set; }
         private double ContentHeight { get; set; }
@@ -82,6 +83,7 @@ namespace MusicPlayer.WPF.Views
             EnableBlur();
         }
 
+        
         internal void EnableBlur()
         {
             var windowHelper = new WindowInteropHelper(this);
